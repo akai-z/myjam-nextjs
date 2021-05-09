@@ -22,7 +22,7 @@ function json(body) {
 }
 
 function cachedResponse(response) {
-  const cacheHeader = { 'Cache-Control': 's-maxage=' + defaultCacheMaxAge }
+  const cacheHeader = { 'Cache-Control': `s-maxage=${defaultCacheMaxAge}` }
   return addHeaders(response, cacheHeader)
 }
 
