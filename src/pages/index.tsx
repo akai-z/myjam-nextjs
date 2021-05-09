@@ -1,5 +1,5 @@
 import React from 'react';
-// import { GetServerSideProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import Layout from '@components/layout';
 import Blocks from '@components/homepage-blocks';
@@ -24,13 +24,13 @@ const IndexPage: React.FC<Props> = ({ data }) => {
     );
 }
 
-// // @ts-ignore
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const response = await fetch('https://practical-dubinsky-3c3f1a.netlify.app/api/test');
-//   const text = await response.text();
-//   return {
-//     props: { data: text },
-//   };
-// };
+// @ts-ignore
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const response = await fetch('https://practical-dubinsky-3c3f1a.netlify.app/api/test');
+  const text = await response.text();
+  return {
+    props: { data: text },
+  };
+};
 
 export default IndexPage;
