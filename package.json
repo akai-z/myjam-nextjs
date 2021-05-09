@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build && next export",
+    "build": "next build",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "type-check": "tsc --noEmit"
   },
