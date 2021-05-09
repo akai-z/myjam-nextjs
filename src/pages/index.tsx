@@ -8,21 +8,21 @@ import CategorySlider from '@components/category-slider';
 import ItemSlider from '@components/item-slider';
 
 interface Props {
-    data: string;
+  data: string;
 }
 
 const IndexPage: React.FC<Props> = ({ data }) => {
-    console.log(data);
-    return (
-        <Layout seo={{ title: 'MY JAM' }}>
-            <HomeBanner />
-            <Blocks />
-            <CategorySlider />
-            <ItemSlider title="Featured Products" type="featured" />
-            <ItemSlider title="Trending Products" type="trending" />
-        </Layout>
-    );
-}
+  console.log(data);
+  return (
+    <Layout seo={{ title: 'MY JAM' }}>
+      <HomeBanner />
+      <Blocks />
+      <CategorySlider />
+      <ItemSlider title="Featured Products" type="featured" />
+      <ItemSlider title="Trending Products" type="trending" />
+    </Layout>
+  );
+};
 
 // @ts-ignore
 export const getServerSideProps: GetServerSideProps = async (context) => {

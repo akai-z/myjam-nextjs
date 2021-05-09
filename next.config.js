@@ -5,7 +5,8 @@ module.exports = withImages({
   distDir: 'build',
   target: 'serverless',
   images: {
-    domains: [`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_KEY}/image/upload/q_auto,f_auto/${process.env.NEXT_PUBLIC_CLOUDINARY_PATH}/my-jam`]
+    loader: '',
+    domains: ['res.cloudinary.com']
   },
   webpack(config, { isServer }) {
     if (!isServer) {
