@@ -13,7 +13,7 @@ const Hits: React.FC<Props> = ({ hits }) => (
       <ItemsGrid itemsList={hits} />
     ) : (
       <Block>
-        <Image src="/images/no-result-found.svg" height={250} width={300} alt="No Result Found" />
+        <Image src="/no-result-found.svg" height={250} width={300} alt="No Result Found" />
         <Text>No Items Found :(</Text>
         <SubText>Sorry, no items found inside your search</SubText>
       </Block>

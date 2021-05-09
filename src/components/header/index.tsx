@@ -31,7 +31,7 @@ const Header: FC = () => {
           <div>
             <Link href="/" passHref>
               <RouterLink>
-                <Image src="/images/logo.svg" height={70} width={70} alt="MY JAM Logo" />
+                <Image src="/logo.svg" height={70} width={70} alt="MY JAM Logo" />
               </RouterLink>
             </Link>
           </div>
