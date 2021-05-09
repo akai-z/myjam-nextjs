@@ -25,6 +25,7 @@
     "algoliasearch": "^4.9.1",
     "animate.css": "^4.1.1",
     "argon2": "^0.27.2",
+    "crypto-js": "^4.0.0",
     "date-fns": "^2.11.1",
     "dotenv": "^9.0.2",
     "gray-matter": "^4.0.2",
