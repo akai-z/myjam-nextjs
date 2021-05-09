@@ -4,12 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "start": "run-p start:**",
-    "start:app": "next start",
-    "start:lambda": "netlify-lambda serve src/functions",
-    "build": "next build && netlify-lambda build src/functions",
-    "build:app": "next build",
-    "build:lambda": "netlify-lambda build src/functions",
+    "start": "next start",
+    "build": "next build",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "type-check": "tsc --noEmit"
   },
