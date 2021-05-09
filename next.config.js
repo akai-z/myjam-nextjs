@@ -5,7 +5,6 @@ module.exports = withImages({
   distDir: 'build',
   target: 'serverless',
   images: {
-    loader: '',
     domains: ['res.cloudinary.com']
   },
   webpack(config, { isServer }) {
