@@ -12,7 +12,7 @@ async function listByIds(ids, offset = null) {
 }
 
 async function listByType(type) {
-  return await listAll('{' + type + '} = 1')
+  return await listAll(`{${type}} = 1`)
 }
 
 async function listByIdentifiers(identifierName, identifierValues, offset = null) {
