@@ -7,7 +7,7 @@ const defaultView = 'Grid view'
 
 async function findRecordByField(table, fieldName, fieldValue) {
   const selectParams = {
-    filter: '{' + fieldName + '} = "' + fieldValue + '"',
+    filter: `{${fieldName}} = "${fieldValue}"`,
     maxRecords: 1
   }
 
