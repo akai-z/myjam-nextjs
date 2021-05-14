@@ -53,7 +53,7 @@ function filterParams(filter = null, filterLogicalOperator = 'AND') {
   const params = { filter: '{status} = "enabled"' }
 
   if (filter) {
-    params.filter = filterLogicalOperator + '(' + params.filter + ', ' + filter + ')'
+    params.filter = `${filterLogicalOperator}(${params.filter}, ${filter})`
   }
 
   return params
