@@ -28,11 +28,11 @@ async function createRecord(table, data) {
 
 async function findRecordByField(table, fieldName, fieldValue) {
   const selectParams = {
-    filter: `${fieldName} = "${fieldValue}"`,
+    filterByFormula: `${fieldName} = "${fieldValue}"`,
     maxRecords: 1
   }
 
-  const record = await listRecords(table, selectParams)
+  const record = await base(table).select(selectParams).all()
 
   return record[0] || null
 }
@@ -54,32 +54,6 @@ function isBulkActionRecordsAboveLimit(data) {
 
 function setBulkActionChunkDelay() {
   return new Promise(resolve => { setTimeout(resolve, bulkActionChunkDelay) })
-}
-
-async function listRecords(table, selectParams = {}) {
-  return await tableSelect(table, selectParams).all()
-}
-
-function tableSelect(table, params = {}) {
-  const selectParams = {}
-
-  if (params.view) {
-    selectParams.view = params.view
-  }
-
-  if (params.fields) {
-    selectParams.fields = params.fields
-  }
-
-  if (params.filter) {
-    selectParams.filterByFormula = params.filter
-  }
-
-  if (params.maxRecords) {
-    selectParams.maxRecords = params.maxRecords
-  }
-
-  return base(table).select(selectParams)
 }
 
 function base(table) {
