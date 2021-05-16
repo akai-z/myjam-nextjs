@@ -34,7 +34,7 @@ async function listRecords(table, params = {}) {
 async function apiRequest(httpMethod, table, params = {}, headers = null, body = null) {
   const config = {
     method: httpMethod,
-    headers: { 'Authorization': 'Bearer ' + process.env.AIRTABLE_API_KEY },
+    headers: { 'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}` },
     prefixUrl: apiUrl(),
     searchParams: selectParams(params)
   }
