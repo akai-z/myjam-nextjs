@@ -50,8 +50,10 @@ async function apiRequest(httpMethod, table, params = {}, headers = null, body =
   try {
     return await got(table, config).json()
   } catch (err) {
-    console.log(err.response.statusCode)
-    console.log(err.response.body)
+    console.log({
+      statusCode: err.response.statusCode,
+      body: err.response.body
+    })
 
     throw new HttpError(err.response.statusCode || 500, 'DB Error')
   }
