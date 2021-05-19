@@ -1,6 +1,6 @@
 const HttpError = require('../error/http')
 
-const pathPrefix = '/.netlify/functions/'
+const pathPrefix = process.env.FUNCTIONS_PATH_PARAMS_PREFIX || '/.netlify/functions/'
 let resolvedParams = null
 
 function params(path, requiredParams = []) {
