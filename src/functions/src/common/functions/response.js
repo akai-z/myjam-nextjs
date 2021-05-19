@@ -1,6 +1,6 @@
 const HttpError = require('../error/http')
 
-const defaultCacheMaxAge = 86400
+const defaultCacheMaxAge = process.env.FUNCTIONS_RESPONSE_CACHE_MAX_AGE || 86400
 
 function success(headers = null, body = null) {
   return response(200, body, headers)
