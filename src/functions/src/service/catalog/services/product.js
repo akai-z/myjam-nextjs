@@ -1,7 +1,7 @@
 const airtable = require('./integrations/airtable')
 
 const tableName = 'items'
-const defaultListPageSize = 50
+const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50
 
 async function product(slug) {
   return await airtable.findRecordByField(tableName, 'slug', slug)
