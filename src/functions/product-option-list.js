@@ -1,3 +1,4 @@
+require('./src/common/functions/config')
 const productOption = require('./src/service/catalog/services/product/option')
 const httpMethods = require('./src/common/functions/http-methods')
 const response = require('./src/common/functions/response')

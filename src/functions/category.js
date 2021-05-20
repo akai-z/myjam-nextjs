@@ -1,3 +1,4 @@
+require('./src/common/functions/config')
 const category = require('./src/service/catalog/services/category')
 const pathParams = require('./src/common/functions/path-params')
 const httpMethods = require('./src/common/functions/http-methods')
