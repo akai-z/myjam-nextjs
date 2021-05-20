@@ -1,3 +1,4 @@
+require('./src/common/functions/config')
 const stripe = require('./src/service/stripe-checkout/services/integrations/stripe')
 const order = require('./src/service/stripe-checkout/services/order')
 const httpMethods = require('./src/common/functions/http-methods')
