@@ -1,3 +1,4 @@
+require('./src/common/functions/config')
 const checkoutSession = require('./src/service/stripe-checkout/services/checkout/session')
 const httpMethods = require('./src/common/functions/http-methods')
 const response = require('./src/common/functions/response')
