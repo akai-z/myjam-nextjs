@@ -5,7 +5,7 @@ const Order = require('../models/order')
 const OrderItem = require('../models/order/item')
 
 async function create(checkoutSessionId) {
-  if (process.env.ORDER_CREATE_ENABLED !== 'true') {
+  if (process.env.CHECKOUT_ORDER_CREATE_ENABLED !== 'true') {
     return
   }
 
