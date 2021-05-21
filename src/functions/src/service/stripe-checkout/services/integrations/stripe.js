@@ -63,7 +63,7 @@ function checkoutSessionCreationPayload(lineItems, metadata = {}, shippingRates 
       capture_method: process.env.STRIPE_PAYMENT_INTENT_CAPTURE_METHOD || 'automatic',
     },
     shipping_address_collection: {
-      allowed_countries: process.env.SHIPPING_ADDRESS_ALLOWED_COUNTRIES.split(',')
+      allowed_countries: process.env.STRIPE_SHIPPING_ADDRESS_ALLOWED_COUNTRIES.split(',')
     },
     allow_promotion_codes: process.env.ALLOW_PROMOTION_CODES || false,
     metadata: metadata || {},
