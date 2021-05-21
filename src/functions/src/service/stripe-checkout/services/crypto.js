@@ -48,7 +48,7 @@ function ctr(key, ctrCounter) {
 }
 
 async function ctrKey(salt) {
-  return await argon2.hash(process.env.CRYPTO_PASSWORD, hashSettings(salt))
+  return await argon2.hash(process.env.STRIPE_CHECKOUT_CRYPTO_PASSWORD, hashSettings(salt))
 }
 
 function hashSettings(salt) {
