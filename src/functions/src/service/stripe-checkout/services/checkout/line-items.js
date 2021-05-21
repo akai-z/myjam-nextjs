@@ -7,7 +7,7 @@ async function processedLineItems(lineItems, tipAmount = null) {
 
   for (const lineItem in lineItems) {
     processedItem = lineItems[lineItem]
-    processedItem.price_data.currency = process.env.CURRENCY
+    processedItem.price_data.currency = process.env.STRIPE_CURRENCY
 
     processedItem.price_data.unit_amount = await lineItemAmount(
       processedItem.price_data.unit_amount,
@@ -76,7 +76,7 @@ function tipLineItem(amount) {
 function feeLineItem(feeProduct, amount) {
   return {
     price_data: {
-      currency: process.env.CURRENCY,
+      currency: process.env.STRIPE_CURRENCY,
       product_data: {
         name: feeProduct.name,
         metadata: { type: feeProduct.type }
