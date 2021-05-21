@@ -57,7 +57,7 @@ function webhookEventData(event) {
 function checkoutSessionCreationPayload(lineItems, metadata = {}, shippingRates = []) {
   const payload = {
     mode: process.env.STRIPE_CHECKOUT_SESSION_MODE || 'payment',
-    payment_method_types: process.env.PAYMENT_METHOD_TYPES.split(','),
+    payment_method_types: process.env.STRIPE_PAYMENT_METHOD_TYPES.split(','),
     line_items: lineItems,
     payment_intent_data: {
       capture_method: process.env.PAYMENT_INTENT_CAPTURE_METHOD || 'automatic',
