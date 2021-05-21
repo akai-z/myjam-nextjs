@@ -67,8 +67,8 @@ function checkoutSessionCreationPayload(lineItems, metadata = {}, shippingRates 
     },
     allow_promotion_codes: process.env.STRIPE_PROMOTION_CODES_ENABLED || false,
     metadata: metadata || {},
-    success_url: `${process.env.DOMAIN}/${process.env.SUCCESS_URL_PATH}`,
-    cancel_url: `${process.env.DOMAIN}/${process.env.CANCEL_URL_PATH}`
+    success_url: `${process.env.STRIPE_DOMAIN}/${process.env.SUCCESS_URL_PATH}`,
+    cancel_url: `${process.env.STRIPE_DOMAIN}/${process.env.CANCEL_URL_PATH}`
   }
 
   if (payload.mode === 'payment') {
