@@ -47,7 +47,7 @@ async function calculateSubtotal(lineItems) {
 }
 
 async function lineItemAmount(amount, productId = null) {
-  switch (process.env.AMOUNT_MANIPULATION_PROTECTION_TYPE) {
+  switch (process.env.STRIPE_ITEM_AMOUNT_MANIPULATION_PROTECTION_TYPE) {
     case 'encryption':
       if (!Number(amount)) {
         amount = await encryptedLineItemAmount(amount, productId)
