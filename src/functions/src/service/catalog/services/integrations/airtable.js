@@ -60,11 +60,11 @@ async function apiRequest(httpMethod, table, params = {}, headers = null, body =
 }
 
 function apiUrl() {
-  return apiBaseUrl + process.env.AIRTABLE_CATALOG_BASE_ID
+  return apiBaseUrl + process.env.CATALOG_AIRTABLE_BASE_ID
 }
 
 function base(table) {
-  return airtable.base(process.env.AIRTABLE_CATALOG_BASE_ID)(table)
+  return airtable.base(process.env.CATALOG_AIRTABLE_BASE_ID)(table)
 }
 
 function tableSelect(table, params = {}) {
