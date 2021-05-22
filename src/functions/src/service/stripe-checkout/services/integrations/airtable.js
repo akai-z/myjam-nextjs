@@ -57,7 +57,7 @@ function setBulkActionChunkDelay() {
 }
 
 function base(table) {
-  return airtable.base(process.env.AIRTABLE_ORDER_BASE_ID)(table)
+  return airtable.base(process.env.CHECKOUT_ORDER_AIRTABLE_BASE_ID)(table)
 }
 
 module.exports = {
