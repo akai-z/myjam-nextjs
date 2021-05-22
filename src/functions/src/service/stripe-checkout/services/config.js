@@ -2,7 +2,7 @@ const airtable = require('./integrations/airtable')
 
 async function freeShippingSubtotal() {
   const config = await airtable.findRecordByField(
-    process.env.AIRTABLE_ORDER_CONFIG_VIEW,
+    process.env.CHECKOUT_AIRTABLE_CONFIG_VIEW,
     '{code}',
     'free_shipping_subtotal'
   )
