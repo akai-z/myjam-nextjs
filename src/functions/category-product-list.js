@@ -1,8 +1,5 @@
-require('./src/common/functions/config')
+const { httpMethods, pathParams, response } = require('./src/common/functions/bootstrap')
 const category = require('./src/service/catalog/services/category')
-const pathParams = require('./src/common/functions/path-params')
-const httpMethods = require('./src/common/functions/http-methods')
-const response = require('./src/common/functions/response')
 
 const allowedHttpMethods = ['GET']
 const requiredParams = ['category-slug']
