@@ -1,8 +1,6 @@
-require('./src/common/functions/config')
+const { httpMethods, response } = require('./src/common/functions/bootstrap')
 const stripe = require('./src/service/stripe-checkout/services/integrations/stripe')
 const order = require('./src/service/stripe-checkout/services/order')
-const httpMethods = require('./src/common/functions/http-methods')
-const response = require('./src/common/functions/response')
 
 const allowedHttpMethods = ['POST']
 
