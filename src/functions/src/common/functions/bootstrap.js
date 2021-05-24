@@ -1,6 +1,6 @@
 require('./config')
 
 module.exports = {
-  httpMethod: require('./http-method'),
+  httpMethods: require('./http-methods'),
   response: require('./response')
 }
