@@ -1,7 +1,5 @@
-require('./src/common/functions/config')
+const { httpMethods, response } = require('./src/common/functions/bootstrap')
 const productOption = require('./src/service/catalog/services/product/option')
-const httpMethods = require('./src/common/functions/http-methods')
-const response = require('./src/common/functions/response')
 
 const allowedHttpMethods = ['GET']
 
