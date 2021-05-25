@@ -1,9 +1,11 @@
-const { httpMethods, response } = require('./src/common/functions/bootstrap')
+const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap')
 const checkoutSession = require('./src/service/stripe-checkout/services/checkout/session')
 
 const allowedHttpMethods = ['POST']
 
 exports.handler = async (event, context, callback) => {
+  const response = responseFactory.createNetlifyResponse(event.httpMethod)
+
   try {
     httpMethods.validate(event.httpMethod, allowedHttpMethods)
 
