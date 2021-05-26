@@ -4,7 +4,7 @@ const product = require('../../functions/src/service/catalog/services/product')
 const allowedHttpMethods = ['GET']
 const requiredParams = ['type']
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const response = responseFactory.createVercelResponse(res)
 
   try {
