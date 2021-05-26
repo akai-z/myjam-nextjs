@@ -4,7 +4,7 @@ const category = require('../../functions/src/service/catalog/services/category'
 const allowedHttpMethods = ['GET']
 const requiredParams = ['slug']
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const response = responseFactory.createVercelResponse(res)
 
   try {
