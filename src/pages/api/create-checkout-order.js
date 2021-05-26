@@ -4,7 +4,7 @@ const order = require('../../functions/src/service/stripe-checkout/services/orde
 
 const allowedHttpMethods = ['POST']
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const response = responseFactory.createNetlifyResponse(res)
 
   try {
