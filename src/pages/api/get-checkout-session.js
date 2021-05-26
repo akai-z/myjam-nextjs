@@ -4,7 +4,7 @@ const checkoutSession = require('../../functions/src/service/stripe-checkout/ser
 const allowedHttpMethods = ['GET']
 
 export default function handler(req, res) {
-  const response = responseFactory.createNetlifyResponse(req, true)
+  const response = responseFactory.createNetlifyResponse(res, true)
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
