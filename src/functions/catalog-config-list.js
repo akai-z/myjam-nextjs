@@ -1,4 +1,5 @@
 const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap')
+const config = require('./src/service/catalog/services/config')
 
 const allowedHttpMethods = ['GET']
 
