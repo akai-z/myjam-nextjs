@@ -3,6 +3,12 @@ function createNetlifyResponse(httpMethod = 'GET', skipCache = false) {
   return new Response(httpMethod, skipCache)
 }
 
+function createVercelResponse(res, skipCache = false) {
+  const Response = require('./response/vercel')
+  return new Response(res, skipCache)
+}
+
 module.exports = {
-  createNetlifyResponse
+  createNetlifyResponse,
+  createVercelResponse
 }
