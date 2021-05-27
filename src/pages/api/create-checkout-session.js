@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     const data = JSON.parse(req.body)
     const session = await checkoutSession.create(data.line_items, data.metadata)
 
-    return response.json({ sessionId: session.id })
+    response.json({ sessionId: session.id })
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }

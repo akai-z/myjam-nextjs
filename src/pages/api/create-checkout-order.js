@@ -13,9 +13,9 @@ export default async function handler(req, res) {
     const checkoutSession = stripe.completedCheckoutSession(req.body, req.headers)
     await order.create(checkoutSession.id)
 
-    return response.success()
+    response.success()
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }
 
