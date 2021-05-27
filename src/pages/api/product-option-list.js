@@ -10,8 +10,8 @@ export default async function handler(req, res) {
     httpMethods.validate(req.method, allowedHttpMethods)
     const optionList = await productOption.list()
 
-    return response.json(optionList)
+    response.json(optionList)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }

@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
     const productData = await product.product(req.query.slug)
 
-    return response.json(productData)
+    response.json(productData)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }
