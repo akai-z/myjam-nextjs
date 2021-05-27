@@ -10,22 +10,23 @@ class Response {
 
   success(body = null) {
     this.#setCache()
-    return this.res.send(body)
+    this.res.send(body)
   }
 
   error(err) {
     if (err instanceof HttpError) {
-      return this.res.status(err.code).send(err.message)
+      this.res.status(err.code).send(err.message)
+      return
     }
 
     console.error(err)
 
-    return this.res.status(err.statusCode || 500).send()
+    this.res.status(err.statusCode || 500).send()
   }
 
   json(body) {
     this.#setCache()
-    return this.res.json(body)
+    this.res.json(body)
   }
 
   #setCache = () => {
