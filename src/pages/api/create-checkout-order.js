@@ -5,7 +5,7 @@ const order = require('../../functions/src/service/stripe-checkout/services/orde
 const allowedHttpMethods = ['POST']
 
 export default async function handler(req, res) {
-  const response = responseFactory.createNetlifyResponse(res)
+  const response = responseFactory.createVercelResponse(res)
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
