@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
     const categoryData = await category.category(req.query.slug)
 
-    return response.json(categoryData)
+    response.json(categoryData)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }

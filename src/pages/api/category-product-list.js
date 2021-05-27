@@ -14,8 +14,8 @@ export default async function handler(req, res) {
     const offset = 'offset' in req.query ? req.query.offset : null
     const productList = await category.products(req.query['category-slug'], offset)
 
-    return response.json(productList)
+    response.json(productList)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }

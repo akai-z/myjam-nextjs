@@ -13,8 +13,8 @@ export default async function handler(req, res) {
 
     const productList = await product.listByType(req.query.type)
 
-    return response.json(productList)
+    response.json(productList)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }

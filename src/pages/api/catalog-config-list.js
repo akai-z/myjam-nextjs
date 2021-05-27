@@ -10,8 +10,8 @@ export default async function handler(req, res) {
     httpMethods.validate(req.method, allowedHttpMethods)
     const configList = await config.list()
 
-    return response.json(configList)
+    response.json(configList)
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }
