@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     const { session_id } = req.query
     const session = await checkoutSession.get(session_id)
 
-    return response.json({ 'session': session })
+    response.json({ 'session': session })
   } catch (err) {
-    return response.error(err)
+    response.error(err)
   }
 }
