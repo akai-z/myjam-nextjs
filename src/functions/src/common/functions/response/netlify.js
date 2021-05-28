@@ -18,9 +18,9 @@ class Response {
     if (err instanceof HttpError) {
       return this.#buildResponse(err.code, err.message)
     }
-  
+
     console.error(err)
-  
+
     return this.#buildResponse(err.statusCode || 500)
   }
 
@@ -42,15 +42,15 @@ class Response {
 
   #buildResponse = (code = 200, body = null, headers = null) => {
     this.#res.statusCode = code
-  
+
     if (body !== null) {
       this.#res.body = body
     }
-  
+
     if (headers !== null) {
       this.#addHeaders(headers)
     }
-  
+
     return this.#res
   }
 }
