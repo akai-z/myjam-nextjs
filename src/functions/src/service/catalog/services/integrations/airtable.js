@@ -57,7 +57,7 @@ async function apiRequest(httpMethod, table, params = {}, headers = null, body =
       })
     }
 
-    throw new HttpError(err.response.statusCode || 500, 'DB Error')
+    throw new HttpError('statusCode' in err.response ? err.response.statusCode : 500, 'DB Error')
   }
 }
 
