@@ -34,7 +34,7 @@ async function listRecords(table, params = {}) {
 async function apiRequest(httpMethod, table, params = {}, headers = null, body = null) {
   const config = {
     method: httpMethod,
-    headers: { 'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}` },
+    headers: { Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}` },
     prefixUrl: apiUrl(),
     searchParams: selectParams(params)
   }
@@ -50,10 +50,12 @@ async function apiRequest(httpMethod, table, params = {}, headers = null, body =
   try {
     return await got(table, config).json()
   } catch (err) {
-    console.log({
-      statusCode: err.response.statusCode,
-      body: err.response.body
-    })
+    if ('statusCode' in err.response && 'body' in err.response) {
+      console.log({
+        statusCode: err.response.statusCode,
+        body: err.response.body
+      })
+    }
 
     throw new HttpError(err.response.statusCode || 500, 'DB Error')
   }
