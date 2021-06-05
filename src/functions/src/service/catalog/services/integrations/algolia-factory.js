@@ -3,8 +3,8 @@ const Algolia = require('./algolia')
 
 function create(indexName) {
   const client = algoliasearch(
-    process.env.CATALOG_ALGOLIA_APPLICATION_ID,
-    process.env.CATALOG_ALGOLIA_ADMIN_API_KEY
+    process.env.NEXT_PUBLIC_ALGOLIA_APP_ID,
+    process.env.NEXT_PUBLIC_ALGOLIA_ADMIN_KEY
   )
 
   return new Algolia(client.initIndex(indexName))
