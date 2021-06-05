@@ -1,4 +1,3 @@
-const algoliasearch = require("algoliasearch")
 const HttpError = require('../../../../common/error/http')
 
 class Algolia {
