@@ -16,7 +16,8 @@ async function list() {
 
 async function products(categorySlug, listOffset = null) {
   const categoryData = await category(categorySlug)
-  const products = await product.listByIds(categoryData.fields.items, listOffset)
+  const products = 'items' in categoryData.fields
+    ? await product.listByIds(categoryData.fields.items, listOffset) : {}
 
   return products
 }
