@@ -3,8 +3,9 @@ const HttpError = require('../../error/http')
 class Response {
   #cacheMaxAge = process.env.FUNCTIONS_RESPONSE_CACHE_MAX_AGE || 86400
 
-  constructor(res, skipCache = false) {
+  constructor(res, httpMethod = 'GET', skipCache = false) {
     this.res = res
+    this.httpMethod = httpMethod
     this.skipCache = skipCache
   }
 
