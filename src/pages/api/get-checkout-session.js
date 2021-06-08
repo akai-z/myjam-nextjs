@@ -4,7 +4,7 @@ const checkoutSession = require('../../functions/src/service/stripe-checkout/ser
 const allowedHttpMethods = ['GET']
 
 export default async function handler(req, res) {
-  const response = responseFactory.createVercelResponse(res, true)
+  const response = responseFactory.createVercelResponse(res, req.method, true)
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
