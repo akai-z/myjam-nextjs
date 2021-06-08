@@ -31,7 +31,7 @@ class Response {
   }
 
   #setCache = () => {
-    if (this.res.req.method === 'GET' && !this.skipCache) {
+    if (this.httpMethod === 'GET' && !this.skipCache) {
       this.res.setHeader('Cache-Control', `max-age=0, s-maxage=${this.#cacheMaxAge}`)
     }
   }
