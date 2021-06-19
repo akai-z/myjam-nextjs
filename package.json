@@ -32,6 +32,7 @@
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.21",
     "next": "^10.2.3",
+    "next-auth": "^3.27.0",
     "next-images": "^1.7.0",
     "next-seo": "^4.26.0",
     "nextjs-progressbar": "0.0.13",
