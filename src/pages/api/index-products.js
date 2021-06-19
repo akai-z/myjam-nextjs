@@ -1,12 +1,19 @@
 const { httpMethods, responseFactory } = require('../../functions/src/common/functions/bootstrap')
 const productIndexer = require('../../functions/src/service/catalog/services/product/indexer')
+const { getSession } = require('next-auth/client')
 
 const allowedHttpMethods = ['GET']
+const authPath = 'auth/signin/auth0'
 
 module.exports = async (req, res) => {
   const response = responseFactory.createVercelResponse(res)
+  const session = await getSession({ req })
 
   try {
+    if (!session) {
+      res.redirect(authPath)
+    }
+
     httpMethods.validate(req.method, allowedHttpMethods)
     await productIndexer.indexData()
 
