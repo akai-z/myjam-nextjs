@@ -62,5 +62,6 @@ function filterParams(filter = null, filterLogicalOperator = 'AND') {
 module.exports = {
   product,
   listByIds,
-  listByType
+  listByType,
+  listAll
 }
