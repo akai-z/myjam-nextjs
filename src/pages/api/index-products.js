@@ -9,11 +9,11 @@ module.exports = async (req, res) => {
   const response = responseFactory.createVercelResponse(res)
   const session = await getSession({ req })
 
-  try {
-    if (!session) {
-      res.redirect(authPath)
-    }
+  if (!session) {
+    return res.redirect(authPath)
+  }
 
+  try {
     httpMethods.validate(req.method, allowedHttpMethods)
     await productIndexer.indexData()
 
