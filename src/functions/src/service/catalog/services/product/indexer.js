@@ -1,8 +1,8 @@
 const algoliaFactory = require('../integrations/algolia-factory')
 const product = require('../product')
 
-async function indexData() {
-  const products = await product.listAll()
+async function indexData(dateFilter = null) {
+  const products = await product.listAll(dateFilter)
   if (!products.length) {
     return
   }
@@ -17,6 +17,11 @@ async function indexData() {
   await algolia.indexData(productsData)
 }
 
+async function reindexData() {
+  await indexData('LAST_MODIFIED_TIME() >= TODAY()')
+}
+
 module.exports = {
-  indexData
+  indexData,
+  reindexData
 }
