@@ -1,8 +1,8 @@
 const algoliaFactory = require('../integrations/algolia-factory')
 const product = require('../product')
 
-async function indexData(dateFilter = null) {
-  const products = await product.listAll(dateFilter)
+async function indexData(filter = null) {
+  const products = await product.listAll(filter)
   if (!products.length) {
     return
   }
