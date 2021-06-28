@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
-    'is_update' in req.query ?  await productIndexer.reindexData() : await productIndexer.indexData()
+    'is_update' in req.query ? await productIndexer.reindexData() : await productIndexer.indexData()
 
     response.success()
   } catch (err) {
