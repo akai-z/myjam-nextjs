@@ -11,7 +11,7 @@ export default NextAuth({
   ],
   callbacks: {
     async redirect(url, baseUrl) {
-      return baseUrl + '/api/index-products'
+      return url.startsWith(baseUrl) ? url : (baseUrl + url)
     }
   },
   theme: 'dark'
