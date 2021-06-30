@@ -10,7 +10,8 @@ module.exports = async (req, res) => {
   const session = await getSession({ req })
 
   if (!session) {
-    return res.redirect(authPath)
+    const callbackUrl = '?callbackUrl=' + req.url.replace(/=$/, '')
+    return res.redirect(authPath + callbackUrl)
   }
 
   try {
