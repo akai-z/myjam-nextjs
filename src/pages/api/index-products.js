@@ -1,20 +1,25 @@
-const { httpMethods, responseFactory } = require('../../functions/src/common/functions/bootstrap')
 const productIndexer = require('../../functions/src/service/catalog/services/product/indexer')
-const { getSession } = require('next-auth/client')
+const {
+  httpMethods,
+  nextAuthSessionFactory,
+  responseFactory
+} = require('../../functions/src/common/functions/bootstrap')
 
 const allowedHttpMethods = ['GET']
-const authPath = 'auth/signin/auth0'
 
 module.exports = async (req, res) => {
   const response = responseFactory.createVercelResponse(res)
-  const session = await getSession({ req })
-
-  if (!session) {
-    return res.redirect(authPath)
-  }
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
+
+    const session = nextAuthSessionFactory.create(req)
+    const isLoggedIn = await session.isLoggedIn()
+
+    if (!isLoggedIn) {
+      return res.redirect(session.callbackUrl())
+    }
+
     'is_update' in req.query ? await productIndexer.reindexData() : await productIndexer.indexData()
 
     response.success()
