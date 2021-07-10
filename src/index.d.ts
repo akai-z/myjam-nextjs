@@ -13,6 +13,7 @@ type Category = {
     image: string;
     items?: Array<string>;
     sub_categories?: Array<string>;
+    description?: string;
   };
 };
 
@@ -31,5 +32,20 @@ type Item = {
     more_images?: string;
     options?: Array<string>;
     categories?: Array<string>;
+  };
+};
+
+type ItemsList = {
+  records: Array<Item>;
+};
+
+type CustomOption = {
+  id: string;
+  fields: {
+    id: number;
+    code: string;
+    type: 'text' | 'select';
+    label: string;
+    values?: string;
   };
 };
