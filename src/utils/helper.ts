@@ -1,6 +1,6 @@
 import { CLOUDINARY_KEY, CLOUDINARY_PATH } from '@config/env';
 
-export const normalizeData = <T extends Category>(arrData: Array<T>) => {
+export const normalizeData = <T extends Category | CustomOption>(arrData: Array<T>) => {
   let normalizedData: any = {};
   arrData.forEach((record: T) => {
     if (record.id) {
@@ -24,3 +24,6 @@ export const getPathName = (location: string): string => {
 
 export const imgUrlBuilder = (imgName: string) =>
   `https://res.cloudinary.com/${CLOUDINARY_KEY}/image/upload/q_auto,f_auto/${CLOUDINARY_PATH}/my-jam/${imgName}`;
+
+// @ts-ignore
+export const fetcher = (...args) => fetch(...args).then((res) => res.json());

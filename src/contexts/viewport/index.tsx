@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { IS_CLIENT } from '@config/constants';
 
 interface Viewport {
@@ -12,8 +12,7 @@ export const ViewportContext = React.createContext(initialState);
 
 export const useViewportContext = (): Viewport => React.useContext(ViewportContext);
 
-// @ts-ignore
-export const ViewportProvider = ({ children }) => {
+export const ViewportProvider = ({ children }: { children: ReactNode }) => {
   const [width, setWidth] = React.useState<any>(IS_CLIENT ? window.innerWidth : undefined);
   const [height, setHeight] = React.useState<any>(IS_CLIENT ? window.innerHeight : undefined);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import mockedCategories from '@mocks-data/categories';
+import { fetchCategories } from '@lib/queries/categories';
 import { Wrapper, NavWrapper, TitleBlock, Title, CloseIcon } from './styles';
 import NavItems from './nav-items';
 
@@ -8,16 +8,19 @@ interface Props {
   setMenuState: (val: boolean) => void;
 }
 
-const NavBar: React.FC<Props> = ({ isOpen, setMenuState }) => (
-  <NavWrapper isOpen={isOpen}>
-    <Wrapper>
-      <TitleBlock>
-        <Title>Categories</Title>
-        <CloseIcon onClick={() => setMenuState(false)} />
-      </TitleBlock>
-      <NavItems isOpen={isOpen} categoriesList={mockedCategories} />
-    </Wrapper>
-  </NavWrapper>
-);
+const NavBar: React.FC<Props> = ({ isOpen, setMenuState }) => {
+  const { categories } = fetchCategories();
+  return (
+    <NavWrapper isOpen={isOpen}>
+      <Wrapper>
+        <TitleBlock>
+          <Title>Categories</Title>
+          <CloseIcon onClick={() => setMenuState(false)} />
+        </TitleBlock>
+        <NavItems isOpen={isOpen} categories={categories} />
+      </Wrapper>
+    </NavWrapper>
+  );
+};
 
 export default NavBar;

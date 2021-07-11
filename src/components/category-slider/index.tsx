@@ -1,11 +1,11 @@
 import React from 'react';
 import MultiSlider from '@components/multi-slider';
-import mockedCategories from '@mocks-data/categories';
 import { Wrapper, SliderTitle } from './styles';
 import CategoryItem from './category-item';
+import { fetchCategories } from '@lib/queries/categories';
 
 const CategorySlider: React.FC = () => {
-  const categories = [...mockedCategories, ...mockedCategories, ...mockedCategories];
+  const { categories } = fetchCategories();
 
   const responsive = {
     largeMonitor: {
@@ -30,14 +30,16 @@ const CategorySlider: React.FC = () => {
     <Wrapper>
       <SliderTitle>Shop By Category</SliderTitle>
       <MultiSlider responsive={responsive}>
-        {categories.map(({ fields }) => (
-          <CategoryItem
-            key={fields.id}
-            slug={fields.slug}
-            image={fields.image}
-            name={fields.name}
-          />
-        ))}
+        {categories
+          .filter(({ fields }) => fields.featured)
+          .map(({ fields }) => (
+            <CategoryItem
+              key={fields.id}
+              slug={fields.slug}
+              image={fields.image}
+              name={fields.name}
+            />
+          ))}
       </MultiSlider>
     </Wrapper>
   );

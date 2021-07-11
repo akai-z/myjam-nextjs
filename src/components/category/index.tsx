@@ -7,14 +7,11 @@ interface Props {
   itemsList: Array<Item>;
 }
 
-const Category: React.FC<Props> = ({ category, itemsList }) => {
-  const items = Array(50).fill(itemsList[0]);
-  return (
-    <Wrapper>
-      <Title>{category.fields.name}</Title>
-      <ItemsGrid itemsList={items} />
-    </Wrapper>
-  );
-};
+const Category: React.FC<Props> = ({ category, itemsList }) => (
+  <Wrapper>
+    <Title>{category.fields.name}</Title>
+    <ItemsGrid itemsList={itemsList} />
+  </Wrapper>
+);
 
 export default Category;

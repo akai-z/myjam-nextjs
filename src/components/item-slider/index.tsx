@@ -1,9 +1,9 @@
 import React from 'react';
 import MultiSlider from '@components/multi-slider';
 import Item from '@components/item';
-import mockedItems from '@mocks-data/items';
 import Link from 'next/link';
 import { Wrapper, SliderTitle, RouterLink } from './styles';
+import { fetchItemsBasedType } from '@lib/queries/items';
 
 interface Props {
   title: string;
@@ -11,8 +11,8 @@ interface Props {
 }
 
 const ItemSlider: React.FC<Props> = ({ title, type }) => {
-  const items = [...mockedItems, ...mockedItems, ...mockedItems, ...mockedItems];
-  console.log(title, type);
+  const { items } = fetchItemsBasedType(type);
+
   const responsive = {
     largeMonitor: {
       breakpoint: { max: 4000, min: 1450 },
