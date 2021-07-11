@@ -13,7 +13,7 @@ interface Props {
 const Product: React.FC<Props> = ({ item, optionsList }) => {
   const options = normalizeData(optionsList);
   const { items, amount, dispatch } = useShoppingCart();
-  
+
   console.log({ items, amount, dispatch });
 
   const initialState = item.fields.options
