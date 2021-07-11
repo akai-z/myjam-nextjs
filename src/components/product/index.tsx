@@ -3,6 +3,7 @@ import { Wrapper, Title, Price, Text, FlexWrapper, AddItemButton, GridWrapper } 
 import ImageSlider from '@components/image-slider';
 import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
+import { useShoppingCart } from '@contexts/shopping-cart';
 
 interface Props {
   item: Item;
@@ -11,6 +12,9 @@ interface Props {
 
 const Product: React.FC<Props> = ({ item, optionsList }) => {
   const options = normalizeData(optionsList);
+  const { items, amount, dispatch } = useShoppingCart();
+  
+  console.log({ items, amount, dispatch });
 
   const initialState = item.fields.options
     ? item.fields.options.reduce((acc: any, optionId: string) => {
