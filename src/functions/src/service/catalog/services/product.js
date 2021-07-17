@@ -28,9 +28,7 @@ async function listByIdentifiers(identifierName, identifierValues, offset = null
 
 async function listAll(filter = null, filterLogicalOperator = 'AND') {
   const selectParams = filterParams(filter, filterLogicalOperator)
-  const products = await airtable.listAllRecords(tableName, selectParams)
-
-  return products
+  return await airtable.listAllRecords(tableName, selectParams)
 }
 
 async function list(filter = null, offset = null, filterLogicalOperator = 'AND') {
