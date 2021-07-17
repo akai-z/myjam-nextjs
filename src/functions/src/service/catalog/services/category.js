@@ -9,17 +9,14 @@ async function category(slug) {
 
 async function list() {
   const selectParams = { filter: '{status} = "enabled"' }
-  const categories = await airtable.listAllRecords(tableName, selectParams)
-
-  return categories
+  return await airtable.listAllRecords(tableName, selectParams)
 }
 
 async function products(categorySlug, listOffset = null) {
   const categoryData = await category(categorySlug)
-  const products = 'items' in categoryData.fields
-    ? await product.listByIds(categoryData.fields.items, listOffset) : {}
 
-  return products
+  return 'items' in categoryData.fields
+    ? await product.listByIds(categoryData.fields.items, listOffset) : {}
 }
 
 module.exports = {

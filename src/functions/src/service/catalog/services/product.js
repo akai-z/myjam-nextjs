@@ -17,36 +17,29 @@ async function listByType(type) {
 
 async function listByIdentifiers(identifierName, identifierValues, offset = null) {
   const identifiersFilter = []
-
   for (const identifierValue of identifierValues) {
     identifiersFilter.push(`${identifierName} = "${identifierValue}"`)
   }
 
   const filter = 'OR(' + identifiersFilter.join(', ') + ')'
-  const products = await list(filter, offset)
 
-  return products
+  return await list(filter, offset)
 }
 
 async function listAll(filter = null, filterLogicalOperator = 'AND') {
   const selectParams = filterParams(filter, filterLogicalOperator)
-  const products = await airtable.listAllRecords(tableName, selectParams)
-
-  return products
+  return await airtable.listAllRecords(tableName, selectParams)
 }
 
 async function list(filter = null, offset = null, filterLogicalOperator = 'AND') {
   const selectParams = filterParams(filter, filterLogicalOperator)
-
   selectParams.pageSize = defaultListPageSize
 
   if (offset) {
     selectParams.offset = offset
   }
 
-  const products = await airtable.listRecords(tableName, selectParams)
-
-  return products
+  return await airtable.listRecords(tableName, selectParams)
 }
 
 function filterParams(filter = null, filterLogicalOperator = 'AND') {

@@ -9,8 +9,10 @@ exports.handler = async (event, context) => {
   try {
     httpMethods.validate(event.httpMethod, allowedHttpMethods)
 
-    const type = pathParams.param(event.path)
-    const productList = await product.listByType(type)
+    const params = pathParams.params(event.path)
+    const productList = Array.isArray(params) && params.length
+      ? await product.listByType(params[0])
+      : await product.listAll()
 
     return response.json(productList)
   } catch (err) {
