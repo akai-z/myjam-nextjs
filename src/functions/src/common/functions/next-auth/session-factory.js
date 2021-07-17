@@ -1,4 +1,4 @@
-const NextAuthSession = require('./next-auth-session')
+const NextAuthSession = require('./session')
 
 function create(req) {
   return new NextAuthSession(req)
