@@ -17,15 +17,13 @@ async function listByType(type) {
 
 async function listByIdentifiers(identifierName, identifierValues, offset = null) {
   const identifiersFilter = []
-
   for (const identifierValue of identifierValues) {
     identifiersFilter.push(`${identifierName} = "${identifierValue}"`)
   }
 
   const filter = 'OR(' + identifiersFilter.join(', ') + ')'
-  const products = await list(filter, offset)
 
-  return products
+  return await list(filter, offset)
 }
 
 async function listAll(filter = null, filterLogicalOperator = 'AND') {
