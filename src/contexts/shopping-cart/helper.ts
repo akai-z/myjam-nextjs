@@ -6,6 +6,11 @@ export const calculateTotalAmount = (items: Array<CartItem>): number => {
   return items.reduce(fn, 0);
 };
 
+export const calculateTotalQuantity = (items: Array<CartItem>): number => {
+  const fn = (qty: number, item: CartItem): number => qty + item.quantity;
+  return items.reduce(fn, 0);
+};
+
 export const setCartStorage = (cart: ShoppingCart): void =>
   IS_CLIENT ? window.localStorage.setItem(SHOPPING_CART, JSON.stringify(cart)) : undefined;
 

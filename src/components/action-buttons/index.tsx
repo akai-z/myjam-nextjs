@@ -1,12 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wrapper, CartIcon, HomeIcon, TagIcon, MenuIcon, RouterLink } from './styles';
+import { Wrapper, CartIcon, HomeIcon, TagIcon, MenuIcon, RouterLink, Qty } from './styles';
+import { useShoppingCart } from '@contexts/shopping-cart';
+import { calculateTotalQuantity } from '@contexts/shopping-cart/helper';
 
 interface Props {
   setMenuState: (val: boolean) => void;
 }
 
 const ActionButtons: React.FC<Props> = ({ setMenuState }) => {
+  const { items } = useShoppingCart();
+  const totalQty = calculateTotalQuantity(items);
   return (
     <Wrapper>
       <div>
@@ -24,6 +28,7 @@ const ActionButtons: React.FC<Props> = ({ setMenuState }) => {
         </Link>
       </div>
       <div>
+        {totalQty && <Qty>{totalQty}</Qty>}
         <CartIcon />
       </div>
       <div>
