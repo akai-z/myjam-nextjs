@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Wrapper, Title, Price, Text, FlexWrapper, AddItemButton, GridWrapper } from './styles';
 import ImageSlider from '@components/image-slider';
+import AddToCart from '@components/add-to-cart';
 import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
-import { useShoppingCart } from '@contexts/shopping-cart';
 
 interface Props {
   item: Item;
@@ -12,11 +12,8 @@ interface Props {
 
 const Product: React.FC<Props> = ({ item, optionsList }) => {
   const options = normalizeData(optionsList);
-  const { items, amount, dispatch } = useShoppingCart();
 
-  console.log({ items, amount, dispatch });
-
-  const initialState = item.fields.options
+  const optionsInitialState = item.fields.options
     ? item.fields.options.reduce((acc: any, optionId: string) => {
         const option = options[optionId];
         acc[option.fields.code] = '';
@@ -24,7 +21,11 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
       }, {})
     : {};
 
-  const [optionsValues, setOptionValue] = useState(initialState);
+  const [optionsValues, setOptionValue] = useState(optionsInitialState);
+  const [addItemTriggered, setAddItemTrigger] = useState(false);
+
+  const handleChange = (code: string) => (val: string) =>
+    setOptionValue((preState: Object) => ({ ...preState, [code]: val }));
 
   const renderCustomOptions = () =>
     item.fields.options?.map((optionId) => {
@@ -35,10 +36,10 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
           <TextField
             key={optionId}
             label={label}
+            hasError={!Boolean(optionsValues[code]) && addItemTriggered}
+            errorMessage="Required field"
             value={optionsValues[code]}
-            onChange={(val: string) =>
-              setOptionValue((preState: Object) => ({ ...preState, [code]: val }))
-            }
+            onChange={handleChange(code)}
           />
         );
       }
@@ -47,16 +48,18 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
           <SelectField
             key={optionId}
             label={label}
+            hasError={!Boolean(optionsValues[code]) && addItemTriggered}
+            errorMessage="Required field"
             value={optionsValues[code]}
             options={values ? values.split('|') : []}
-            onChange={(val: string) =>
-              setOptionValue((preState: Object) => ({ ...preState, [code]: val }))
-            }
+            onChange={handleChange(code)}
           />
         );
       }
       return <React.Fragment />;
     });
+
+  const LayoutWrapper = item.fields.options ? GridWrapper : FlexWrapper;
 
   return (
     <Wrapper>
@@ -65,22 +68,15 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
       </div>
       <div id="product_details">
         <Title>{item.fields.name}</Title>
-        {item.fields.options ? (
-          <GridWrapper>
-            <Price>{priceFormatter(item.fields.price)}</Price>
-            {renderCustomOptions()}
-            <div>
-              <AddItemButton>Add To Cart</AddItemButton>
-            </div>
-          </GridWrapper>
-        ) : (
-          <FlexWrapper>
-            <Price>{priceFormatter(item.fields.price)}</Price>
-            <div>
-              <AddItemButton>Add To Cart</AddItemButton>
-            </div>
-          </FlexWrapper>
-        )}
+        <LayoutWrapper>
+          <Price>{priceFormatter(item.fields.price)}</Price>
+          {renderCustomOptions()}
+          <AddToCart
+            item={item}
+            selectedOptions={optionsValues}
+            onAddItem={() => setAddItemTrigger(true)}
+          />
+        </LayoutWrapper>
         <Text>{item.fields.description}</Text>
       </div>
     </Wrapper>

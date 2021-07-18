@@ -23,3 +23,8 @@ type CartContext = {
   amount: number;
   dispatch: (action: CartAction) => void;
 };
+
+type CartItemOptions = {
+  code: string;
+  value: string;
+};

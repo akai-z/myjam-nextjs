@@ -59,3 +59,7 @@ type CustomOption = {
     values?: string;
   };
 };
+
+type SelectedOptions = {
+  [key: string]: string;
+};

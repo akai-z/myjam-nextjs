@@ -5,14 +5,18 @@ import {
   CLEAR_CART_ACTION,
 } from './constants';
 
-export const addItemAction = (item: Item, quantity: number): CartAction => {
+export const addItemAction = (
+  item: Item,
+  quantity: number,
+  options: Array<CartItemOptions>,
+): CartAction => {
   const {
     id,
     fields: { name, sku, price, main_image },
   } = item;
   return {
     type: ADD_ITEM_ACTION,
-    payload: { name, id, sku, main_image, quantity, price },
+    payload: { name, id, sku, main_image, quantity, price, options },
   };
 };
 
