@@ -1,4 +1,5 @@
 const HttpError = require('../error/http')
+const pathParamsMapper = require('./path-params/mapper')
 
 const pathPrefix = process.env.FUNCTIONS_PATH_PARAMS_PREFIX || '/.netlify/functions/'
 let resolvedParams = null
@@ -11,31 +12,7 @@ function params(path, requiredParams = []) {
   const params = path.replace(pathPrefix, '').replace(/\?(.*)/, '').split('/')
   params.shift()
 
-  const paramsLength = params.length
-
-  if (paramsLength === 1) {
-    resolvedParams = params
-    return resolvedParams
-  }
-
-  if (paramsLength % 2 !== 0) {
-    throw new HttpError(400)
-  }
-
-  resolvedParams = {}
-  let paramIndex
-
-  for (paramIndex = 0; paramIndex < paramsLength; paramIndex++) {
-    if ((paramIndex + 1) % 2 === 0) {
-      resolvedParams[params[paramIndex - 1]] = params[paramIndex]
-    }
-  }
-
-  for (const requiredParam of requiredParams) {
-    if (!(requiredParam in resolvedParams)) {
-      throw new HttpError(400, `${requiredParam} is required`)
-    }
-  }
+  resolvedParams = pathParamsMapper.mappedParams(params, requiredParams)
 
   return resolvedParams
 }
