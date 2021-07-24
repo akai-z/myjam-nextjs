@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Wrapper, ErrorMessage, Label, Select } from './styles';
+import has from 'airtable/lib/has';
 
 interface Props {
   label: string;
@@ -30,7 +31,7 @@ export const SelectField: React.FC<Props> = ({
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <Select value={val} onChange={handleChange}>
+      <Select hasError={hasError && !val} value={val} onChange={handleChange}>
         <option value="">Please Select</option>
         {options.map((val, index) => (
           <option key={index} value={val}>
@@ -38,7 +39,7 @@ export const SelectField: React.FC<Props> = ({
           </option>
         ))}
       </Select>
-      {hasError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {hasError && !val && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Wrapper>
   );
 };

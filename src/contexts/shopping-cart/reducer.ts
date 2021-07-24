@@ -6,7 +6,7 @@ import {
 } from './constants';
 import { calculateTotalAmount, setCartStorage } from '@contexts/shopping-cart/helper';
 
-export default (state: ShoppingCart, action: CartAction): ShoppingCart => {
+const reducer = (state: ShoppingCart, action: CartAction): ShoppingCart => {
   const { type, payload } = action;
 
   if (type === ADD_ITEM_ACTION) {
@@ -14,9 +14,10 @@ export default (state: ShoppingCart, action: CartAction): ShoppingCart => {
     const items = !found
       ? state.items.concat(payload)
       : state.items.map((item) =>
-          item.id !== payload.id ? item : { ...item, quantity: item.quantity + payload.quantity },
+          item.id !== payload.id ? item : { ...item, quantity: payload.quantity },
         );
-    const updatedState = { items, amount: calculateTotalAmount(items) };
+    const amount = calculateTotalAmount(items);
+    const updatedState = { items, amount };
     setCartStorage(updatedState);
 
     return updatedState;
@@ -25,7 +26,7 @@ export default (state: ShoppingCart, action: CartAction): ShoppingCart => {
   if (type === REMOVE_ITEM_ACTION) {
     const items = state.items.filter(({ id }) => id !== payload.itemId);
     const amount = calculateTotalAmount(items);
-    const updatedState = { amount, items };
+    const updatedState = { items, amount };
     setCartStorage(updatedState);
 
     return updatedState;
@@ -37,7 +38,7 @@ export default (state: ShoppingCart, action: CartAction): ShoppingCart => {
     );
 
     const amount = calculateTotalAmount(items);
-    const updatedState = { amount, items };
+    const updatedState = { items, amount };
     setCartStorage(updatedState);
 
     return updatedState;
@@ -52,3 +53,5 @@ export default (state: ShoppingCart, action: CartAction): ShoppingCart => {
 
   return state;
 };
+
+export default reducer;

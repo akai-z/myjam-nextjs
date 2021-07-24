@@ -3,7 +3,7 @@ import { Wrapper, Input, ErrorMessage, Label } from './styles';
 
 interface Props {
   label: string;
-  value: string | undefined;
+  value?: string;
   onChange: Function;
   hasError?: boolean;
   errorMessage?: string;
@@ -28,8 +28,8 @@ export const TextField: React.FC<Props> = ({
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <Input type="text" value={val} onChange={handleChange} />
-      {hasError && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      <Input hasError={hasError && !val} type="text" value={val} onChange={handleChange} />
+      {hasError && !val && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Wrapper>
   );
 };
