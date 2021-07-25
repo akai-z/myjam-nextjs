@@ -2,7 +2,6 @@ const { httpMethods, responseFactory } = require('../../../functions/src/common/
 const category = require('../../../functions/src/service/catalog/services/category')
 
 const allowedHttpMethods = ['GET']
-const requiredParams = ['category-slug']
 
 export default async function handler(req, res) {
   const response = responseFactory.createVercelResponse(res)
