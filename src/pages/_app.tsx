@@ -19,6 +19,18 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           body {
             background-color: #f7f7f7;
           }
+          .ReactModal__Overlay--after-open {
+            z-index: 999;
+            .ReactModal__Content--after-open {
+              width: 100%;
+              height: 100%;
+              top: 0 !important;
+              left: 0 !important;
+              right: 0 !important;
+              bottom: 0 !important;
+              padding: 0 !important;
+            }
+          }
         `}
       />
       <ShoppingCartProvider>

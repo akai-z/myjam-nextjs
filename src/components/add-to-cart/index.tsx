@@ -4,12 +4,13 @@ import { useShoppingCart } from '@contexts/shopping-cart';
 import { addItemAction, removeItemAction, updateItemAction } from '@contexts/shopping-cart/actions';
 
 interface Props {
-  item: Item;
+  item: Item | CartItem;
   selectedOptions?: SelectedOptions;
+  size?: 'small' | 'large';
   onAddItem: () => void;
 }
 
-const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem }) => {
+const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, size = 'large' }) => {
   const { items, dispatch } = useShoppingCart();
   const cartItem = items.find(({ id }) => id === item.id);
   const [quantity, setQuantity] = useState<number>(cartItem ? cartItem.quantity : 1);
@@ -27,7 +28,7 @@ const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem }) =
   const handleClick = () => {
     onAddItem();
     if (validateOptions()) {
-      dispatch(addItemAction(item, 1, optionsFormatter()));
+      dispatch(addItemAction(item as Item, 1, optionsFormatter()));
     }
   };
 
@@ -44,7 +45,7 @@ const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem }) =
   return (
     <div>
       {cartItem ? (
-        <QtyBox>
+        <QtyBox size={size}>
           <ActionWrapper onClick={handleActionClick(-1)}>
             <MinusButton />
           </ActionWrapper>

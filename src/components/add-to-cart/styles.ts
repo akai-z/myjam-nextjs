@@ -1,14 +1,15 @@
 import tw from 'twin.macro';
 import { PlusIcon, MinusIcon } from '@heroicons/react/solid';
+import styled from '@emotion/styled';
 
 export const AddItemButton = tw.button`
   w-40 md:w-48 text-sm text-white md:text-base bg-black hover:bg-opacity-75
   rounded-md px-8 py-3 md:px-10 md:py-3 focus:outline-none transition-opacity duration-300
 `;
 
-export const QtyBox = tw.div`
-  flex w-40 md:w-48 text-sm text-white md:text-base 
-  bg-black rounded-md focus:outline-none h-12 items-center
+export const QtyBox = styled.div<{ size: string }>`
+  ${tw`flex w-40 md:w-48 text-sm text-white md:text-base bg-black rounded-md focus:outline-none h-12 items-center`};
+  ${({ size }) => size === 'small' && tw`md:w-40 h-10`};
 `;
 
 export const ActionWrapper = tw.div`
