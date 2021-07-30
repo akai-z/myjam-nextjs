@@ -1,4 +1,4 @@
-import { SHOPPING_CART } from '@contexts/shopping-cart/constants';
+import { SHOPPING_CART } from './constants';
 import { IS_CLIENT } from '@config/constants';
 
 export const calculateTotalAmount = (items: Array<CartItem>): number => {

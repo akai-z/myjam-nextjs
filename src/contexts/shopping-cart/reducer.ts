@@ -4,7 +4,7 @@ import {
   REMOVE_ITEM_ACTION,
   CLEAR_CART_ACTION,
 } from './constants';
-import { calculateTotalAmount, setCartStorage } from '@contexts/shopping-cart/helper';
+import { calculateTotalAmount, setCartStorage } from './helper';
 
 const reducer = (state: ShoppingCart, action: CartAction): ShoppingCart => {
   const { type, payload } = action;

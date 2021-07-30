@@ -8,9 +8,9 @@ interface Props {
 
 const ItemsGrid: React.FC<Props> = ({ itemsList }) => (
   <Wrapper>
-    {itemsList.map((item, index) => (
+    {itemsList.map((item) => (
       <Item
-        key={index}
+        key={item.id}
         slug={item.fields.slug}
         image={item.fields.thumbnail_image}
         name={item.fields.name}

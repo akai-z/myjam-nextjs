@@ -7,6 +7,8 @@ import {
   Name,
   TextBlock,
   TotalPrice,
+  DeleteItem,
+  XIcon,
   Img,
 } from './styles';
 import { priceFormatter } from '@utils/helper';
@@ -14,10 +16,14 @@ import AddToCart from '@components/add-to-cart';
 
 interface Props {
   item: CartItem;
+  handleRemoveItem: () => void;
 }
 
-const CartItem: React.FC<Props> = ({ item }) => (
+const CartItem: React.FC<Props> = ({ item, handleRemoveItem }) => (
   <Wrapper>
+    <DeleteItem onClick={handleRemoveItem}>
+      <XIcon />
+    </DeleteItem>
     <Img src={item.main_image} alt={item.name} />
     <DetailsWrapper>
       <TextBlock>
