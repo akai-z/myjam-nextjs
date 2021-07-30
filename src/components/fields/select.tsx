@@ -22,12 +22,13 @@ export const SelectField: React.FC<Props> = ({
   const [val, setVal] = useState(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setVal(event.target.value);
+    onChange(event.target.value);
   };
 
   useEffect(() => {
-    onChange(val);
-  }, [val]);
+    setVal(value);
+  }, [value]);
+
   return (
     <Wrapper>
       <Label>{label}</Label>

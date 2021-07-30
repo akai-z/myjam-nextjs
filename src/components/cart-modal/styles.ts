@@ -12,6 +12,11 @@ export const Block = styled.div`
   width: 750px !important;
 `;
 
+export const ItemsWrapper = styled(Block)`
+  height: 65vh;
+  overflow-y: scroll;
+`;
+
 export const ColoredBlock = tw.div`w-full bg-gray-100`;
 
 export const HeadBlock = tw.div`flex justify-between items-center py-8`;

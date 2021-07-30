@@ -1,9 +1,20 @@
 import React from 'react';
 import ReactModal from 'react-modal';
-import { Wrapper, CloseIcon, HeadBlock, Title, Block, ColoredBlock, AmountBlock } from './styles';
+import {
+  Wrapper,
+  CloseIcon,
+  HeadBlock,
+  Title,
+  Block,
+  ColoredBlock,
+  AmountBlock,
+  ItemsWrapper,
+} from './styles';
 import { useShoppingCart } from '@contexts/shopping-cart';
 import { priceFormatter } from '@utils/helper';
 import CartItem from '@components/cart-item';
+import { removeItemAction } from '@contexts/shopping-cart/actions';
+import CheckoutBlock from '@components/checkout-block';
 
 interface Props {
   isOpen: boolean;
@@ -11,9 +22,10 @@ interface Props {
 }
 
 const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
-  const { items, amount } = useShoppingCart();
+  const { items, amount, dispatch } = useShoppingCart();
 
   const handleClose = () => onVisibilityChange(false);
+  const handleRemoveItem = (id) => () => dispatch(removeItemAction(id));
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={handleClose}>
@@ -32,12 +44,13 @@ const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
             </AmountBlock>
           </Block>
         </ColoredBlock>
-        <Block>
+        <ItemsWrapper>
           {items.map((item) => (
-            <CartItem item={item} />
+            <CartItem key={item.id} item={item} handleRemoveItem={handleRemoveItem(item.id)} />
           ))}
-        </Block>
+        </ItemsWrapper>
       </Wrapper>
+      <CheckoutBlock />
     </ReactModal>
   );
 };

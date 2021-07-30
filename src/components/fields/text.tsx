@@ -7,6 +7,7 @@ interface Props {
   onChange: Function;
   hasError?: boolean;
   errorMessage?: string;
+  placeholder?: string;
 }
 
 export const TextField: React.FC<Props> = ({
@@ -15,20 +16,28 @@ export const TextField: React.FC<Props> = ({
   onChange,
   hasError = false,
   errorMessage = '',
+  placeholder = '',
 }) => {
   const [val, setVal] = useState(value);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setVal(event.target.value);
+    onChange(event.target.value);
   };
 
   useEffect(() => {
-    onChange(val);
-  }, [val]);
+    setVal(value);
+  }, [value]);
+
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <Input hasError={hasError && !val} type="text" value={val} onChange={handleChange} />
+      <Input
+        placeholder={placeholder}
+        hasError={hasError && !val}
+        type="text"
+        value={val}
+        onChange={handleChange}
+      />
       {hasError && !val && <ErrorMessage>{errorMessage}</ErrorMessage>}
     </Wrapper>
   );

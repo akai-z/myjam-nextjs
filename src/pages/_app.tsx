@@ -4,7 +4,7 @@ import algoliaSearch from 'algoliasearch/lite';
 import { InstantSearch, Configure } from 'react-instantsearch-dom';
 import { GlobalStyles } from 'twin.macro';
 import { Global, css } from '@emotion/react';
-import { ViewportProvider, ShoppingCartProvider } from '@contexts/index';
+import { ViewportProvider, ShoppingCartProvider, CustomerProfileProvider } from '@contexts/index';
 import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_KEY } from '@config/env';
 
 const searchClient = algoliaSearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
@@ -33,11 +33,13 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           }
         `}
       />
-      <ShoppingCartProvider>
-        <ViewportProvider>
-          <Component {...pageProps} />
-        </ViewportProvider>
-      </ShoppingCartProvider>
+      <CustomerProfileProvider>
+        <ShoppingCartProvider>
+          <ViewportProvider>
+            <Component {...pageProps} />
+          </ViewportProvider>
+        </ShoppingCartProvider>
+      </CustomerProfileProvider>
     </InstantSearch>
   );
 };
