@@ -13,7 +13,7 @@ export const Block = styled.div`
 `;
 
 export const ItemsWrapper = styled(Block)`
-  height: 65vh;
+  height: 55vh;
   overflow-y: scroll;
 `;
 

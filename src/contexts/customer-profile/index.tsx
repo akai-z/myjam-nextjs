@@ -10,10 +10,10 @@ export const useCustomerProfile = () => React.useContext(CustomerProfileContext)
 
 export const CustomerProfileProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { phoneNumber, countryCode } = state;
+  const { phoneNumber } = state;
   return (
     // @ts-ignore
-    <CustomerProfileContext.Provider value={{ phoneNumber, countryCode, dispatch }}>
+    <CustomerProfileContext.Provider value={{ phoneNumber, dispatch }}>
       {children}
     </CustomerProfileContext.Provider>
   );

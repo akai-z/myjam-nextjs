@@ -6,7 +6,7 @@ export const setCustomerStorage = (customer: CustomerProfile): void =>
 
 export const getCustomerStorage = (): CustomerContext => {
   const customerProfile = IS_CLIENT ? window.localStorage.getItem(CUSTOMER_PROFILE) : undefined;
-  const initialState = { phoneNumber: '', countryCode: '' };
+  const initialState = { phoneNumber: '' };
   if (customerProfile) {
     return JSON.parse(customerProfile);
   } else {

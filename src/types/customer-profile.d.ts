@@ -1,6 +1,5 @@
 type CustomerProfile = {
   phoneNumber: string;
-  countryCode: string;
 };
 
 type CustomerProfileAction = {
@@ -10,6 +9,5 @@ type CustomerProfileAction = {
 
 type CustomerContext = {
   phoneNumber: string;
-  countryCode: string;
   dispatch: (action: CustomerProfileAction) => void;
 };
