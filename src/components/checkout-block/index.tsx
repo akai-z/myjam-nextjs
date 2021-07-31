@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import CartModal from '@components/cart-modal';
-import { Wrapper } from './styles';
-import { useShoppingCart } from '@contexts/shopping-cart';
-import { calculateTotalQuantity } from '@contexts/shopping-cart/helper';
-import { IS_CLIENT } from '@config/constants';
+import PhoneInput from 'react-phone-input-2';
+import { Wrapper, Label, Button } from './styles';
 import { useCustomerProfile } from '@contexts/customer-profile';
-import { TextField } from '@components/fields';
 
 const CheckoutBlock: React.FC = () => {
-  const { phoneNumber, countryCode, dispatch } = useCustomerProfile();
+  const { phoneNumber, dispatch } = useCustomerProfile();
   const [phone, setPhoneNumber] = useState('');
+
+  const proceedToCheckout = () => {
+    alert('PROCEED TO CHECKOUT!');
+  };
 
   useEffect(() => {
     if (phoneNumber) {
-      setPhoneNumber(`${countryCode} ${phoneNumber}`);
+      setPhoneNumber(phoneNumber);
     }
   }, []);
 
   return (
     <Wrapper>
-      <TextField
-        placeholder="+44 1103555555"
-        label="Enter phone number"
-        onChange={(val: string) => setPhoneNumber(val)}
+      <Label>Phone Number</Label>
+      <PhoneInput
+        onlyCountries={['gb']}
+        countryCodeEditable={false}
+        disableDropdown={true}
+        country={'gb'}
         value={phone}
+        specialLabel={''}
+        onChange={(phoneNum) => setPhoneNumber(phoneNum)}
       />
-      <h1>PROCEED TO CHECKOUT</h1>
+      <Button onClick={proceedToCheckout}>Proceed to Checkout</Button>
     </Wrapper>
   );
 };
