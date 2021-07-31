@@ -3,7 +3,7 @@ const checkoutSession = require('./src/service/stripe-checkout/services/checkout
 
 const allowedHttpMethods = ['POST']
 
-exports.handler = async (event, context, callback) => {
+exports.handler = async (event, context) => {
   const response = responseFactory.createNetlifyResponse(event.httpMethod)
 
   try {
