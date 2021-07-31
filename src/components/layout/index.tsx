@@ -5,6 +5,7 @@ import NavBar from '@components/nav-bar';
 import ActionButtons from '@components/action-buttons';
 import { LayoutWrapper, PageWrapper } from './styles';
 import Footer from '@components/footer';
+import ReactNotification from 'react-notifications-component';
 
 interface Props {
   seo: {
@@ -31,6 +32,7 @@ const Layout: React.FC<Props> = ({ seo, children }) => {
         <meta name="og:title" content={title} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <ReactNotification />
       <Header />
       <NavBar isOpen={menuState} setMenuState={handleMenuState} />
       <PageWrapper>{children}</PageWrapper>
