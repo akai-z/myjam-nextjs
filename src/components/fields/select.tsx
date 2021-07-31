@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Wrapper, ErrorMessage, Label, Select } from './styles';
-import has from 'airtable/lib/has';
 
 interface Props {
   label: string;
