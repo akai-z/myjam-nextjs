@@ -12,9 +12,9 @@ export const fetchItemsBasedType = (type: string) => {
 };
 
 export const fetchCategoryItems = (slug: string, offset?: string) => {
-  let url = `/api/category-product-list?category-slug=${slug}`;
+  let url = `/api/category-product-list/${slug}`;
   if (offset) {
-    url = url.concat(`/offset/${encodeURI(offset)}`);
+    url = url.concat(`?offset=${encodeURI(offset)}`);
   }
   const { data, error } = useSWR<ItemsList>(url, fetcher);
 
