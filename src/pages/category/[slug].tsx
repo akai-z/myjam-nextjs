@@ -21,7 +21,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // @ts-ignore
-  const response = await fetch(`${API_URL}/category?slug=${params.slug}`);
+  const response = await fetch(`${API_URL}/category/${params.slug}`);
   const data = await response.json();
   return {
     props: {

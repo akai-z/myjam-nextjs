@@ -19,7 +19,7 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // @ts-ignore
-  const response = await fetch(`${API_URL}/product?slug=${params.slug}`);
+  const response = await fetch(`${API_URL}/product/${params.slug}`);
   const item = await response.json();
 
   const optionsListResponse = await fetch(`${API_URL}/product-option-list`);

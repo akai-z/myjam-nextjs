@@ -12,7 +12,7 @@ export const fetchCategories = () => {
 };
 
 export const fetchCategoryBySlug = (slug: string) => {
-  const { data, error } = useSWR<Array<Category>>(`/api/category?slug=${slug}`, fetcher);
+  const { data, error } = useSWR<Array<Category>>(`/api/category/${slug}`, fetcher);
 
   return {
     categories: data || [],
