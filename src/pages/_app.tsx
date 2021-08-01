@@ -4,6 +4,8 @@ import algoliaSearch from 'algoliasearch/lite';
 import { InstantSearch, Configure } from 'react-instantsearch-dom';
 import { GlobalStyles } from 'twin.macro';
 import 'react-phone-input-2/lib/material.css';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css/animate.min.css';
 import { Global, css } from '@emotion/react';
 import { ViewportProvider, ShoppingCartProvider, CustomerProfileProvider } from '@contexts/index';
 import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_KEY } from '@config/env';

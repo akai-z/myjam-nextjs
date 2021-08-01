@@ -21,6 +21,8 @@ interface Props {
   onVisibilityChange: (state: boolean) => void;
 }
 
+ReactModal.setAppElement('#__next');
+
 const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
   const { items, amount, dispatch } = useShoppingCart();
 
@@ -50,7 +52,7 @@ const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
           ))}
         </ItemsWrapper>
       </Wrapper>
-      <CheckoutBlock />
+      {amount > 0 && <CheckoutBlock />}
     </ReactModal>
   );
 };

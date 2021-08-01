@@ -1,11 +1,8 @@
 import { SET_PHONE_NUMBER_ACTION, CLEAR_CUSTOMER_PROFILE_ACTION } from './constants';
 
-export const setCustomerPhoneNumber = (
-  phoneNumber: string,
-  countryCode: string,
-): CustomerProfileAction => ({
+export const setCustomerPhoneNumber = (phoneNumber: string): CustomerProfileAction => ({
   type: SET_PHONE_NUMBER_ACTION,
-  payload: { phoneNumber, countryCode },
+  payload: { phoneNumber },
 });
 
 export const clearCustomerProfile = (): CustomerProfileAction => ({
