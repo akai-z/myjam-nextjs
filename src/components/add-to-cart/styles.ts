@@ -9,7 +9,7 @@ export const AddItemButton = tw.button`
 
 export const QtyBox = styled.div<{ size: string }>`
   ${tw`flex w-40 md:w-48 text-sm text-white md:text-base bg-black rounded-md focus:outline-none h-12 items-center`};
-  ${({ size }) => size === 'small' && tw`md:w-40 h-10`};
+  ${({ size }) => size === 'small' && tw`w-32 md:w-40 h-10`};
 `;
 
 export const ActionWrapper = tw.div`

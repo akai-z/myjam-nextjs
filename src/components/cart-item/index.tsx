@@ -10,6 +10,7 @@ import {
   DeleteItem,
   XIcon,
   Img,
+  CheckBoxWrapper,
 } from './styles';
 import { priceFormatter } from '@utils/helper';
 import AddToCart from '@components/add-to-cart';
@@ -23,19 +24,23 @@ interface Props {
 
 const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState }) => (
   <Wrapper>
-    <DeleteItem onClick={handleRemoveItem}>
-      <XIcon />
-    </DeleteItem>
-    <Img src={item.main_image} alt={item.name} />
+    <div>
+      <DeleteItem onClick={handleRemoveItem}>
+        <XIcon />
+      </DeleteItem>
+      <Img src={item.main_image} alt={item.name} />
+    </div>
     <DetailsWrapper>
       <TextBlock>
         <Name>{item.name}</Name>
         <Price>Unit Price: {priceFormatter(item.price)}</Price>
-        <CheckBoxField
-          label="Accept Substitute"
-          value={item.acceptSubstitute}
-          onChange={handleItemSubState}
-        />
+        <CheckBoxWrapper>
+          <CheckBoxField
+            label="Accept Substitute"
+            value={item.acceptSubstitute}
+            onChange={handleItemSubState}
+          />
+        </CheckBoxWrapper>
       </TextBlock>
       <ActionsBlock>
         <TotalPrice>{priceFormatter(item.price * item.quantity)}</TotalPrice>

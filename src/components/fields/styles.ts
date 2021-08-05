@@ -5,7 +5,7 @@ import { CheckIcon as MarkIcon } from '@heroicons/react/solid';
 
 export const Wrapper = tw.div`block relative`;
 
-export const CheckBoxWrapper = tw.div`flex absolute items-center cursor-pointer mt-6 bottom-0`;
+export const CheckBoxWrapper = tw.div`flex items-center cursor-pointer`;
 
 export const CheckBlock = styled.div<{ checked: boolean }>`
   ${tw`rounded-md border-2 border-gray-200 h-5 w-5 mr-2 relative`}

@@ -1,9 +1,10 @@
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
-  ${tw`absolute left-1/2 bottom-12 rounded-md shadow-md p-8 bg-gray-50`}
-  width: 750px !important;
+export const Wrapper = styled.div<{ isMobile: boolean }>`
+  ${tw`absolute left-1/2 rounded-md shadow-md p-8 bg-gray-50`}
+  width: ${({ isMobile }) => (isMobile ? '100%' : '750px')}  !important;
+  bottom: ${({ isMobile }) => (isMobile ? '0' : '3rem')};
   transform: translateX(-50%);
   z-index: 9;
   &:before {
@@ -16,6 +17,11 @@ export const Wrapper = styled.div`
     background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
     z-index: 10;
     pointer-events: none;
+  }
+  @media screen and (max-width: 768px) {
+    & input {
+      width: 100% !important;
+    }
   }
   & {
     .react-tel-input .selected-flag .flag {

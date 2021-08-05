@@ -6,6 +6,7 @@ import ActionButtons from '@components/action-buttons';
 import { LayoutWrapper, PageWrapper } from './styles';
 import Footer from '@components/footer';
 import ReactNotification from 'react-notifications-component';
+import CartMenu from '@components/cart-menu';
 
 interface Props {
   seo: {
@@ -16,11 +17,14 @@ interface Props {
 
 const Layout: React.FC<Props> = ({ seo, children }) => {
   const [menuState, setMenuState] = useState<boolean>(false);
+  const [cartMenuState, setCartMenuState] = useState<boolean>(false);
+
   const handleMenuState = (val: boolean) => setMenuState(val);
+  const handleCartMenuState = (val: boolean) => setCartMenuState(val);
 
   useEffect(() => {
-    document.body.style.overflow = menuState ? 'hidden' : 'initial';
-  }, [menuState]);
+    document.body.style.overflow = menuState || cartMenuState ? 'hidden' : 'initial';
+  }, [menuState, cartMenuState]);
 
   const { title, description } = seo;
   return (
@@ -35,9 +39,10 @@ const Layout: React.FC<Props> = ({ seo, children }) => {
       <ReactNotification />
       <Header />
       <NavBar isOpen={menuState} setMenuState={handleMenuState} />
+      <CartMenu isOpen={cartMenuState} setCartMenuState={handleCartMenuState} />
       <PageWrapper>{children}</PageWrapper>
       <Footer />
-      <ActionButtons setMenuState={handleMenuState} />
+      <ActionButtons setMenuState={handleMenuState} setCartMenuState={handleCartMenuState} />
     </LayoutWrapper>
   );
 };
