@@ -6,9 +6,10 @@ import { calculateTotalQuantity } from '@contexts/shopping-cart/helper';
 
 interface Props {
   setMenuState: (val: boolean) => void;
+  setCartMenuState: (val: boolean) => void;
 }
 
-const ActionButtons: React.FC<Props> = ({ setMenuState }) => {
+const ActionButtons: React.FC<Props> = ({ setMenuState, setCartMenuState }) => {
   const { items } = useShoppingCart();
   const totalQty = calculateTotalQuantity(items);
   return (
@@ -27,7 +28,7 @@ const ActionButtons: React.FC<Props> = ({ setMenuState }) => {
           </RouterLink>
         </Link>
       </div>
-      <div>
+      <div onClick={() => setCartMenuState(true)}>
         {totalQty && <Qty>{totalQty}</Qty>}
         <CartIcon />
       </div>

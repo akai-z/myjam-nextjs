@@ -5,7 +5,11 @@ import { useCustomerProfile } from '@contexts/customer-profile';
 import { showNotification } from '@utils/notification';
 import { setCustomerPhoneNumber } from '@contexts/customer-profile/actions';
 
-const CheckoutBlock: React.FC = () => {
+interface Props {
+  isMobile?: boolean;
+}
+
+const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
   const { phoneNumber, dispatch } = useCustomerProfile();
   const [phone, setPhoneNumber] = useState('');
 
@@ -25,7 +29,7 @@ const CheckoutBlock: React.FC = () => {
   }, []);
 
   return (
-    <Wrapper>
+    <Wrapper isMobile={isMobile}>
       <Label>Phone Number</Label>
       <PhoneInput
         onlyCountries={['gb']}

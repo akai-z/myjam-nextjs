@@ -19,10 +19,12 @@ export const Title = tw.h2`text-xl text-black font-semibold`;
 
 export const CloseIcon = tw(XIcon)`text-xl text-black font-semibold h-5 w-5`;
 
-export const Grid = tw.ul`
-  grid 
-  grid-flow-row p-8 space-y-5
-  md:grid-flow-col md:gap-10 md:auto-cols-max md:p-0 md:space-y-0
+export const Grid = styled.ul`
+  ${tw`flex flex-col p-8 space-y-5 md:grid md:grid-flow-col md:gap-10 md:auto-cols-max md:p-0 md:space-y-0`};
+  @media screen and (max-width: 768px) {
+    height: calc(100vh - 76px);
+    overflow-y: scroll;
+  }
 `;
 
 export const Item = styled.li`
