@@ -2,7 +2,8 @@ import { SHOPPING_CART } from './constants';
 import { IS_CLIENT } from '@config/constants';
 
 export const calculateTotalAmount = (items: Array<CartItem>): number => {
-  const fn = (amount: number, item: CartItem): number => amount + item.quantity * item.price;
+  const fn = (amount: number, item: CartItem): number =>
+    amount + item.quantity * (item.special_price || item.price);
   return items.reduce(fn, 0);
 };
 

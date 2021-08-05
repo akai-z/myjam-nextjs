@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wrapper, Title, Price, Text, FlexWrapper, AddItemButton, GridWrapper } from './styles';
+import { Wrapper, Title, Price, Text, FlexWrapper, OldPrice, GridWrapper } from './styles';
 import ImageSlider from '@components/image-slider';
 import AddToCart from '@components/add-to-cart';
 import { normalizeData, priceFormatter } from '@utils/helper';
@@ -69,7 +69,14 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
       <div id="product_details">
         <Title>{item.fields.name}</Title>
         <LayoutWrapper>
-          <Price>{priceFormatter(item.fields.price)}</Price>
+          {item.fields.special_price && item.fields.special_price > 0 ? (
+            <div>
+              <OldPrice>{priceFormatter(item.fields.price)}</OldPrice>
+              <Price>{priceFormatter(item.fields.special_price)}</Price>
+            </div>
+          ) : (
+            <Price>{priceFormatter(item.fields.price)}</Price>
+          )}
           {renderCustomOptions()}
           <AddToCart
             item={item}

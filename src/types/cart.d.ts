@@ -2,6 +2,7 @@ type CartItem = {
   id: string;
   name: string;
   price: number;
+  special_price?: number;
   sku: string;
   main_image: string;
   options?: Array<{ code: string; value: string | number | boolean }>;

@@ -24,6 +24,7 @@ type Item = {
     name: string;
     slug: string;
     price: number;
+    special_price?: number;
     sku: string;
     description: string;
     status: 'enabled' | 'disabled';
@@ -33,16 +34,6 @@ type Item = {
     options?: Array<string>;
     categories?: Array<string>;
   };
-};
-
-type CartItem = {
-  id: string;
-  name: string;
-  price: number;
-  sku: string;
-  main_image: string;
-  options?: Array<{ code: string; value: string | number | boolean }>;
-  quantity: number;
 };
 
 type ItemsList = {

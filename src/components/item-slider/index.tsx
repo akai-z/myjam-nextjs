@@ -45,6 +45,7 @@ const ItemSlider: React.FC<Props> = ({ title, type }) => {
           <Item
             key={id}
             id={id}
+            specialPrice={fields.special_price || 0}
             name={fields.name}
             slug={fields.slug}
             price={fields.price}
