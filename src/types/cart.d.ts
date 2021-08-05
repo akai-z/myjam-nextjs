@@ -5,6 +5,7 @@ type CartItem = {
   sku: string;
   main_image: string;
   options?: Array<{ code: string; value: string | number | boolean }>;
+  acceptSubstitute: boolean;
   quantity: number;
 };
 
@@ -14,7 +15,12 @@ type ShoppingCart = {
 };
 
 type CartAction = {
-  type: 'ADD_ITEM_ACTION' | 'UPDATE_ITEM_ACTION' | 'REMOVE_ITEM_ACTION' | 'CLEAR_CART_ACTION';
+  type:
+    | 'ADD_ITEM_ACTION'
+    | 'UPDATE_ITEM_ACTION'
+    | 'REMOVE_ITEM_ACTION'
+    | 'CLEAR_CART_ACTION'
+    | 'UPDATE_ITEM_SUBSTITUTE_ACTION';
   payload: any;
 };
 

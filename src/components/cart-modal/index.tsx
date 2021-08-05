@@ -13,7 +13,7 @@ import {
 import { useShoppingCart } from '@contexts/shopping-cart';
 import { priceFormatter } from '@utils/helper';
 import CartItem from '@components/cart-item';
-import { removeItemAction } from '@contexts/shopping-cart/actions';
+import { removeItemAction, updateItemSubstituteAction } from '@contexts/shopping-cart/actions';
 import CheckoutBlock from '@components/checkout-block';
 
 interface Props {
@@ -28,6 +28,9 @@ const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
 
   const handleClose = () => onVisibilityChange(false);
   const handleRemoveItem = (id) => () => dispatch(removeItemAction(id));
+
+  const handleItemSubState = (id) => (state: boolean) =>
+    dispatch(updateItemSubstituteAction(id, state));
 
   return (
     <ReactModal isOpen={isOpen} onRequestClose={handleClose}>
@@ -48,7 +51,12 @@ const CartModal: React.FC<Props> = ({ isOpen, onVisibilityChange }) => {
         </ColoredBlock>
         <ItemsWrapper>
           {items.map((item) => (
-            <CartItem key={item.id} item={item} handleRemoveItem={handleRemoveItem(item.id)} />
+            <CartItem
+              key={item.id}
+              item={item}
+              handleItemSubState={handleItemSubState(item.id)}
+              handleRemoveItem={handleRemoveItem(item.id)}
+            />
           ))}
         </ItemsWrapper>
       </Wrapper>

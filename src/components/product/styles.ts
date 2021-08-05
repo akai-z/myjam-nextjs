@@ -32,4 +32,4 @@ export const AddItemButton = tw.button`
   rounded-md px-8 py-3 md:px-10 md:py-3 focus:outline-none transition
 `;
 
-export const Text = tw.p`py-4 border-t-2 border-gray-200 text-gray-700`;
+export const Text = tw.p`py-4 border-t-2 border-gray-200 text-gray-700 select-none`;

@@ -13,8 +13,11 @@ export const Block = styled.div`
 `;
 
 export const ItemsWrapper = styled(Block)`
-  height: 55vh;
+  height: 60vh;
   overflow-y: scroll;
+  & > div:last-child {
+    margin-bottom: 80px;
+  }
 `;
 
 export const ColoredBlock = tw.div`w-full bg-gray-100`;

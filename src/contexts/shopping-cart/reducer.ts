@@ -3,6 +3,7 @@ import {
   UPDATE_ITEM_ACTION,
   REMOVE_ITEM_ACTION,
   CLEAR_CART_ACTION,
+  UPDATE_ITEM_SUBSTITUTE_ACTION,
 } from './constants';
 import { calculateTotalAmount, setCartStorage } from './helper';
 
@@ -35,6 +36,18 @@ const reducer = (state: ShoppingCart, action: CartAction): ShoppingCart => {
   if (type === UPDATE_ITEM_ACTION) {
     const items = state.items.map((item) =>
       item.id !== payload.itemId ? item : { ...item, quantity: payload.quantity },
+    );
+
+    const amount = calculateTotalAmount(items);
+    const updatedState = { items, amount };
+    setCartStorage(updatedState);
+
+    return updatedState;
+  }
+
+  if (type === UPDATE_ITEM_SUBSTITUTE_ACTION) {
+    const items = state.items.map((item) =>
+      item.id !== payload.itemId ? item : { ...item, acceptSubstitute: payload.acceptSubstitute },
     );
 
     const amount = calculateTotalAmount(items);

@@ -3,6 +3,7 @@ import {
   UPDATE_ITEM_ACTION,
   REMOVE_ITEM_ACTION,
   CLEAR_CART_ACTION,
+  UPDATE_ITEM_SUBSTITUTE_ACTION,
 } from './constants';
 
 export const addItemAction = (
@@ -16,7 +17,7 @@ export const addItemAction = (
   } = item;
   return {
     type: ADD_ITEM_ACTION,
-    payload: { name, id, sku, main_image, quantity, price, options },
+    payload: { name, id, sku, main_image, quantity, price, options, acceptSubstitute: true },
   };
 };
 
@@ -28,6 +29,14 @@ export const removeItemAction = (itemId: string): CartAction => ({
 export const updateItemAction = (itemId: string, quantity: number): CartAction => ({
   type: UPDATE_ITEM_ACTION,
   payload: { itemId, quantity },
+});
+
+export const updateItemSubstituteAction = (
+  itemId: string,
+  acceptSubstitute: boolean,
+): CartAction => ({
+  type: UPDATE_ITEM_SUBSTITUTE_ACTION,
+  payload: { itemId, acceptSubstitute },
 });
 
 export const clearCart = (): CartAction => ({
