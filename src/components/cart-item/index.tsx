@@ -33,7 +33,7 @@ const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState 
     <DetailsWrapper>
       <TextBlock>
         <Name>{item.name}</Name>
-        <Price>Unit Price: {priceFormatter(item.price)}</Price>
+        <Price>Unit Price: {priceFormatter(item.special_price || item.price)}</Price>
         <CheckBoxWrapper>
           <CheckBoxField
             label="Accept Substitute"
@@ -43,7 +43,9 @@ const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState 
         </CheckBoxWrapper>
       </TextBlock>
       <ActionsBlock>
-        <TotalPrice>{priceFormatter(item.price * item.quantity)}</TotalPrice>
+        <TotalPrice>
+          {priceFormatter((item.special_price || item.price) * item.quantity)}
+        </TotalPrice>
         <AddToCart size="small" item={item} onAddItem={() => {}} />
       </ActionsBlock>
     </DetailsWrapper>

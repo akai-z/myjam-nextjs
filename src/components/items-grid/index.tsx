@@ -15,6 +15,7 @@ const ItemsGrid: React.FC<Props> = ({ itemsList }) => (
         image={item.fields.thumbnail_image}
         name={item.fields.name}
         price={item.fields.price}
+        specialPrice={item.fields.special_price || 0}
         id={item.id}
       />
     ))}

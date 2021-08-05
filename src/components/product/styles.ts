@@ -27,6 +27,8 @@ export const GridWrapper = styled.div`
 
 export const Price = tw.h3`text-xl md:text-xl text-black`;
 
+export const OldPrice = tw.span`text-gray-300 line-through text-base md:text-base pr-4`;
+
 export const AddItemButton = tw.button`
   w-40 md:w-48 text-sm text-white md:text-base bg-black hover:bg-gray-800 
   rounded-md px-8 py-3 md:px-10 md:py-3 focus:outline-none transition

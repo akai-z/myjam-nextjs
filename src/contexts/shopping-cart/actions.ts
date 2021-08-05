@@ -13,11 +13,21 @@ export const addItemAction = (
 ): CartAction => {
   const {
     id,
-    fields: { name, sku, price, main_image },
+    fields: { name, sku, price, main_image, special_price },
   } = item;
   return {
     type: ADD_ITEM_ACTION,
-    payload: { name, id, sku, main_image, quantity, price, options, acceptSubstitute: true },
+    payload: {
+      name,
+      id,
+      sku,
+      main_image,
+      quantity,
+      price,
+      special_price,
+      options,
+      acceptSubstitute: true,
+    },
   };
 };
 
