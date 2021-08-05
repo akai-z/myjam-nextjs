@@ -26,7 +26,7 @@ export const XIcon = styled(XCircleIcon)`
 
 export const DetailsWrapper = tw.div`flex justify-between flex-grow pl-4`;
 
-export const TextBlock = tw.div``;
+export const TextBlock = tw.div`relative flex-grow`;
 
 export const Name = tw.span`block mb-2 text-gray-500`;
 

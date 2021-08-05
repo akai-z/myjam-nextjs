@@ -6,6 +6,17 @@ export const Wrapper = styled.div`
   width: 750px !important;
   transform: translateX(-50%);
   z-index: 9;
+  &:before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -20px;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    z-index: 10;
+    pointer-events: none;
+  }
   & {
     .react-tel-input .selected-flag .flag {
       top: 52%;

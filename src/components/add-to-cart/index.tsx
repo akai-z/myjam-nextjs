@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { AddItemButton, QtyBox, Qty, PlusButton, MinusButton, ActionWrapper } from './styles';
 import { useShoppingCart } from '@contexts/shopping-cart';
 import { addItemAction, removeItemAction, updateItemAction } from '@contexts/shopping-cart/actions';
@@ -12,8 +12,10 @@ interface Props {
 
 const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, size = 'large' }) => {
   const { items, dispatch } = useShoppingCart();
-  const cartItem = items.find(({ id }) => id === item.id);
-  const [quantity, setQuantity] = useState<number>(cartItem ? cartItem.quantity : 1);
+
+  const getCartItem = () => items.find(({ id }) => id === item.id);
+
+  const [quantity, setQuantity] = useState<number>(1);
 
   const optionsFormatter = useCallback(
     () => Object.keys(selectedOptions).map((key) => ({ code: key, value: selectedOptions[key] })),
@@ -42,9 +44,16 @@ const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, siz
     }
   };
 
+  useEffect(() => {
+    const itemExist = getCartItem();
+    if (itemExist) {
+      setQuantity(itemExist.quantity);
+    }
+  }, [items]);
+
   return (
     <div>
-      {cartItem ? (
+      {getCartItem() ? (
         <QtyBox size={size}>
           <ActionWrapper onClick={handleActionClick(-1)}>
             <MinusButton />
