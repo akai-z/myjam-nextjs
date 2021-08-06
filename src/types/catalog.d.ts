@@ -38,6 +38,7 @@ type Item = {
 
 type ItemsList = {
   records: Array<Item>;
+  offset?: string;
 };
 
 type CustomOption = {
