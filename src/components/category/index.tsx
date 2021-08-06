@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Wrapper, Title } from './styles';
+import { Wrapper, Title, LoadMore } from './styles';
 import ItemsGrid from '@components/items-grid';
 import { fetchCategoryItems } from '@lib/queries/items';
+import Loader from '@components/loader';
 
 interface Props {
   category: Category;
@@ -31,11 +32,11 @@ const Category: React.FC<Props> = ({ category }) => {
   return (
     <Wrapper>
       <Title>{category.fields.name}</Title>
-      {initialRender ? <ItemsGrid itemsList={itemsList} /> : <h1>Loading...</h1>}
+      {initialRender ? <ItemsGrid itemsList={itemsList} /> : <Loader loading={true} size={15} />}
       {(offset || isLoading) && initialRender && (
-        <button onClick={handleLoadMore(offset as string)}>
-          {isLoading ? 'Loader Icon' : 'Load More'}
-        </button>
+        <LoadMore onClick={handleLoadMore(offset as string)}>
+          {isLoading ? <Loader loading={true} size={5} color={'#FFF'} /> : 'Load More'}
+        </LoadMore>
       )}
     </Wrapper>
   );
