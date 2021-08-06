@@ -20,6 +20,7 @@ export const fetchCategoryItems = (slug: string, offset?: string) => {
 
   return {
     items: data?.records || [],
+    offset: data?.offset,
     isLoading: !error && !data,
     isError: error,
   };
