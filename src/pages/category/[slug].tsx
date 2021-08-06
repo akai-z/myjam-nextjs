@@ -3,7 +3,6 @@ import Layout from '@components/layout';
 import Category from '@components/category';
 import { GetServerSideProps } from 'next';
 import { API_URL } from '@config/env';
-import { fetchCategoryItems } from '@lib/queries/items';
 
 interface Props {
   category: Category;
