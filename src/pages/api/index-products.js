@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
 
     'is_update' in req.query ? await productIndexer.reindexData() : await productIndexer.indexData()
 
-    response.success()
+    response.success('Products index request has been submitted successfully.')
   } catch (err) {
     response.error(err)
   }
