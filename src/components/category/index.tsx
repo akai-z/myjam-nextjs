@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import _uniqueBy from 'lodash/unionBy';
 import { Wrapper, Title, LoadMore } from './styles';
 import ItemsGrid from '@components/items-grid';
 import { fetchCategoryItems } from '@lib/queries/items';
@@ -6,28 +7,41 @@ import Loader from '@components/loader';
 
 interface Props {
   category: Category;
+  records: Array<Item>;
+  offsetRecord?: string;
 }
 
-const Category: React.FC<Props> = ({ category }) => {
+const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
   const [initialRender, setInitialRender] = useState(false);
   const [offsetId, setOffsetId] = useState('');
   const [itemsList, setItemsList] = useState<Array<Item>>([]);
 
-  const { items, offset, isLoading } = fetchCategoryItems(category.fields.slug, offsetId);
+  const { items, offset, isLoading } = fetchCategoryItems(category.fields.slug, offsetId, {
+    initialData: { records, offset: offsetRecord },
+  });
 
   const handleLoadMore = (id: string) => () => setOffsetId(id);
 
   useEffect(() => {
     if (!isLoading) {
-      setInitialRender(true);
+      setTimeout(() => {
+        setInitialRender(true);
+      }, 0);
     }
   }, [isLoading]);
 
   useEffect(() => {
+    setOffsetId('');
+    setItemsList([]);
+  }, [category]);
+
+  useEffect(() => {
     if (!isLoading && items.length > 0) {
-      setItemsList((preState) => [...preState, ...items]);
+      setTimeout(() => {
+        setItemsList((preState) => _uniqueBy([...preState, ...items], 'id'));
+      }, 0);
     }
-  }, [isLoading, items]);
+  }, [category]);
 
   return (
     <Wrapper>
