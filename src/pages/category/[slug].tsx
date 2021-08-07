@@ -6,12 +6,14 @@ import { API_URL } from '@config/env';
 
 interface Props {
   category: Category;
+  records: Array<Item>;
+  offset?: string;
 }
 
-const CategoryPage: React.FC<Props> = ({ category }) => {
+const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
   return (
     <Layout seo={{ title: category.fields.name, description: category.fields.description }}>
-      <Category category={category} />
+      <Category category={category} records={records} offsetRecord={offset} />
     </Layout>
   );
 };
@@ -19,10 +21,16 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   // @ts-ignore
   const response = await fetch(`${API_URL}/category/${params.slug}`);
-  const data = await response.json();
+  const category = await response.json();
+
+  // @ts-ignore
+  const itemsResponse = await fetch(`${API_URL}/category-product-list/${params.slug}`);
+  const { records, offset = null } = await itemsResponse.json();
   return {
     props: {
-      category: data,
+      category,
+      records,
+      offset,
     },
   };
 };
