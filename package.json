@@ -24,6 +24,7 @@
     "date-fns": "^2.11.1",
     "dotenv": "^9.0.2",
     "gray-matter": "^4.0.2",
+    "lodash": "^4.17.21",
     "next": "^10.2.3",
     "next-images": "^1.7.0",
     "react": "17.0.1",
