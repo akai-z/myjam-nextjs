@@ -41,7 +41,7 @@ const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
         setItemsList((preState) => _uniqueBy([...preState, ...items], 'id'));
       }, 0);
     }
-  }, [category]);
+  }, [isLoading, items]);
 
   return (
     <Wrapper>
