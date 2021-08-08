@@ -11,7 +11,7 @@ interface Props {
 const Hits: React.FC<Props> = ({ hits }) => (
   <Wrapper>
     {hits.length > 0 ? (
-      <ItemsGrid itemsList={hits} />
+      <ItemsGrid itemsList={hits.map((hit) => ({ id: hit.id, fields: { ...hit } }))} />
     ) : (
       <Block>
         <Image
