@@ -29,7 +29,7 @@ const ActionButtons: React.FC<Props> = ({ setMenuState, setCartMenuState }) => {
         </Link>
       </div>
       <div onClick={() => setCartMenuState(true)}>
-        {totalQty && <Qty>{totalQty}</Qty>}
+        {totalQty > 0 && <Qty>{totalQty}</Qty>}
         <CartIcon />
       </div>
       <div>
