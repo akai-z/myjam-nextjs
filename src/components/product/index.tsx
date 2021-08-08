@@ -4,6 +4,7 @@ import ImageSlider from '@components/image-slider';
 import AddToCart from '@components/add-to-cart';
 import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
+import { useShoppingCart } from '@contexts/shopping-cart';
 
 interface Props {
   item: Item;
@@ -11,12 +12,18 @@ interface Props {
 }
 
 const Product: React.FC<Props> = ({ item, optionsList }) => {
+  const { items } = useShoppingCart();
   const options = normalizeData(optionsList);
+
+  const getCartItem = () => items.find(({ id }) => id === item.id);
+
+  const getSelectedValue = (optionCode: string) =>
+    getCartItem()?.options?.find((option) => option.code === optionCode);
 
   const optionsInitialState = item.fields.options
     ? item.fields.options.reduce((acc: any, optionId: string) => {
         const option = options[optionId];
-        acc[option.fields.code] = '';
+        acc[option.fields.code] = getCartItem() ? getSelectedValue(option.fields.code)?.value : '';
         return acc;
       }, {})
     : {};

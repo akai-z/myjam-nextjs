@@ -48,7 +48,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const category = await response.json();
 
   const itemsResponse = await fetch(`${API_URL}/category-product-list/${params?.slug}`);
-  const { records, offset = null } = await itemsResponse.json();
+  const { records = [], offset = null } = await itemsResponse.json();
   return {
     revalidate: 10,
     props: {
