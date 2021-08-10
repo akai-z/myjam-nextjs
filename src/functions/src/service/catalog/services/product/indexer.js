@@ -9,7 +9,7 @@ async function indexData(filter = null) {
 
   const productsData = []
   for (const product of products) {
-    product.fields['objectID'] = product.fields['slug']
+    product.fields['objectID'] = product['id']
     productsData.push(product.fields)
   }
 
