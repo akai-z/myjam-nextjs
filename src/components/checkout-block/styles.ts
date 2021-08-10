@@ -46,5 +46,12 @@ export const Wrapper = styled.div<{ isMobile: boolean }>`
 
 export const Label = tw.span`text-gray-600 text-sm mb-1`;
 
-export const Button = tw.button`uppercase tracking-wider text-sm text-white md:text-base bg-black hover:bg-opacity-75
-  rounded-md px-8 py-3 md:px-10 md:py-3 focus:outline-none transition-opacity duration-300 mt-7 w-full`;
+export const LoaderWrapper = styled.div`
+  position: relative;
+  left: 20px;
+  top: 3px;
+`;
+
+export const Button = tw.button`uppercase tracking-wider text-sm text-white 
+    md:text-base bg-black hover:bg-opacity-75 rounded-md px-8 py-3 md:px-10 md:py-3 flex items-center justify-center
+    focus:outline-none transition-opacity duration-300 mt-7 w-full relative disabled:cursor-not-allowed`;
