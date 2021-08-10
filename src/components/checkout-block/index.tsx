@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
-import { Wrapper, Label, Button } from './styles';
-import { useCustomerProfile } from '@contexts/customer-profile';
+import { Wrapper, Label, Button, LoaderWrapper } from './styles';
 import { showNotification } from '@utils/notification';
 import { setCustomerPhoneNumber } from '@contexts/customer-profile/actions';
+import { createCheckoutSession, lineItemsFormatter } from '@utils/checkout';
+import { useShoppingCart, useCustomerProfile, useStripe } from '@contexts/index';
+import { APP_URL } from '@config/env';
+import Loader from '@components/loader';
 
 interface Props {
   isMobile?: boolean;
@@ -11,7 +14,11 @@ interface Props {
 
 const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
   const { phoneNumber, dispatch } = useCustomerProfile();
+  const { items } = useShoppingCart();
+  const stripe = useStripe();
+
   const [phone, setPhoneNumber] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   const proceedToCheckout = () => {
     if (!phone || phone === '44') {
@@ -19,7 +26,23 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
       return;
     }
     dispatch(setCustomerPhoneNumber(phone));
-    alert('PROCEED TO CHECKOUT!');
+    const line_items = lineItemsFormatter(items);
+    setLoading(true);
+    createCheckoutSession(line_items, { phone })
+      .then((sessionId) => {
+        const successUrl = `${APP_URL}/success?sessionId=${sessionId}`;
+        const cancelUrl = `${APP_URL}/cancel?sessionId=${sessionId}`;
+        // @ts-ignore
+        return stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
+      })
+      .then((result) => {
+        if (result.error) {
+          showNotification('Error', 'Something went wrong, please try again later', 'danger');
+        }
+      })
+      .catch(() =>
+        showNotification('Error', 'Something went wrong, please try again later', 'danger'),
+      );
   };
 
   useEffect(() => {
@@ -40,7 +63,14 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
         specialLabel={''}
         onChange={(phoneNum) => setPhoneNumber(phoneNum)}
       />
-      <Button onClick={proceedToCheckout}>Proceed to Checkout</Button>
+      <Button disabled={isLoading} onClick={proceedToCheckout}>
+        <span>Proceed to Checkout</span>{' '}
+        {isLoading && (
+          <LoaderWrapper>
+            <Loader isSpinner={true} loading={true} size={15} color={'#FFF'} />
+          </LoaderWrapper>
+        )}
+      </Button>
     </Wrapper>
   );
 };
