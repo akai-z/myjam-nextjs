@@ -12,7 +12,7 @@ export const lineItemsFormatter = (items: Array<CartItem>) =>
           sku: item.sku,
           special_price: item.special_price,
           accept_substitute: item.acceptSubstitute,
-          options: item.options,
+          options: JSON.stringify(item.options),
         },
       },
     },

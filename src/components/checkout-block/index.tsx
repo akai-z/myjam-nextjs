@@ -31,7 +31,7 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
     createCheckoutSession(line_items, { phone })
       .then((sessionId) => {
         const successUrl = `${APP_URL}/success?sessionId=${sessionId}`;
-        const cancelUrl = `${APP_URL}/cancel?sessionId=${sessionId}`;
+        const cancelUrl = APP_URL;
         // @ts-ignore
         return stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
       })
