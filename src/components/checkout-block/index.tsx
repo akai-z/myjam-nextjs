@@ -5,7 +5,6 @@ import { showNotification } from '@utils/notification';
 import { setCustomerPhoneNumber } from '@contexts/customer-profile/actions';
 import { createCheckoutSession, lineItemsFormatter } from '@utils/checkout';
 import { useShoppingCart, useCustomerProfile, useStripe } from '@contexts/index';
-import { APP_URL } from '@config/env';
 import Loader from '@components/loader';
 
 interface Props {
@@ -29,11 +28,9 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
     const line_items = lineItemsFormatter(items);
     setLoading(true);
     createCheckoutSession(line_items, { phone })
-      .then((sessionId) => {
-        const successUrl = `${APP_URL}/success?sessionId=${sessionId}`;
-        const cancelUrl = APP_URL;
+      .then(({ sessionId }) => {
         // @ts-ignore
-        return stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
+        return stripe.redirectToCheckout({ sessionId });
       })
       .then((result) => {
         if (result.error) {
