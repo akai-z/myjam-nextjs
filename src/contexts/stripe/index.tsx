@@ -13,10 +13,10 @@ export const StripeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     async function initializeStripe() {
-      return await loadStripe(STRIPE_PUBLISHABLE_KEY);
+      const stripeInstance = await loadStripe(STRIPE_PUBLISHABLE_KEY);
+      setStripe(stripeInstance);
     }
-    const stripeInstance = initializeStripe();
-    setStripe(stripeInstance);
+    initializeStripe();
   }, []);
 
   return <StripeContext.Provider value={stripe}>{children}</StripeContext.Provider>;
