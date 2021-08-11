@@ -32,6 +32,7 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
       .then((sessionId) => {
         const successUrl = `${APP_URL}/success?sessionId=${sessionId}`;
         const cancelUrl = APP_URL;
+        console.log(stripe);
         // @ts-ignore
         stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
       })
