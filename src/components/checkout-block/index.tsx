@@ -33,12 +33,7 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
         const successUrl = `${APP_URL}/success?sessionId=${sessionId}`;
         const cancelUrl = APP_URL;
         // @ts-ignore
-        return stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
-      })
-      .then((result) => {
-        if (result.error) {
-          showNotification('Error', 'Something went wrong, please try again later', 'danger');
-        }
+        stripe.redirectToCheckout({ sessionId, successUrl, cancelUrl });
       })
       .catch(() =>
         showNotification('Error', 'Something went wrong, please try again later', 'danger'),
