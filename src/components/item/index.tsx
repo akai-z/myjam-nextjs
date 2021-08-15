@@ -32,15 +32,15 @@ const Item: React.FC<Props> = ({ slug, image, name, price, specialPrice }) => (
       <RouterLink>
         <Image src={image} loading="lazy" />
         <div>
+          <Title>{name}</Title>
           {specialPrice > 0 ? (
-            <React.Fragment>
-              <OldPrice>{priceFormatter(price)}</OldPrice>
+            <div>
               <Price>{priceFormatter(price)}</Price>
-            </React.Fragment>
+              <OldPrice>{priceFormatter(price)}</OldPrice>
+            </div>
           ) : (
             <Price>{priceFormatter(price)}</Price>
           )}
-          <Title>{name}</Title>
         </div>
       </RouterLink>
     </Link>

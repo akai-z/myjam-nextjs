@@ -36,7 +36,7 @@ export const ActionsBlock = tw.div`flex flex-row-reverse md:flex-col justify-bet
 
 export const TotalPrice = tw.span`block text-black font-medium text-right`;
 
-export const CheckBoxWrapper = tw.div`md:absolute md:bottom-0 mt-6`;
+export const CheckBoxWrapper = tw.div`md:absolute mt-4 md:bottom-0 md:mt-6`;
 
 export const Img = styled.img`
   ${tw`shadow-sm`}
