@@ -13,7 +13,7 @@ export const CartWrapper = styled.div<{ isOpen: boolean }>`
 
 export const Wrapper = tw.div`container md:mx-auto md:px-4`;
 
-export const TitleBlock = tw.div`shadow-sm p-6 flex flex-row items-center justify-between md:hidden`;
+export const TitleBlock = tw.div`shadow-sm p-6 py-4 flex flex-row items-center justify-between md:hidden`;
 
 export const Title = tw.h2`text-xl text-black font-semibold`;
 
@@ -25,7 +25,7 @@ export const ItemsWrapper = styled(Block)`
   height: 58vh;
   overflow-y: scroll;
   & > div:last-child {
-    margin-bottom: 30px;
+    margin-bottom: 80px;
   }
 `;
 

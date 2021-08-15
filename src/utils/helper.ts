@@ -1,13 +1,11 @@
 import { CLOUDINARY_KEY, CLOUDINARY_PATH } from '@config/env';
 
-export const normalizeData = <T extends Category | CustomOption>(arrData: Array<T>) => {
-  let normalizedData: any = {};
-  arrData.forEach((record: T) => {
-    if (record.id) {
-      normalizedData[record.id] = record;
-    }
-  });
-  return normalizedData as { [key: string]: T };
+export const normalizeData = <T extends Category | CustomOption>(
+  arrData: Array<T>,
+): { [key: string]: T } => {
+  let normalizedData: { [key: string]: T } = {};
+  arrData.forEach((record: T) => (normalizedData[record.id] = record));
+  return normalizedData;
 };
 
 export const priceFormatter = (price: number): string => {

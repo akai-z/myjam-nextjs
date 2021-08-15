@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div<{ isMobile: boolean }>`
-  ${tw`absolute left-1/2 rounded-md shadow-md p-8 bg-gray-50`}
+  ${tw`absolute left-1/2 rounded-md shadow-md p-4 pb-16 md:p-8 bg-gray-50`}
   width: ${({ isMobile }) => (isMobile ? '100%' : '750px')}  !important;
   bottom: ${({ isMobile }) => (isMobile ? '0' : '3rem')};
   transform: translateX(-50%);
@@ -54,4 +54,4 @@ export const LoaderWrapper = styled.div`
 
 export const Button = tw.button`uppercase tracking-wider text-sm text-white 
     md:text-base bg-black hover:bg-opacity-75 rounded-md px-8 py-3 md:px-10 md:py-3 flex items-center justify-center
-    focus:outline-none transition-opacity duration-300 mt-7 w-full relative disabled:cursor-not-allowed`;
+    focus:outline-none transition-opacity duration-300 mt-4 md:mt-7 w-full relative disabled:cursor-not-allowed`;
