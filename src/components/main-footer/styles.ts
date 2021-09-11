@@ -1,5 +1,5 @@
 import tw from 'twin.macro';
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const FooterWrapper = tw.div`w-full bg-gray-800 mt-8 mx-auto`;
 
