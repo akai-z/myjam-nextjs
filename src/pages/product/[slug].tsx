@@ -16,14 +16,24 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 
   if (router.isFallback) {
     return (
-      <Layout seo={{ title: '' }}>
+      <Layout title="MY JAM" description="We support local">
         <Loader loading={true} size={15} />
       </Layout>
     );
   }
 
+  const seoProps = {
+    title: item.fields.name,
+    description: item.fields.description,
+    productJsonLd: {
+      productName: item.fields.name,
+      description: item.fields.description,
+      images: [item.fields.thumbnail_image],
+    },
+  };
+
   return (
-    <Layout seo={{ title: item.fields.name, description: item.fields.description }}>
+    <Layout {...seoProps}>
       <Product optionsList={optionsList} item={item} />
     </Layout>
   );

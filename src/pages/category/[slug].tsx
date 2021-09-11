@@ -17,14 +17,14 @@ const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
 
   if (router.isFallback) {
     return (
-      <Layout seo={{ title: '' }}>
+      <Layout title="MY JAM" description="We support local">
         <Loader loading={true} size={15} />
       </Layout>
     );
   }
 
   return (
-    <Layout seo={{ title: category.fields.name, description: category.fields.description }}>
+    <Layout title={category.fields.name} description={category.fields.description}>
       <Category category={category} records={records} offsetRecord={offset} />
     </Layout>
   );

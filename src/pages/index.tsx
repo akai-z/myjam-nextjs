@@ -13,7 +13,7 @@ interface Props {
 }
 
 const IndexPage: React.FC<Props> = ({ title, description }) => (
-  <Layout seo={{ title, description }}>
+  <Layout title={title} description={description}>
     <HomeBanner />
     <Blocks />
     <CategorySlider />
