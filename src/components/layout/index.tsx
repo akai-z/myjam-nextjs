@@ -7,15 +7,20 @@ import { LayoutWrapper, PageWrapper } from './styles';
 import Footer from '@components/footer';
 import ReactNotification from 'react-notifications-component';
 import CartMenu from '@components/cart-menu';
+import SEO from '@components/seo';
 
 interface Props {
-  seo: {
-    title: string;
+  title: string;
+  description?: string;
+  productJsonLd?: {
+    productName: string;
+    images: Array<string>;
     description?: string;
   };
+  isNotFound?: boolean;
 }
 
-const Layout: React.FC<Props> = ({ seo, children }) => {
+const Layout: React.FC<Props> = ({ isNotFound = false, ...props }) => {
   const [menuState, setMenuState] = useState<boolean>(false);
   const [cartMenuState, setCartMenuState] = useState<boolean>(false);
 
@@ -26,23 +31,31 @@ const Layout: React.FC<Props> = ({ seo, children }) => {
     document.body.style.overflow = menuState || cartMenuState ? 'hidden' : 'initial';
   }, [menuState, cartMenuState]);
 
-  const { title, description } = seo;
   return (
     <LayoutWrapper>
       <Head>
-        <title>{title}</title>
+        <title>{props.title}</title>
         <link rel="icon" href="/images/favicon.ico" />
-        <meta name="description" content={description} />
-        <meta name="og:title" content={title} />
+        <meta name="description" content={props.description} />
+        <meta name="og:title" content={props.title} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
+      <SEO {...props} />
       <ReactNotification />
-      <Header />
-      <NavBar isOpen={menuState} setMenuState={handleMenuState} />
-      <CartMenu isOpen={cartMenuState} setCartMenuState={handleCartMenuState} />
-      <PageWrapper>{children}</PageWrapper>
-      <Footer />
-      <ActionButtons setMenuState={handleMenuState} setCartMenuState={handleCartMenuState} />
+      {!isNotFound && (
+        <React.Fragment>
+          <Header />
+          <NavBar isOpen={menuState} setMenuState={handleMenuState} />
+          <CartMenu isOpen={cartMenuState} setCartMenuState={handleCartMenuState} />
+        </React.Fragment>
+      )}
+      <PageWrapper isNotFound={isNotFound}>{props.children}</PageWrapper>
+      {!isNotFound && (
+        <React.Fragment>
+          <Footer />
+          <ActionButtons setMenuState={handleMenuState} setCartMenuState={handleCartMenuState} />
+        </React.Fragment>
+      )}
     </LayoutWrapper>
   );
 };

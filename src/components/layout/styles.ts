@@ -6,4 +6,6 @@ export const LayoutWrapper = styled.div`
   max-width: 100% !important;
 `;
 
-export const PageWrapper = tw.div`container mx-auto p-4`;
+export const PageWrapper = styled.div<{ isNotFound: boolean }>`
+  ${({ isNotFound }) => !isNotFound && tw`container mx-auto p-4`}
+`;
