@@ -6,6 +6,7 @@ import { GlobalStyles } from 'twin.macro';
 import 'react-phone-input-2/lib/material.css';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
+import 'react-notion-x/src/styles.css';
 import { Global, css } from '@emotion/react';
 import {
   ViewportProvider,
@@ -31,6 +32,18 @@ const customStyle = css`
       right: 0 !important;
       bottom: 0 !important;
       padding: 0 !important;
+    }
+  }
+  .notion-frame {
+    & header,
+    & .notion-hash-link {
+      display: none;
+    }
+    & .notion-page {
+      width: 100%;
+      padding: 25px;
+      margin: 0 !important;
+      font-family: Arial, sans-serif !important;
     }
   }
 `;
