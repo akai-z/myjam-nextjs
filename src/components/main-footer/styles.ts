@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
 
-export const FooterWrapper = tw.div`w-full bg-gray-800 mt-8 mx-auto`;
+export const FooterWrapper = tw.div`w-full bg-gray-800 border-t-4 border-black mx-auto`;
 
 export const Wrapper = styled.div`
   ${tw`container mx-auto py-10 px-8 md:py-12 md:px-4 flex flex-col md:flex-row md:justify-between md:items-center`}
