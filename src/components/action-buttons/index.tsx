@@ -4,10 +4,10 @@ import { Wrapper, CartIcon, HomeIcon, TagIcon, MenuIcon, RouterLink, Qty } from 
 import { useShoppingCart } from '@contexts/shopping-cart';
 import { calculateTotalQuantity } from '@contexts/shopping-cart/helper';
 
-interface Props {
+type Props = {
   setMenuState: (val: boolean) => void;
   setCartMenuState: (val: boolean) => void;
-}
+};
 
 const ActionButtons: React.FC<Props> = ({ setMenuState, setCartMenuState }) => {
   const { items } = useShoppingCart();

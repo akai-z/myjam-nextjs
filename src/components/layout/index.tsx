@@ -9,7 +9,7 @@ import ReactNotification from 'react-notifications-component';
 import CartMenu from '@components/cart-menu';
 import SEO from '@components/seo';
 
-interface Props {
+type Props = {
   title: string;
   description?: string;
   productJsonLd?: {
@@ -18,7 +18,7 @@ interface Props {
     description?: string;
   };
   isNotFound?: boolean;
-}
+};
 
 const Layout: React.FC<Props> = ({ isNotFound = false, ...props }) => {
   const [menuState, setMenuState] = useState<boolean>(false);

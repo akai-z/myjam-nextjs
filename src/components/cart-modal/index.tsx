@@ -16,10 +16,10 @@ import CartItem from '@components/cart-item';
 import { removeItemAction, updateItemSubstituteAction } from '@contexts/shopping-cart/actions';
 import CheckoutBlock from '@components/checkout-block';
 
-interface Props {
+type Props = {
   isOpen: boolean;
   onVisibilityChange: (state: boolean) => void;
-}
+};
 
 ReactModal.setAppElement('#__next');
 

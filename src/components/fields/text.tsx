@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Wrapper, Input, ErrorMessage, Label } from './styles';
 
-interface Props {
+type Props = {
   label: string;
   value?: string;
   onChange: Function;
   hasError?: boolean;
   errorMessage?: string;
   placeholder?: string;
-}
+};
 
 export const TextField: React.FC<Props> = ({
   label,

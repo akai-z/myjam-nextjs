@@ -12,14 +12,14 @@ import {
   ActionWrapper,
 } from './styles';
 
-interface Props {
+type Props = {
   slug: string;
   image: string;
   name: string;
   price: number;
   specialPrice: number;
   id: string;
-}
+};
 
 const Item: React.FC<Props> = ({ slug, image, name, price, specialPrice }) => (
   <ItemWrapper>

@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
 import { IS_CLIENT } from '@config/constants';
 
-interface Viewport {
+type Viewport = {
   width: number | undefined;
   height: number | undefined;
-}
+};
 
 const initialState = { width: undefined, height: undefined };
 

@@ -16,11 +16,11 @@ import { priceFormatter } from '@utils/helper';
 import AddToCart from '@components/add-to-cart';
 import { CheckBoxField } from '@components/fields';
 
-interface Props {
+type Props = {
   item: CartItem;
   handleRemoveItem: () => void;
   handleItemSubState: (val: boolean) => void;
-}
+};
 
 const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState }) => (
   <Wrapper>

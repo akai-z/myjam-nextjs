@@ -3,9 +3,9 @@ import { connectStateResults } from 'react-instantsearch-dom';
 import Hits from './hits';
 import { IS_CLIENT } from '@config/constants';
 
-interface Props {
+type Props = {
   searchState: any;
-}
+};
 const SearchResult: React.FC<Props> = ({ searchState }) => {
   useEffect(() => {
     if (IS_CLIENT) {

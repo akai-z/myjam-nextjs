@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Input, Label, CheckBoxWrapper, CheckBlock, CheckIcon } from './styles';
 
-interface Props {
+type Props = {
   label: string;
   value: boolean;
   onChange: Function;
-}
+};
 
 export const CheckBoxField: React.FC<Props> = ({ label, value, onChange }) => {
   const [val, setVal] = useState(value);

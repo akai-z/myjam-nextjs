@@ -3,7 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Wrapper, Button, LeftArrow, RightArrow } from './styles';
 
-interface Props {
+type Props = {
   showDots?: boolean;
   showArrows?: boolean;
   responsive: {
@@ -12,7 +12,7 @@ interface Props {
       items: number;
     };
   };
-}
+};
 
 const MultiSlider: React.FC<Props> = ({
   responsive,

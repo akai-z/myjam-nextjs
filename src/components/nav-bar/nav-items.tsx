@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Grid, Item, DownArrow, Span, SubCategoriesList, RouterLink } from './styles';
 import { normalizeData } from '@utils/helper';
 
-interface Props {
+type Props = {
   categories: Array<Category>;
   isOpen: boolean;
-}
+};
 
 const NavItems: React.FC<Props> = ({ isOpen, categories }) => {
   const [activeId, setActiveId] = useState<string>();

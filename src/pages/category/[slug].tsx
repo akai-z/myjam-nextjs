@@ -6,11 +6,11 @@ import Category from '@components/category';
 import { API_URL } from '@config/env';
 import Loader from '@components/loader';
 
-interface Props {
+type Props = {
   category: Category;
   records: Array<Item>;
   offset?: string;
-}
+};
 
 const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
   const router = useRouter();

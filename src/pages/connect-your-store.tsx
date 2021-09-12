@@ -5,11 +5,11 @@ import { NotionRenderer } from 'react-notion-x';
 import Layout from '@components/layout';
 import { NOTION_CONNECT_STORE } from '@config/env';
 
-interface Props {
+type Props = {
   title: string;
   description: string;
   recordMap: any;
-}
+};
 
 const ConnectStorePage: React.FC<Props> = ({ title, description, recordMap }) => (
   <Layout title={title} description={description}>

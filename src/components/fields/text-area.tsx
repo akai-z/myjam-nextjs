@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Wrapper, TextArea, ErrorMessage, Label } from './styles';
 
-interface Props {
+type Props = {
   label: string;
   value: string | undefined;
   onChange: Function;
   hasError?: boolean;
   errorMessage?: string;
-}
+};
 
 export const TextAreaField: React.FC<Props> = ({
   label,

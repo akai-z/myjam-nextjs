@@ -5,9 +5,9 @@ import ItemsGrid from '@components/items-grid';
 import { imgUrlBuilder } from '@utils/helper';
 import { Wrapper, Block, Text, SubText } from './styles';
 
-interface Props {
+type Props = {
   hits: any;
-}
+};
 const Hits: React.FC<Props> = ({ hits }) => (
   <Wrapper>
     {hits.length > 0 ? (

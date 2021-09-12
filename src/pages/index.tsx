@@ -7,10 +7,10 @@ import HomeBanner from '@components/homepage-banner';
 import CategorySlider from '@components/category-slider';
 import ItemSlider from '@components/item-slider';
 
-interface Props {
+type Props = {
   title: string;
   description: string;
-}
+};
 
 const IndexPage: React.FC<Props> = ({ title, description }) => (
   <Layout title={title} description={description}>

@@ -3,12 +3,12 @@ import { AddItemButton, QtyBox, Qty, PlusButton, MinusButton, ActionWrapper } fr
 import { useShoppingCart } from '@contexts/shopping-cart';
 import { addItemAction, removeItemAction, updateItemAction } from '@contexts/shopping-cart/actions';
 
-interface Props {
+type Props = {
   item: Item | CartItem;
   selectedOptions?: SelectedOptions;
   size?: 'small' | 'large';
   onAddItem: () => void;
-}
+};
 
 const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, size = 'large' }) => {
   const { items, dispatch } = useShoppingCart();

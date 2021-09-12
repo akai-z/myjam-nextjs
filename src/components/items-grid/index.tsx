@@ -2,9 +2,9 @@ import React from 'react';
 import { Wrapper } from './styles';
 import Item from '@components/item';
 
-interface Props {
+type Props = {
   itemsList: Array<Item>;
-}
+};
 
 const ItemsGrid: React.FC<Props> = ({ itemsList }) => (
   <Wrapper>

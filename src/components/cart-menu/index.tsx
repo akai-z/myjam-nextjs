@@ -14,10 +14,10 @@ import {
   CartWrapper,
 } from './styles';
 
-interface Props {
+type Props = {
   isOpen: boolean;
   setCartMenuState: (state: boolean) => void;
-}
+};
 
 const CartMenu: React.FC<Props> = ({ isOpen, setCartMenuState }) => {
   const { items, amount, dispatch } = useShoppingCart();

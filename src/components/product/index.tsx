@@ -6,10 +6,10 @@ import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
 import { useShoppingCart } from '@contexts/shopping-cart';
 
-interface Props {
+type Props = {
   item: Item;
   optionsList: Array<CustomOption>;
-}
+};
 
 const Product: React.FC<Props> = ({ item, optionsList }) => {
   const { items } = useShoppingCart();

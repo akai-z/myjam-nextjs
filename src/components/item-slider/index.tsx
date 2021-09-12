@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { Wrapper, SliderTitle, RouterLink } from './styles';
 import { fetchItemsBasedType } from '@lib/queries/items';
 
-interface Props {
+type Props = {
   title: string;
   type: string;
-}
+};
 
 const ItemSlider: React.FC<Props> = ({ title, type }) => {
   const { items } = fetchItemsBasedType(type);

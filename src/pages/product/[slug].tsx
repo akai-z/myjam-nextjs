@@ -6,10 +6,10 @@ import Product from '@components/product';
 import { API_URL } from '@config/env';
 import Loader from '@components/loader';
 
-interface Props {
+type Props = {
   item: Item;
   optionsList: Array<CustomOption>;
-}
+};
 
 const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
   const router = useRouter();

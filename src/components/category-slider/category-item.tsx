@@ -2,11 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { ItemWrapper, Title, Image, RouterLink } from './styles';
 
-interface Props {
+type Props = {
   slug: string;
   image: string;
   name: string;
-}
+};
 
 const CategoryItem: React.FC<Props> = ({ slug, image, name }) => {
   return (

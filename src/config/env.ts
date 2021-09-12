@@ -12,4 +12,4 @@ export const NOTION_TERMS = process.env.NEXT_PUBLIC_NOTION_TERMS || '';
 export const NOTION_SELL_WITH_US = process.env.NEXT_PUBLIC_NOTION_SELL_WITH_US || '';
 export const NOTION_CONNECT_STORE = process.env.NEXT_PUBLIC_NOTION_CONNECT_STORE || '';
 export const NOTION_DELIVERY_INFO = process.env.NEXT_PUBLIC_NOTION_DELIVERY_INFO || '';
-export const NOTION_TRACK_ORDER = process.env.NEXT_PUBLIC_NOTION_TRACK_ORDER || '';
+export const NOTION_SUCCESS = process.env.NEXT_PUBLIC_NOTION_SUCCESS || '';

@@ -3,10 +3,10 @@ import { fetchCategories } from '@lib/queries/categories';
 import { Wrapper, NavWrapper, TitleBlock, Title, CloseIcon } from './styles';
 import NavItems from './nav-items';
 
-interface Props {
+type Props = {
   isOpen: boolean;
   setMenuState: (val: boolean) => void;
-}
+};
 
 const NavBar: React.FC<Props> = ({ isOpen, setMenuState }) => {
   const { categories } = fetchCategories();

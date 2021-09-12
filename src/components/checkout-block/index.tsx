@@ -7,9 +7,9 @@ import { createCheckoutSession, lineItemsFormatter } from '@utils/checkout';
 import { useShoppingCart, useCustomerProfile, useStripe } from '@contexts/index';
 import Loader from '@components/loader';
 
-interface Props {
+type Props = {
   isMobile?: boolean;
-}
+};
 
 const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
   const { phoneNumber, dispatch } = useCustomerProfile();

@@ -14,6 +14,10 @@ type Category = {
     items?: Array<string>;
     sub_categories?: Array<string>;
     description?: string;
+    egyptian_cuisine?: boolean;
+    indian_cuisine?: boolean;
+    halal?: boolean;
+    this_week?: boolean;
   };
 };
 

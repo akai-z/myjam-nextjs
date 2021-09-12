@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Wrapper, ErrorMessage, Label, Select } from './styles';
 
-interface Props {
+type Props = {
   label: string;
   value: string | undefined;
   options: Array<string>;
   onChange: Function;
   hasError?: boolean;
   errorMessage?: string;
-}
+};
 
 export const SelectField: React.FC<Props> = ({
   label,

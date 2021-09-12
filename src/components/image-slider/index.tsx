@@ -4,9 +4,9 @@ import { Wrapper } from './styles';
 import { useViewportContext } from '@contexts/viewport';
 import { isMobile } from '@utils/helper';
 
-interface Props {
+type Props = {
   images: Array<string>;
-}
+};
 
 const ImageSlider: React.FC<Props> = ({ images }) => {
   const { width } = useViewportContext();

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { connectSearchBox } from 'react-instantsearch-dom';
 import { Input, Wrapper, SearchIcon, CloseIcon } from './styles';
 
-interface Props {
+type Props = {
   currentRefinement: string;
   refine: (value: string) => void;
-}
+};
 
 const SearchBox: React.FC<Props> = ({ currentRefinement, refine }) => {
   return (

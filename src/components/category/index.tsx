@@ -5,11 +5,11 @@ import ItemsGrid from '@components/items-grid';
 import { fetchCategoryItems } from '@lib/queries/items';
 import Loader from '@components/loader';
 
-interface Props {
+type Props = {
   category: Category;
   records: Array<Item>;
   offsetRecord?: string;
-}
+};
 
 const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
   const [initialRender, setInitialRender] = useState(false);
