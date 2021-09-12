@@ -4,8 +4,12 @@ import { Wrapper, SliderTitle } from './styles';
 import CategoryItem from './category-item';
 import { fetchCategories } from '@lib/queries/categories';
 
-const CategorySlider: React.FC = () => {
-  const { categories } = fetchCategories();
+type Props = {
+  categories: Array<Category>;
+};
+
+const CategorySlider: React.FC<Props> = ({ categories }) => {
+  // const { categories } = fetchCategories();
 
   const responsive = {
     largeMonitor: {

@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const optionsListResponse = await fetch(`${API_URL}/product-option-list`);
   const optionsList = await optionsListResponse.json();
   return {
-    revalidate: 10,
+    revalidate: 60,
     props: {
       item,
       optionsList,

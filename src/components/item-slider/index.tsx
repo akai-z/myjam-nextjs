@@ -8,10 +8,11 @@ import { fetchItemsBasedType } from '@lib/queries/items';
 type Props = {
   title: string;
   type: string;
+  items: Array<Item>;
 };
 
-const ItemSlider: React.FC<Props> = ({ title, type }) => {
-  const { items } = fetchItemsBasedType(type);
+const ItemSlider: React.FC<Props> = ({ title, items }) => {
+  // const { items } = fetchItemsBasedType(type);
 
   const responsive = {
     largeMonitor: {
