@@ -34,11 +34,11 @@ const IndexPage: React.FC<Props> = ({
 
 // @ts-ignore
 export const getStaticProps: GetStaticProps = async () => {
-  const featuredItemsResponse = await fetch(`${API_URL}/category-list`);
+  const featuredItemsResponse = await fetch(`${API_URL}/product-list?type=trending`);
   const featuredItems = await featuredItemsResponse.json();
   const trendingItemsResponse = await fetch(`${API_URL}/product-list?type=featured`);
   const trendingItems = await trendingItemsResponse.json();
-  const categoriesResponse = await fetch(`${API_URL}/product-list?type=trending`);
+  const categoriesResponse = await fetch(`${API_URL}/category-list?type=trending`);
   const categories = await categoriesResponse.json();
   return {
     revalidate: 60,
