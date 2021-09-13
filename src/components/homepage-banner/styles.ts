@@ -4,7 +4,7 @@ import { ArrowNarrowRightIcon } from '@heroicons/react/outline';
 
 export const Wrapper = styled.div`
   ${tw`rounded-lg px-6 py-12 lg:px-16 lg:py-32 bg-cover bg-center bg-no-repeat`}
-  background-image: url(${require('../../images/home-banner.png')});
+  background-image: url(${require('../../images/home-banner.jpeg')});
   min-height: 300px;
   @media screen and (min-width: 768px) {
     min-height: 400px;
