@@ -8,9 +8,12 @@ export const normalizeData = <T extends Category | CustomOption>(
   return normalizedData;
 };
 
-export const priceFormatter = (price: number): string => {
-  const formattedPrice = (Math.round(price * 100) / 100).toFixed(2);
-  return `£${formattedPrice}`;
+export const priceFormatter = (price: number, stringFormat = true): number | string => {
+  const formattedPrice = Math.floor(price * 100) / 100;
+  if (stringFormat) {
+    return `£${formattedPrice.toFixed(2)}`;
+  }
+  return formattedPrice;
 };
 
 export const isMobile = (width: number | undefined): boolean => (width ? width < 786 : false);

@@ -36,7 +36,7 @@ const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState 
         <Price>Unit Price: {priceFormatter(item.special_price || item.price)}</Price>
         <CheckBoxWrapper>
           <CheckBoxField
-            label="Accept Substitute"
+            label="No Substitute"
             value={item.acceptSubstitute}
             onChange={handleItemSubState}
           />

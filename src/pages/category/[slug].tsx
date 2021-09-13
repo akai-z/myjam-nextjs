@@ -34,11 +34,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${API_URL}/category-list`);
   const categories = await response.json();
 
-  const paths = categories.map((category: Category) => ({
-    params: {
-      slug: category.fields.slug,
-    },
-  }));
+  const paths = categories
+    .filter((category: Category) => category.fields.status === 'enabled')
+    .map((category: Category) => ({
+      params: {
+        slug: category.fields.slug,
+      },
+    }));
 
   return { paths, fallback: true };
 };

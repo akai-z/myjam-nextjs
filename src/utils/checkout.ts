@@ -1,17 +1,18 @@
 import { API_URL } from '@config/env';
+import { priceFormatter } from '@utils/helper';
 
 export const lineItemsFormatter = (items: Array<CartItem>) =>
   items.map((item) => ({
     quantity: item.quantity,
     price_data: {
-      unit_amount: item.price,
+      unit_amount: priceFormatter(item.special_price || item.price, false),
       product_data: {
         name: item.name,
         images: [item.main_image],
         metadata: {
           sku: item.sku,
           special_price: item.special_price,
-          accept_substitute: item.acceptSubstitute,
+          accept_substitute: !item.acceptSubstitute,
           options: JSON.stringify(item.options),
         },
       },

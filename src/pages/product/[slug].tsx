@@ -43,11 +43,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${API_URL}/product-list`);
   const products = await response.json();
 
-  const paths = products.map((product: Item) => ({
-    params: {
-      slug: product.fields.slug,
-    },
-  }));
+  const paths = products
+    .filter((product: Item) => product.fields.status === 'enabled')
+    .map((product: Item) => ({
+      params: {
+        slug: product.fields.slug,
+      },
+    }));
 
   return { paths, fallback: true };
 };
