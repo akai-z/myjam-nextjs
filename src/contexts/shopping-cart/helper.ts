@@ -1,10 +1,9 @@
 import { SHOPPING_CART } from './constants';
 import { IS_CLIENT } from '@config/constants';
-import { priceFormatter } from '@utils/helper';
 
 export const calculateTotalAmount = (items: Array<CartItem>): number => {
   const fn = (amount: number, item: CartItem): number =>
-    amount + (priceFormatter(item.quantity * (item.special_price || item.price), false) as number);
+    amount + item.quantity * (item.special_price || item.price);
   return items.reduce(fn, 0);
 };
 
