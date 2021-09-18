@@ -13,6 +13,15 @@ class Algolia {
       throw new HttpError(500, 'Data Indexing Failed')
     }
   }
+
+  async clearData() {
+    try {
+      await this.index.clearObjects()
+    } catch (err) {
+      console.log(err)
+      throw new HttpError(500, 'Index data clear request failed')
+    }
+  }
 }
 
 module.exports = Algolia
