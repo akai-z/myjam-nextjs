@@ -43,7 +43,7 @@ const customStyle = css`
       width: 100%;
       padding: 25px;
       margin: 0 !important;
-      font-family: Arial, sans-serif !important;
+      font-family: Roboto, Arial, sans-serif !important;
     }
   }
 `;

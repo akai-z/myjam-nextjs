@@ -3,6 +3,11 @@ module.exports = {
   darkMode: false,
   theme: {
     extend: {},
+    fontFamily: {
+      'sans': 'Roboto, Arial, sans-serif',
+      'display': 'Roboto, Arial, sans-serif',
+      'body': 'Roboto, Arial, sans-serif',
+    }
   },
   variants: {
     extend: {},
