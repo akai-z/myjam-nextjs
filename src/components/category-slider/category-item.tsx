@@ -13,7 +13,7 @@ const CategoryItem: React.FC<Props> = ({ slug, image, name }) => {
     <ItemWrapper>
       <Link href={`/category/${slug}`} passHref>
         <RouterLink>
-          <Image src={image} loading="lazy" />
+          <Image src={image} loading="lazy" alt={name} />
           <Title>{name}</Title>
         </RouterLink>
       </Link>

@@ -30,7 +30,7 @@ const Item: React.FC<Props> = ({ slug, image, name, price, specialPrice }) => (
     )}
     <Link href={`/product/${slug}`} passHref>
       <RouterLink>
-        <Image src={image} loading="lazy" />
+        <Image src={image} loading="lazy" alt={name} />
         <div>
           <Title>{name}</Title>
           {specialPrice > 0 ? (

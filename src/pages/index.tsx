@@ -1,11 +1,10 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 
 import Layout from '@components/layout';
 import Blocks from '@components/homepage-blocks';
 import HomeBanner from '@components/homepage-banner';
-import CategorySlider from '@components/category-slider';
-import ItemSlider from '@components/item-slider';
 import { API_URL } from '@config/env';
 
 type Props = {
@@ -22,15 +21,19 @@ const IndexPage: React.FC<Props> = ({
   featuredItems,
   trendingItems,
   categories,
-}) => (
-  <Layout title={title} description={description}>
-    <HomeBanner />
-    <Blocks />
-    <CategorySlider categories={categories} />
-    <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
-    <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
-  </Layout>
-);
+}) => {
+  const ItemSlider = dynamic(import('@components/item-slider'));
+  const CategorySlider = dynamic(import('@components/category-slider'));
+  return (
+    <Layout title={title} description={description}>
+      <HomeBanner />
+      <Blocks />
+      <CategorySlider categories={categories} />
+      <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
+      <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
+    </Layout>
+  );
+};
 
 // @ts-ignore
 export const getStaticProps: GetStaticProps = async () => {

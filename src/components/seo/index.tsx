@@ -14,7 +14,7 @@ type Props = {
 const SEO: React.FC<Props> = ({ title, description, productJsonLd }) => {
   return (
     <React.Fragment>
-      <NextSeo noindex={true} nofollow={true} title={title} description={description} />
+      <NextSeo title={title} description={description} />
       {productJsonLd && <ProductJsonLd {...productJsonLd} />}
     </React.Fragment>
   );
