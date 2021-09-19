@@ -20,16 +20,14 @@ module.exports = async (req, res) => {
       return res.redirect(session.callbackUrl())
     }
 
-    switch (req.query) {
-      case 'is_update':
-        await productIndexer.reindexData()
-        break
-      case 'clear':
-        await productIndexer.clearData()
-        break
-      default:
-        await productIndexer.indexData()
+    if ('clear' in req.query) {
+      await productIndexer.clearData()
+      response.success('Products index data clear request has been submitted successfully.')
+
+      return
     }
+
+    'is_update' in req.query ? await productIndexer.reindexData() : await productIndexer.indexData()
 
     response.success('Products data indexing request has been submitted successfully.')
   } catch (err) {
