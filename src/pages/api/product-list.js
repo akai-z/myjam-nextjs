@@ -9,9 +9,11 @@ export default async function handler(req, res) {
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
 
+    const offset = 'offset' in req.query ? req.query.offset : null
+
     const productList = 'type' in req.query
-      ? await product.listByType(req.query.type)
-      : await product.listAll()
+      ? await product.listByType(req.query.type, offset)
+      : await product.list(null, offset)
 
     response.json(productList)
   } catch (err) {

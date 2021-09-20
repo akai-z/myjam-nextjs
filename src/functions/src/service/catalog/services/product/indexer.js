@@ -13,7 +13,7 @@ async function indexData(filter = null) {
     productsData.push(product.fields)
   }
 
-  const algolia = algoliaFactory.create(process.env.CATALOG_ALGOLIA_PRODUCTS_INDEX)
+  const algolia = algoliaInit()
   await algolia.indexData(productsData)
 }
 
@@ -21,7 +21,17 @@ async function reindexData() {
   await indexData('LAST_MODIFIED_TIME() >= TODAY()')
 }
 
+async function clearData() {
+  const algolia = algoliaInit()
+  await algolia.clearData()
+}
+
+function algoliaInit() {
+  return algoliaFactory.create(process.env.CATALOG_ALGOLIA_PRODUCTS_INDEX)
+}
+
 module.exports = {
   indexData,
-  reindexData
+  reindexData,
+  clearData
 }

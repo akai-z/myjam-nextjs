@@ -20,6 +20,13 @@ module.exports = async (req, res) => {
       return res.redirect(session.callbackUrl())
     }
 
+    if ('clear' in req.query) {
+      await productIndexer.clearData()
+      response.success('Products index data clear request has been submitted successfully.')
+
+      return
+    }
+
     'is_update' in req.query ? await productIndexer.reindexData() : await productIndexer.indexData()
 
     response.success('Products data indexing request has been submitted successfully.')
