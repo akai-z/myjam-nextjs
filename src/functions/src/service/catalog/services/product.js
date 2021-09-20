@@ -11,8 +11,8 @@ async function listByIds(ids, offset = null) {
   return await listByIdentifiers('RECORD_ID()', ids, offset)
 }
 
-async function listByType(type) {
-  return await listAll(`{${type}} = 1`)
+async function listByType(type, offset = null) {
+  return await list(`{${type}} = 1`, offset)
 }
 
 async function listByIdentifiers(identifierName, identifierValues, offset = null) {
