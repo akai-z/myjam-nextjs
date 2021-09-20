@@ -56,5 +56,6 @@ module.exports = {
   product,
   listByIds,
   listByType,
-  listAll
+  listAll,
+  list
 }
