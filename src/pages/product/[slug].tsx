@@ -47,7 +47,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   products = products.concat(...records);
 
   while (offset) {
-    const res = await fetch(`${API_URL}/product-list?offset=${encodeURI(offset)}`);
+    const res = await fetch(`${API_URL}/product-list?offset=${offset}`);
     const { records: tmpRecords = [], offset: tmpOffset = null } = await res.json();
     products = products.concat(...tmpRecords);
     offset = tmpOffset;
