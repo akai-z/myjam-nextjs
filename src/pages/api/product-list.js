@@ -4,7 +4,7 @@ const product = require('../../functions/src/service/catalog/services/product')
 const allowedHttpMethods = ['GET']
 
 export default async function handler(req, res) {
-  const response = responseFactory.createVercelResponse(res)
+  const response = responseFactory.createVercelResponse(res, true)
 
   try {
     httpMethods.validate(req.method, allowedHttpMethods)
