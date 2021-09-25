@@ -38,9 +38,9 @@ const IndexPage: React.FC<Props> = ({
 // @ts-ignore
 export const getStaticProps: GetStaticProps = async () => {
   const featuredItemsResponse = await fetch(`${API_URL}/product-list?type=trending`);
-  const featuredItems = await featuredItemsResponse.json();
+  const { records: featuredItems = [] } = await featuredItemsResponse.json();
   const trendingItemsResponse = await fetch(`${API_URL}/product-list?type=featured`);
-  const trendingItems = await trendingItemsResponse.json();
+  const { records: trendingItems = [] } = await trendingItemsResponse.json();
   const categoriesResponse = await fetch(`${API_URL}/category-list?type=trending`);
   const categories = await categoriesResponse.json();
   return {

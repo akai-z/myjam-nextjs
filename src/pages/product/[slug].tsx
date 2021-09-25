@@ -41,7 +41,17 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(`${API_URL}/product-list`);
-  const products = await response.json();
+  let products = [];
+  let { records = [], offset = null } = await response.json();
+
+  products = products.concat(...records);
+
+  while (offset) {
+    const res = await fetch(`${API_URL}/product-list?offset=${encodeURI(offset)}`);
+    const { records: tmpRecords = [], offset: tmpOffset = null } = await res.json();
+    products = products.concat(...tmpRecords);
+    offset = tmpOffset;
+  }
 
   const paths = products
     .filter((product: Item) => product.fields.status === 'enabled')
