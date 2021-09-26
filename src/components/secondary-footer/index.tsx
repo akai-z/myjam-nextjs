@@ -7,24 +7,24 @@ const Footer: React.FC = () => {
     <FooterWrapper>
       <Wrapper>
         <LinksWrapper>
-          <Link href="/" passHref>
+          <Link href="/terms-and-conditions" passHref>
             <RouterLink>Terms & Conditions</RouterLink>
           </Link>
-          <Link href="/" passHref>
+          <Link href="/privacy" passHref>
             <RouterLink>Privacy Policy</RouterLink>
           </Link>
         </LinksWrapper>
         <SocialMediaWrapper>
-          <a href="#" target="_blank">
+          <a href="https://www.facebook.com/MyajmAr" target="_blank">
             <img src="/images/icon-facebook.svg" alt="facebook page" />
           </a>
-          <a href="#" target="_blank">
+          <a href="https://twitter.com/MyjamGrocery" target="_blank">
             <img src="/images/icon-twitter.svg" alt="twitter page" />
           </a>
-          <a href="#" target="_blank">
+          <a href="https://www.instagram.com/myjamteam/" target="_blank">
             <img src="/images/icon-instagram.svg" alt="instagram page" />
           </a>
-          <a href="#" target="_blank">
+          <a href="https://vm.tiktok.com/ZSeJGUU2E/" target="_blank">
             <img src="/images/icon-tiktok.svg" alt="tiktok page" />
           </a>
         </SocialMediaWrapper>

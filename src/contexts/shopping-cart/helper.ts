@@ -4,8 +4,8 @@ import { priceFormatter } from '@utils/helper';
 
 export const calculateTotalAmount = (items: Array<CartItem>): number => {
   const fn = (amount: number, item: CartItem): number =>
-    amount + item.quantity * (priceFormatter(item.special_price || item.price) as number);
-  return priceFormatter(items.reduce(fn, 0)) as number;
+    amount + item.quantity * (priceFormatter(item.special_price || item.price, false) as number);
+  return priceFormatter(items.reduce(fn, 0), false) as number;
 };
 
 export const calculateTotalQuantity = (items: Array<CartItem>): number => {
