@@ -1,10 +1,11 @@
 import { SHOPPING_CART } from './constants';
 import { IS_CLIENT } from '@config/constants';
+import { priceFormatter } from '@utils/helper';
 
 export const calculateTotalAmount = (items: Array<CartItem>): number => {
   const fn = (amount: number, item: CartItem): number =>
-    amount + item.quantity * (item.special_price || item.price);
-  return items.reduce(fn, 0);
+    amount + item.quantity * (priceFormatter(item.special_price || item.price) as number);
+  return priceFormatter(items.reduce(fn, 0)) as number;
 };
 
 export const calculateTotalQuantity = (items: Array<CartItem>): number => {

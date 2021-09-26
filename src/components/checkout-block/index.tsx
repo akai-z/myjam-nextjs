@@ -4,7 +4,8 @@ import { Wrapper, Label, Button, LoaderWrapper } from './styles';
 import { showNotification } from '@utils/notification';
 import { setCustomerPhoneNumber } from '@contexts/customer-profile/actions';
 import { createCheckoutSession, lineItemsFormatter } from '@utils/checkout';
-import { useShoppingCart, useCustomerProfile, useStripe } from '@contexts/index';
+import { useShoppingCart, useCustomerProfile } from '@contexts/index';
+import useStripe from '@hooks/use-stripe';
 import Loader from '@components/loader';
 
 type Props = {

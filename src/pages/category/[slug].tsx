@@ -17,7 +17,7 @@ const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
 
   if (router.isFallback) {
     return (
-      <Layout title="MY JAM" description="We support local">
+      <Layout title="Myjam - Cultural Grocery" description="We support local">
         <Loader loading={true} size={15} />
       </Layout>
     );

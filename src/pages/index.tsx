@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     revalidate: 60,
     props: {
-      title: 'MY JAM',
+      title: 'Myjam - Cultural Grocery',
       description: 'We support local',
       featuredItems,
       trendingItems,
