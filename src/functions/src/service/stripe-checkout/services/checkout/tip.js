@@ -1,7 +1,7 @@
 const TipProduct = require('../../models/checkout/line-item/fee/tip')
 
 function amount(amount) {
-  return amount * 100
+  return parseFloat((amount * 100).toFixed(2))
 }
 
 function isEnabled() {
