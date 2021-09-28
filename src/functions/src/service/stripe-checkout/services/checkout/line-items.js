@@ -43,7 +43,7 @@ async function calculateSubtotal(lineItems) {
     subtotal += item.price_data.unit_amount * item.quantity
   }
 
-  return subtotal
+  return parseFloat(subtotal.toFixed(2))
 }
 
 async function lineItemAmount(amount, productId = null) {
