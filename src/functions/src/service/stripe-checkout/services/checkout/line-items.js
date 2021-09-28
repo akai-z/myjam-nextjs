@@ -14,7 +14,7 @@ async function processedLineItems(lineItems, tipAmount = null) {
       processedItem.product_id
     )
 
-    processedItem.price_data.unit_amount *= 100
+    processedItem.price_data.unit_amount = parseFloat((processedItem.price_data.unit_amount * 100).toFixed(2))
 
     delete processedItem.product_id
 
