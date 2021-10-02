@@ -26,7 +26,7 @@ export const addItemAction = (
       price,
       special_price,
       options,
-      acceptSubstitute: true,
+      acceptSubstitute: false,
     },
   };
 };
