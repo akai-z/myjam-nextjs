@@ -13,17 +13,27 @@ export const calculateTotalQuantity = (items: Array<CartItem>): number => {
   return items.reduce(fn, 0);
 };
 
-export const setCartStorage = (cart: ShoppingCart): void =>
-  IS_CLIENT ? window.localStorage.setItem(SHOPPING_CART, JSON.stringify(cart)) : undefined;
+export const setCartStorage = (cart: ShoppingCart): void => {
+  const updatedAt = Date.now() / 1000;
+  IS_CLIENT ? window.localStorage.setItem(SHOPPING_CART, JSON.stringify({ cart, updatedAt })) : undefined;
+}
 
 export const getCartStorage = (): CartContext => {
-  const cart = IS_CLIENT ? window.localStorage.getItem(SHOPPING_CART) : undefined;
+  const shoppingCart = IS_CLIENT ? window.localStorage.getItem(SHOPPING_CART) : undefined;
   const initialState = { items: [], amount: 0 };
-  if (cart) {
-    return JSON.parse(cart);
-  } else {
+  if (!shoppingCart) {
     setCartStorage(initialState);
     // @ts-ignore
     return initialState;
   }
+  const { cart, updatedAt } = JSON.parse(shoppingCart);
+  const currentTime = Date.now() / 1000;
+  const sessionValidity = 1 * 24 * 60 * 60;
+  const isValid = currentTime - updatedAt < sessionValidity;
+  if (isValid) {
+    return JSON.parse(cart);
+  }
+  setCartStorage(initialState);
+  // @ts-ignore
+  return initialState;
 };
