@@ -4,6 +4,8 @@ import { NotionAPI } from 'notion-client';
 import { NotionRenderer } from 'react-notion-x';
 import Layout from '@components/layout';
 import { NOTION_SUCCESS } from '@config/env';
+import { useShoppingCart } from '@contexts/shopping-cart';
+import { clearCart } from '@contexts/shopping-cart/actions';
 
 type Props = {
   title: string;
@@ -11,11 +13,16 @@ type Props = {
   recordMap: any;
 };
 
-const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => (
-  <Layout title={title} description={description}>
-    <NotionRenderer recordMap={recordMap} fullPage={true} darkMode={false} />
-  </Layout>
-);
+const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
+  const { dispatch } = useShoppingCart();
+  dispatch(clearCart());
+
+  return (
+    <Layout title={title} description={description}>
+      <NotionRenderer recordMap={recordMap} fullPage={true} darkMode={false} />
+    </Layout>
+  );
+};
 
 // @ts-ignore
 export const getStaticProps: GetStaticProps = async () => {
