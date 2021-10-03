@@ -13,3 +13,4 @@ export const NOTION_SELL_WITH_US = process.env.NEXT_PUBLIC_NOTION_SELL_WITH_US |
 export const NOTION_CONNECT_STORE = process.env.NEXT_PUBLIC_NOTION_CONNECT_STORE || '';
 export const NOTION_DELIVERY_INFO = process.env.NEXT_PUBLIC_NOTION_DELIVERY_INFO || '';
 export const NOTION_SUCCESS = process.env.NEXT_PUBLIC_NOTION_SUCCESS || '';
+export const APP_ENVIRONMENT = process.env.NEXT_PUBLIC_APP_ENVIRONMENT || 'development';

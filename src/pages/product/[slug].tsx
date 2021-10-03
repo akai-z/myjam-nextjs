@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import { API_URL } from '@config/env';
+import {API_URL, APP_ENVIRONMENT} from '@config/env';
 import Loader from '@components/loader';
 
 type Props = {
@@ -46,7 +46,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   products = products.concat(...records);
 
-  while (offset) {
+  while (offset && APP_ENVIRONMENT === 'production') {
     const res = await fetch(`${API_URL}/product-list?offset=${offset}`);
     const { records: tmpRecords = [], offset: tmpOffset = null } = await res.json();
     products = products.concat(...tmpRecords);
