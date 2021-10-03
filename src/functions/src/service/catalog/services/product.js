@@ -1,6 +1,7 @@
 const airtable = require('./integrations/airtable')
 
 const tableName = 'items'
+const idField = 'id'
 const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50
 
 async function product(slug) {
