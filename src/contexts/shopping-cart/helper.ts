@@ -31,7 +31,7 @@ export const getCartStorage = (): CartContext => {
   const sessionValidity = 1 * 24 * 60 * 60;
   const isValid = currentTime - updatedAt < sessionValidity;
   if (isValid) {
-    return JSON.parse(cart);
+    return cart;
   }
   setCartStorage(initialState);
   // @ts-ignore
