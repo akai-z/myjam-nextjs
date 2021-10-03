@@ -55,6 +55,10 @@ function filterParams(filter = null, filterLogicalOperator = 'AND') {
 }
 
 module.exports = {
+  tableName,
+  idField,
+  validTypes,
+  defaultListPageSize,
   product,
   listByIds,
   listByType,
