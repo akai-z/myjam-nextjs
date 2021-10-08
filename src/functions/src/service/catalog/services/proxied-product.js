@@ -34,9 +34,15 @@ async function listByTypeSize(type) {
   return await listSize(type)
 }
 
-async function list(pageNumber, pageSize = product.defaultListPageSize, filter = '', filterValues = []) {
+async function list(
+  pageNumber,
+  pageSize = product.defaultListPageSize,
+  filter = '',
+  filterValues = [],
+  maxPageSize = product.defaultListPageSize
+) {
   const syncInc = syncincFactory.create()
-  pageSize = pageSize > product.defaultListPageSize ? product.defaultListPageSize : pageSize
+  pageSize = pageSize > maxPageSize ? maxPageSize : pageSize
 
   return await syncInc.list(product.tableName, pageNumber, pageSize, filter, filterValues)
 }
