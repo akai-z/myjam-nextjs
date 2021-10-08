@@ -2,6 +2,7 @@ const airtable = require('./integrations/airtable')
 
 const tableName = 'items'
 const idField = 'id'
+const identifierField = 'slug'
 const validTypes = ['featured', 'trending']
 const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50
 
@@ -57,6 +58,7 @@ function filterParams(filter = null, filterLogicalOperator = 'AND') {
 module.exports = {
   tableName,
   idField,
+  identifierField,
   validTypes,
   defaultListPageSize,
   product,
