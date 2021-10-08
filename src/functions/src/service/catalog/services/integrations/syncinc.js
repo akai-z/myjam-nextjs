@@ -6,6 +6,13 @@ class SyncInc {
     this.idField = idField
   }
 
+  async record(table, filter, filterValues) {
+    const query = `SELECT * FROM public.${table}${this.prepareFilter(filter)} LIMIT 1`
+    const result = await this.runQuery(query, filterValues)
+
+    return result['rows'] ? result['rows'][0] : result['rows']
+  }
+
   async list(table, pageNumber, pageSize, filter = '', filterValues = []) {
     const queryValues = [pageSize, pageNumber, pageSize, ...filterValues]
     const query = `SELECT * FROM public.${table}${this.prepareFilter(filter)} LIMIT $1 OFFSET ($2 - 1) * $3`
