@@ -33,5 +33,6 @@ function algoliaInit() {
 module.exports = {
   indexData,
   reindexData,
-  clearData
+  clearData,
+  algoliaInit
 }
