@@ -42,6 +42,8 @@ async function list(
   maxPageSize = product.defaultListPageSize
 ) {
   const syncInc = syncincFactory.create()
+
+  pageSize = parseInt(pageSize)
   pageSize = pageSize > maxPageSize ? maxPageSize : pageSize
 
   return await syncInc.list(product.tableName, pageNumber, pageSize, filter, filterValues)
