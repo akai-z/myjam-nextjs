@@ -17,7 +17,7 @@ export const fetchCategoryItems = (
   pageSize: number,
   options?: any,
 ) => {
-  const url = `/proxied-api/category-product-list/${slug}?page-number=${pageNumber}&page-size=${pageSize}`;
+  const url = `/api/proxied-category-product-list/${slug}?page-number=${pageNumber}&page-size=${pageSize}`;
   const { data, error } = useSWR<ItemsList>(url, fetcher, options || {});
 
   return {
