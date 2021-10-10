@@ -38,7 +38,10 @@ class SyncInc {
   async runQuery(query, values) {
     try {
       this.client.connect()
-      return await this.client.query(query, values)
+      const result = await this.client.query(query, values)
+      this.client.end()
+
+      return result
     } catch (err) {
       console.log(err.stack)
       throw new HttpError(500, 'Failed to run query')
