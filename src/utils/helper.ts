@@ -1,3 +1,4 @@
+import _toNumber from 'lodash/toNumber';
 import { CLOUDINARY_KEY, CLOUDINARY_PATH } from '@config/env';
 
 export const normalizeData = <T extends Category | CustomOption>(
@@ -8,8 +9,8 @@ export const normalizeData = <T extends Category | CustomOption>(
   return normalizedData;
 };
 
-export const priceFormatter = (price: number, stringFormat = true): number | string => {
-  const formattedPrice = Math.floor(price * 100) / 100;
+export const priceFormatter = (price: number | string, stringFormat = true): number | string => {
+  const formattedPrice = Math.floor(_toNumber(price) * 100) / 100;
   if (stringFormat) {
     return `£${formattedPrice.toFixed(2)}`;
   }

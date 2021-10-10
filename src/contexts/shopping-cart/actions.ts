@@ -11,10 +11,7 @@ export const addItemAction = (
   quantity: number,
   options: Array<CartItemOptions>,
 ): CartAction => {
-  const {
-    id,
-    fields: { name, sku, price, main_image, special_price },
-  } = item;
+  const { id, name, sku, price, main_image, special_price } = item;
   return {
     type: ADD_ITEM_ACTION,
     payload: {

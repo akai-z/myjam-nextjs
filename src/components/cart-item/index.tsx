@@ -1,4 +1,5 @@
 import React from 'react';
+import _toNumber from 'lodash/toNumber';
 import {
   Wrapper,
   DetailsWrapper,
@@ -44,7 +45,7 @@ const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState 
       </TextBlock>
       <ActionsBlock>
         <TotalPrice>
-          {priceFormatter((item.special_price || item.price) * item.quantity)}
+          {priceFormatter(_toNumber(item.special_price || item.price) * item.quantity)}
         </TotalPrice>
         <AddToCart size="small" item={item} onAddItem={() => {}} />
       </ActionsBlock>

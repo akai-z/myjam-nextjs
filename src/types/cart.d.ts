@@ -1,11 +1,11 @@
 type CartItem = {
   id: string;
   name: string;
-  price: number;
-  special_price?: number;
+  price: string;
+  special_price: string;
   sku: string;
   main_image: string;
-  options?: Array<{ code: string; value: string | number | boolean }>;
+  options: Array<{ code: string; value: string | number | boolean }>;
   acceptSubstitute: boolean;
   quantity: number;
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import _toNumber from 'lodash/toNumber';
 import { Wrapper } from './styles';
 import Item from '@components/item';
 
@@ -11,11 +12,11 @@ const ItemsGrid: React.FC<Props> = ({ itemsList }) => (
     {itemsList.map((item) => (
       <Item
         key={item.id}
-        slug={item.fields.slug}
-        image={item.fields.thumbnail_image}
-        name={item.fields.name}
-        price={item.fields.price}
-        specialPrice={item.fields.special_price || 0}
+        slug={item.slug}
+        image={item.thumbnail_image}
+        name={item.name}
+        price={_toNumber(item.price)}
+        specialPrice={_toNumber(item.special_price || 0)}
         id={item.id}
       />
     ))}

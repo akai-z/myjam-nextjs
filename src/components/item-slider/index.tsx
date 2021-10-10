@@ -1,9 +1,9 @@
 import React from 'react';
+import _toNumber from 'lodash/toNumber';
 import MultiSlider from '@components/multi-slider';
 import Item from '@components/item';
 import Link from 'next/link';
 import { Wrapper, SliderTitle, RouterLink } from './styles';
-import { fetchItemsBasedType } from '@lib/queries/items';
 
 type Props = {
   title: string;
@@ -42,15 +42,15 @@ const ItemSlider: React.FC<Props> = ({ title, items }) => {
         </Link>
       </SliderTitle>
       <MultiSlider responsive={responsive}>
-        {items.map(({ id, fields }) => (
+        {items.map((item) => (
           <Item
-            key={id}
-            id={id}
-            specialPrice={fields.special_price || 0}
-            name={fields.name}
-            slug={fields.slug}
-            price={fields.price}
-            image={fields.thumbnail_image}
+            key={item.id}
+            id={item.id}
+            specialPrice={_toNumber(item.special_price || 0)}
+            name={item.name}
+            slug={item.slug}
+            price={_toNumber(item.price)}
+            image={item.thumbnail_image}
           />
         ))}
       </MultiSlider>

@@ -15,8 +15,10 @@ export const calculateTotalQuantity = (items: Array<CartItem>): number => {
 
 export const setCartStorage = (cart: ShoppingCart): void => {
   const updatedAt = Date.now() / 1000;
-  IS_CLIENT ? window.localStorage.setItem(SHOPPING_CART, JSON.stringify({ cart, updatedAt })) : undefined;
-}
+  IS_CLIENT
+    ? window.localStorage.setItem(SHOPPING_CART, JSON.stringify({ cart, updatedAt }))
+    : undefined;
+};
 
 export const getCartStorage = (): CartContext => {
   const shoppingCart = IS_CLIENT ? window.localStorage.getItem(SHOPPING_CART) : undefined;

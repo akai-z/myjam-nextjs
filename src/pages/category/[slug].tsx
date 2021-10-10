@@ -9,10 +9,11 @@ import Loader from '@components/loader';
 type Props = {
   category: Category;
   records: Array<Item>;
-  offset?: string;
+  count: number;
+  pageSize: number;
 };
 
-const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
+const CategoryPage: React.FC<Props> = ({ category, records, count, pageSize }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -25,7 +26,7 @@ const CategoryPage: React.FC<Props> = ({ category, records, offset }) => {
 
   return (
     <Layout title={category.fields.name} description={category.fields.description}>
-      <Category category={category} records={records} offsetRecord={offset} />
+      <Category category={category} records={records} totalCount={count} pageSize={pageSize} />
     </Layout>
   );
 };
@@ -49,14 +50,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await fetch(`${API_URL}/category/${params?.slug}`);
   const category = await response.json();
 
-  const itemsResponse = await fetch(`${API_URL}/category-product-list/${params?.slug}`);
-  const { records = [], offset = null } = await itemsResponse.json();
+  const pageSize = 60;
+  const itemsResponse = await fetch(
+    `${API_URL}/proxied-category-product-list/${params?.slug}?page-size=${pageSize}`,
+  );
+  const itemsCountResponse = await fetch(
+    `${API_URL}/proxied-category-product-list/${params?.slug}?size`,
+  );
+  const records = await itemsResponse.json();
+  const { count = 0 } = await itemsCountResponse.json();
   return {
     revalidate: 60,
     props: {
       category,
+      pageSize,
       records,
-      offset,
+      count,
     },
   };
 };

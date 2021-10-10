@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import {API_URL, APP_ENVIRONMENT} from '@config/env';
+import { API_URL, APP_ENVIRONMENT } from '@config/env';
 import Loader from '@components/loader';
 
 type Props = {
@@ -23,12 +23,12 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
   }
 
   const seoProps = {
-    title: item.fields.name,
-    description: item.fields.description,
+    title: item.name,
+    description: item.description,
     productJsonLd: {
-      productName: item.fields.name,
-      description: item.fields.description,
-      images: [item.fields.thumbnail_image],
+      productName: item.name,
+      description: item.description,
+      images: [item.thumbnail_image],
     },
   };
 
@@ -40,24 +40,33 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`${API_URL}/product-list`);
   let products = [];
-  let { records = [], offset = null } = await response.json();
+  let pageNumber = 1;
+  const pageSize = 100;
+  const response = await fetch(
+    `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+  );
+  let records = await response.json();
+
+  const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
+  const { count = 0 } = await countResponse.json();
 
   products = products.concat(...records);
 
-  while (offset && APP_ENVIRONMENT === 'production') {
-    const res = await fetch(`${API_URL}/product-list?offset=${offset}`);
-    const { records: tmpRecords = [], offset: tmpOffset = null } = await res.json();
+  while (count > pageNumber * pageSize && APP_ENVIRONMENT === 'production') {
+    const res = await fetch(
+      `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+    );
+    const tmpRecords = await res.json();
     products = products.concat(...tmpRecords);
-    offset = tmpOffset;
+    pageNumber++;
   }
 
   const paths = products
-    .filter((product: Item) => product.fields.status === 'enabled')
+    .filter((product: Item) => product.status === 'enabled')
     .map((product: Item) => ({
       params: {
-        slug: product.fields.slug,
+        slug: product.slug,
       },
     }));
 
@@ -65,7 +74,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetch(`${API_URL}/product/${params?.slug}`);
+  const response = await fetch(`${API_URL}/proxied-product/${params?.slug}`);
   const item = await response.json();
 
   const optionsListResponse = await fetch(`${API_URL}/product-option-list`);

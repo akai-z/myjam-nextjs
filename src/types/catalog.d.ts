@@ -23,27 +23,22 @@ type Category = {
 
 type Item = {
   id: string;
-  fields: {
-    id: number;
-    name: string;
-    slug: string;
-    price: number;
-    special_price?: number;
-    sku: string;
-    description: string;
-    status: 'enabled' | 'disabled';
-    main_image: string;
-    thumbnail_image: string;
-    more_images?: string;
-    options?: Array<string>;
-    categories?: Array<string>;
-  };
+  record_id: string;
+  name: string;
+  slug: string;
+  price: string;
+  special_price: string;
+  sku: string;
+  description: string;
+  status: 'enabled' | 'disabled';
+  main_image: string;
+  thumbnail_image: string;
+  more_images: string;
+  options: Array<string>;
+  categories: Array<string>;
 };
 
-type ItemsList = {
-  records: Array<Item>;
-  offset?: string;
-};
+type ItemsList = Array<Item>;
 
 type CustomOption = {
   id: string;

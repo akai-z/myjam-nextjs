@@ -20,13 +20,16 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
   const getSelectedValue = (optionCode: string) =>
     getCartItem()?.options?.find((option) => option.code === optionCode);
 
-  const optionsInitialState = item.fields.options
-    ? item.fields.options.reduce((acc: any, optionId: string) => {
-        const option = options[optionId];
-        acc[option.fields.code] = getCartItem() ? getSelectedValue(option.fields.code)?.value : '';
-        return acc;
-      }, {})
-    : {};
+  const optionsInitialState =
+    item.options.length > 0
+      ? item.options.reduce((acc: any, optionId: string) => {
+          const option = options[optionId];
+          acc[option.fields.code] = getCartItem()
+            ? getSelectedValue(option.fields.code)?.value
+            : '';
+          return acc;
+        }, {})
+      : {};
 
   const [optionsValues, setOptionValue] = useState(optionsInitialState);
   const [addItemTriggered, setAddItemTrigger] = useState(false);
@@ -35,7 +38,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
     setOptionValue((preState: Object) => ({ ...preState, [code]: val }));
 
   const renderCustomOptions = () =>
-    item.fields.options?.map((optionId) => {
+    item.options?.map((optionId) => {
       const option = options[optionId];
       const { code, label, values, type } = option.fields;
       if (type === 'text') {
@@ -66,23 +69,23 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
       return <React.Fragment />;
     });
 
-  const LayoutWrapper = item.fields.options ? GridWrapper : FlexWrapper;
+  const LayoutWrapper = item.options.length > 0 ? GridWrapper : FlexWrapper;
 
   return (
     <Wrapper>
       <div id="product_images">
-        <ImageSlider images={[item.fields.main_image]} />
+        <ImageSlider images={[item.main_image]} />
       </div>
       <div id="product_details">
-        <Title>{item.fields.name}</Title>
+        <Title>{item.name}</Title>
         <LayoutWrapper>
-          {item.fields.special_price && item.fields.special_price > 0 ? (
+          {item.special_price && Number(item.special_price) > 0 ? (
             <div>
-              <OldPrice>{priceFormatter(item.fields.price)}</OldPrice>
-              <Price>{priceFormatter(item.fields.special_price)}</Price>
+              <OldPrice>{priceFormatter(item.price)}</OldPrice>
+              <Price>{priceFormatter(item.special_price)}</Price>
             </div>
           ) : (
-            <Price>{priceFormatter(item.fields.price)}</Price>
+            <Price>{priceFormatter(item.price)}</Price>
           )}
           {renderCustomOptions()}
           <AddToCart
@@ -91,7 +94,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
             onAddItem={() => setAddItemTrigger(true)}
           />
         </LayoutWrapper>
-        <Text>{item.fields.description}</Text>
+        <Text>{item.description}</Text>
       </div>
     </Wrapper>
   );

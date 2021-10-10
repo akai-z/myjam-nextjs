@@ -11,16 +11,17 @@ export const fetchItemsBasedType = (type: string) => {
   };
 };
 
-export const fetchCategoryItems = (slug: string, offset?: string, options?: any) => {
-  let url = `/api/category-product-list/${slug}`;
-  if (offset) {
-    url = url.concat(`?offset=${encodeURI(offset)}`);
-  }
+export const fetchCategoryItems = (
+  slug: string,
+  pageNumber: number,
+  pageSize: number,
+  options?: any,
+) => {
+  const url = `/proxied-api/category-product-list/${slug}?page-number=${pageNumber}&page-size=${pageSize}`;
   const { data, error } = useSWR<ItemsList>(url, fetcher, options || {});
 
   return {
-    items: data?.records || [],
-    offset: data?.offset,
+    items: data || [],
     isLoading: !error && !data,
     isError: error,
   };

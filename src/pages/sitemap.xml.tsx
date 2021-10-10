@@ -5,7 +5,7 @@ import { API_URL, APP_URL } from '@config/env';
 const Sitemap = () => {};
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const resProducts = await fetch(`${API_URL}/product-list`);
+  const resProducts = await fetch(`${API_URL}/proxied-product-list`);
   const products = await resProducts.json();
 
   const resCategories = await fetch(`${API_URL}/category-list`);
@@ -28,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
         .map((product: Item) => {
           return `
             <url>
-              <loc>${APP_URL}/procduct/${product.fields.slug}</loc>
+              <loc>${APP_URL}/procduct/${product.slug}</loc>
               <lastmod>${new Date().toISOString()}</lastmod>
             </url>
           `;

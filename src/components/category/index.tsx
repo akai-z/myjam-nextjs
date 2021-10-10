@@ -8,19 +8,20 @@ import Loader from '@components/loader';
 type Props = {
   category: Category;
   records: Array<Item>;
-  offsetRecord?: string;
+  totalCount: number;
+  pageSize: number;
 };
 
-const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
+const Category: React.FC<Props> = ({ category, records, totalCount, pageSize }) => {
   const [initialRender, setInitialRender] = useState(false);
-  const [offsetId, setOffsetId] = useState('');
+  const [pageNumber, setPageNumber] = useState(1);
   const [itemsList, setItemsList] = useState<Array<Item>>([]);
 
-  const { items, offset, isLoading } = fetchCategoryItems(category.fields.slug, offsetId, {
-    initialData: { records, offset: offsetRecord },
+  const { items, isLoading } = fetchCategoryItems(category.fields.slug, pageNumber, pageSize, {
+    initialData: records,
   });
 
-  const handleLoadMore = (id: string) => () => setOffsetId(id);
+  const handleLoadMore = () => setPageNumber(pageNumber + 1);
 
   useEffect(() => {
     if (!isLoading) {
@@ -31,7 +32,7 @@ const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
   }, [isLoading]);
 
   useEffect(() => {
-    setOffsetId('');
+    setPageNumber(1);
     setItemsList([]);
   }, [category]);
 
@@ -47,8 +48,8 @@ const Category: React.FC<Props> = ({ category, records, offsetRecord }) => {
     <Wrapper>
       <Title>{category.fields.name}</Title>
       {initialRender ? <ItemsGrid itemsList={itemsList} /> : <Loader loading={true} size={15} />}
-      {(offset || isLoading) && initialRender && (
-        <LoadMore onClick={handleLoadMore(offset as string)}>
+      {(totalCount > pageNumber * pageSize || isLoading) && initialRender && (
+        <LoadMore onClick={handleLoadMore}>
           {isLoading ? <Loader loading={true} size={5} color={'#FFF'} /> : 'Load More'}
         </LoadMore>
       )}
