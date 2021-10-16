@@ -37,9 +37,9 @@ class SyncInc {
 
   async runQuery(query, values) {
     try {
-      this.client.connect()
+      await this.client.connect()
       const result = await this.client.query(query, values)
-      this.client.end()
+      await this.client.end()
 
       return result
     } catch (err) {
