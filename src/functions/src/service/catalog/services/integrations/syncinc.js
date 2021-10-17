@@ -39,12 +39,14 @@ class SyncInc {
     try {
       await this.client.connect()
       const result = await this.client.query(query, values)
-      await this.client.end()
+      await this.client.clean()
 
       return result
     } catch (err) {
       console.log(err.stack)
-      throw new HttpError(500, 'Failed to run query')
+      await this.client.clean()
+
+      throw new HttpError(500, 'Failed to execute the request query')
     }
   }
 }

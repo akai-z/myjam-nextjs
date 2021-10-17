@@ -1,4 +1,4 @@
-const { Client } = require('pg')
+const ServerlessClient = require('serverless-postgres')
 const SyncInc = require('./syncinc')
 
 const clientInfo = {
@@ -6,7 +6,9 @@ const clientInfo = {
   user: process.env.CATALOG_SYNCINC_PRODUCTS_USER,
   password: process.env.CATALOG_SYNCINC_PRODUCTS_PASSWORD,
   database: process.env.CATALOG_SYNCINC_PRODUCTS_DB,
-  port: process.env.SYNCINC_PORT || 5432
+  port: process.env.SYNCINC_PORT || 5432,
+  maxConnections: 50,
+  delayMs: 3000
 }
 
 function create(idField = null) {
@@ -14,7 +16,7 @@ function create(idField = null) {
 }
 
 function createClient() {
-  return new Client(clientInfo)
+  return new ServerlessClient(clientInfo)
 }
 
 module.exports = {
