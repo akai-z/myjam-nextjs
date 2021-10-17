@@ -43,9 +43,7 @@ class SyncInc {
 
       return result
     } catch (err) {
-      console.log(err.stack)
       await this.client.clean()
-
       throw new HttpError(500, 'Failed to execute the request query')
     }
   }
