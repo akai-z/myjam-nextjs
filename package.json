@@ -27,13 +27,13 @@
     "next": "^10.0.0",
     "next-auth": "^3.27.0",
     "next-images": "^1.7.0",
-    "pg": "^8.7.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-instantsearch-dom": "^6.11.0",
     "react-multi-carousel": "^2.6.2",
     "remark": "^12.0.0",
-    "remark-html": "^12.0.0"
+    "remark-html": "^12.0.0",
+    "serverless-postgres": "github:akai-z/serverless-pg#role-connections"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
