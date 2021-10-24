@@ -34,6 +34,7 @@
     "next": "^10.2.3",
     "next-auth": "^3.27.0",
     "next-images": "^1.7.0",
+    "pg": "^8.7.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-instantsearch-dom": "^6.11.0",
@@ -44,7 +45,6 @@
     "react-spinners": "^0.11.0",
     "remark": "^13.0.0",
     "remark-html": "^12.0.0",
-    "serverless-postgres": "github:akai-z/serverless-pg#role-connections",
     "stripe": "^8.148.0",
     "swr": "^0.5.6"
   },
