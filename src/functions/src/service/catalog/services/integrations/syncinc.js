@@ -1,8 +1,8 @@
 const HttpError = require('../../../../common/error/http')
 
 class SyncInc {
-  constructor(client, idField = null) {
-    this.client = client
+  constructor(pool, idField = null) {
+    this.pool = pool
     this.idField = idField
   }
 
@@ -37,13 +37,8 @@ class SyncInc {
 
   async runQuery(query, values) {
     try {
-      await this.client.connect()
-      const result = await this.client.query(query, values)
-      await this.client.clean()
-
-      return result
+      return await this.pool.query(query, values)
     } catch (err) {
-      await this.client.clean()
       throw new HttpError(500, 'Failed to execute the request query')
     }
   }
