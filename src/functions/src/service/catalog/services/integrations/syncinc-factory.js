@@ -1,6 +1,8 @@
 const { Pool } = require('pg')
 const SyncInc = require('./syncinc')
 
+const schema = process.env.CATALOG_SYNCINC_SCHEMA || 'airtable'
+
 const connectionInfo = {
   host: process.env.SYNCINC_HOST || 'evening-soiree.syncincdb.com',
   user: process.env.CATALOG_SYNCINC_PRODUCTS_USER,
@@ -13,7 +15,7 @@ const connectionInfo = {
 }
 
 function create(idField = null) {
-  return new SyncInc(createPool(), idField)
+  return new SyncInc(createPool(), schema, idField)
 }
 
 function createPool() {
