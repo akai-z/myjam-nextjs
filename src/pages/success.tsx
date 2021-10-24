@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GetStaticProps } from 'next';
 import { NotionAPI } from 'notion-client';
 import { NotionRenderer } from 'react-notion-x';
@@ -15,7 +15,10 @@ type Props = {
 
 const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
   const { dispatch } = useShoppingCart();
-  dispatch(clearCart());
+
+  useEffect(() => {
+    dispatch(clearCart());
+  }, []);
 
   return (
     <Layout title={title} description={description}>

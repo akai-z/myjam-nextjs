@@ -23,7 +23,7 @@ const CategoriesFooter: React.FC = () => {
           {categories
             .filter((category) => category.fields.indian_cuisine)
             .map((category) => (
-              <Link href={`/${category.fields.slug}`} passHref>
+              <Link href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
               </Link>
             ))}
