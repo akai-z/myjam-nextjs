@@ -32,8 +32,7 @@
     "react-instantsearch-dom": "^6.11.0",
     "react-multi-carousel": "^2.6.2",
     "remark": "^12.0.0",
-    "remark-html": "^12.0.0",
-    "serverless-postgres": "github:akai-z/serverless-pg#role-connections"
+    "remark-html": "^12.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
