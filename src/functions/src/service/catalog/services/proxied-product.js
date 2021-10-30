@@ -1,11 +1,11 @@
 const product = require('./product')
-const syncincFactory = require('./integrations/syncinc-factory')
+const pgsqlFactory = require('./integrations/pgsql-factory')
 const HttpError = require('../../../common/error/http')
 
 async function record(slug) {
   const filter = `${product.identifierField} = $1`
-  const syncInc = syncincFactory.create()
-  const result = await syncInc.record(product.tableName, filter, [slug])
+  const pgsql = pgsqlFactory.create()
+  const result = await pgsql.record(product.tableName, filter, [slug])
 
   if (!result) {
     throw new HttpError(400, `Invalid product slug "${slug}"`)
@@ -41,17 +41,17 @@ async function list(
   filterValues = [],
   maxPageSize = product.defaultListPageSize
 ) {
-  const syncInc = syncincFactory.create()
+  const pgsql = pgsqlFactory.create()
 
   pageSize = parseInt(pageSize)
   pageSize = pageSize > maxPageSize ? maxPageSize : pageSize
 
-  return await syncInc.list(product.tableName, pageNumber, pageSize, filter, filterValues)
+  return await pgsql.list(product.tableName, pageNumber, pageSize, filter, filterValues)
 }
 
 async function listSize(filter = '', filterValues = []) {
-  const syncInc = syncincFactory.create(product.idField)
-  return await syncInc.listSize(product.tableName, filter, filterValues)
+  const pgsql = pgsqlFactory.create(product.idField)
+  return await pgsql.listSize(product.tableName, filter, filterValues)
 }
 
 function validateType(type) {
