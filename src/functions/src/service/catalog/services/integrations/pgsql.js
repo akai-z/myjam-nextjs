@@ -1,6 +1,6 @@
 const HttpError = require('../../../../common/error/http')
 
-class SyncInc {
+class PgSql {
   constructor(pool, schema = 'public', idField = null) {
     this.pool = pool
     this.schema = schema
@@ -45,4 +45,4 @@ class SyncInc {
   }
 }
 
-module.exports = SyncInc
+module.exports = PgSql

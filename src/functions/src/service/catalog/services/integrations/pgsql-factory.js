@@ -1,5 +1,5 @@
 const { Pool } = require('pg')
-const SyncInc = require('./syncinc')
+const PgSql = require('./pgsql')
 
 const schema = process.env.CATALOG_SYNCINC_SCHEMA || 'airtable'
 
@@ -15,7 +15,7 @@ const connectionInfo = {
 }
 
 function create(idField = null) {
-  return new SyncInc(createPool(), schema, idField)
+  return new PgSql(createPool(), schema, idField)
 }
 
 function createPool() {
