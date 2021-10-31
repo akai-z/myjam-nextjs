@@ -4,7 +4,7 @@ const PgSql = require('./pgsql')
 const schema = process.env.CATALOG_PGSQL_SCHEMA || 'airtable'
 
 const connectionInfo = {
-  host: process.env.PGSQL_HOST || 'evening-soiree.syncincdb.com',
+  host: process.env.PGSQL_HOST,
   user: process.env.CATALOG_PGSQL_PRODUCTS_USER,
   password: process.env.CATALOG_PGSQL_PRODUCTS_PASSWORD,
   database: process.env.CATALOG_PGSQL_PRODUCTS_DB,
