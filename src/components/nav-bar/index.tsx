@@ -10,14 +10,15 @@ type Props = {
 
 const NavBar: React.FC<Props> = ({ isOpen, setMenuState }) => {
   const { categories } = fetchCategories();
+  const closeMenu = () => setMenuState(false);
   return (
     <NavWrapper isOpen={isOpen}>
       <Wrapper>
         <TitleBlock>
           <Title>Categories</Title>
-          <CloseIcon onClick={() => setMenuState(false)} />
+          <CloseIcon onClick={closeMenu} />
         </TitleBlock>
-        <NavItems isOpen={isOpen} categories={categories} />
+        <NavItems closeMenu={closeMenu} isOpen={isOpen} categories={categories} />
       </Wrapper>
     </NavWrapper>
   );
