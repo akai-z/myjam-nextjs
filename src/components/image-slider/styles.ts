@@ -11,4 +11,7 @@ export const Wrapper = styled.div`
   & > div {
     margin: 0 !important;
   }
+  & button {
+    z-index: 9 !important;
+  }
 `;

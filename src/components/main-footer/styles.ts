@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 export const FooterWrapper = tw.div`w-full bg-gray-800 mx-auto`;
 
 export const Wrapper = styled.div`
-  ${tw`container mx-auto py-10 px-8 md:py-12 md:px-4 flex flex-col md:flex-row md:justify-between md:items-center`}
+  ${tw`container mx-auto py-10 px-8 md:py-12 md:px-4 flex flex-col md:flex-row md:justify-between md:items-start`}
   & div:last-child {
     margin-bottom: 0 !important;
   }

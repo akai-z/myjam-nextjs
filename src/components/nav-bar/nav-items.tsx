@@ -5,10 +5,11 @@ import { normalizeData } from '@utils/helper';
 
 type Props = {
   categories: Array<Category>;
+  closeMenu: () => void;
   isOpen: boolean;
 };
 
-const NavItems: React.FC<Props> = ({ isOpen, categories }) => {
+const NavItems: React.FC<Props> = ({ isOpen, categories, closeMenu }) => {
   const [activeId, setActiveId] = useState<string>();
   const handleClick = (categoryId: string) => () =>
     setActiveId(categoryId === activeId ? '' : categoryId);
@@ -21,7 +22,7 @@ const NavItems: React.FC<Props> = ({ isOpen, categories }) => {
 
     return (
       <Link passHref href={`/category/${category.fields.slug}`} key={id}>
-        <RouterLink>{category.fields.name}</RouterLink>
+        <RouterLink onClick={closeMenu}>{category.fields.name}</RouterLink>
       </Link>
     );
   };
