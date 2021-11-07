@@ -13,7 +13,7 @@ const CategoriesFooter: React.FC = () => {
           {categories
             .filter((category) => category.fields.egyptian_cuisine)
             .map((category) => (
-              <Link key={category.id} href={`/${category.fields.slug}`} passHref>
+              <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
               </Link>
             ))}
@@ -33,7 +33,7 @@ const CategoriesFooter: React.FC = () => {
           {categories
             .filter((category) => category.fields.halal)
             .map((category) => (
-              <Link key={category.id} href={`/${category.fields.slug}`} passHref>
+              <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
               </Link>
             ))}
@@ -43,7 +43,7 @@ const CategoriesFooter: React.FC = () => {
           {categories
             .filter((category) => category.fields.this_week)
             .map((category) => (
-              <Link key={category.id} href={`/${category.fields.slug}`} passHref>
+              <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
               </Link>
             ))}
