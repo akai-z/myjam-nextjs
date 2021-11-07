@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { connectSearchBox } from 'react-instantsearch-dom';
 import { Input, Wrapper, SearchIcon, CloseIcon } from './styles';
 
@@ -13,7 +13,7 @@ const SearchBox: React.FC<Props> = ({ currentRefinement, refine }) => {
       <SearchIcon />
       <Input
         type="text"
-        placeholder="What are you looking for ?"
+        placeholder="What are you looking for?"
         value={currentRefinement}
         onChange={(event) => refine(event.currentTarget.value)}
       />

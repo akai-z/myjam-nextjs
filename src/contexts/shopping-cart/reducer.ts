@@ -6,14 +6,17 @@ import {
   UPDATE_ITEM_SUBSTITUTE_ACTION,
 } from './constants';
 import { calculateTotalAmount, setCartStorage } from './helper';
+import { priceFormatter } from '@utils/helper';
 
 const reducer = (state: ShoppingCart, action: CartAction): ShoppingCart => {
   const { type, payload } = action;
 
   if (type === ADD_ITEM_ACTION) {
     const found = state.items.find(({ id }) => payload.id === id);
+    const price = priceFormatter(payload.price, false);
+    const special_price = payload.special_price ? priceFormatter(payload.special_price, false) : 0;
     const items = !found
-      ? state.items.concat(payload)
+      ? state.items.concat({ ...payload, price, special_price })
       : state.items.map((item) =>
           item.id !== payload.id ? item : { ...item, quantity: payload.quantity },
         );

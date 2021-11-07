@@ -10,11 +10,11 @@ export const normalizeData = <T extends Category | CustomOption>(
 };
 
 export const priceFormatter = (price: number | string, stringFormat = true): number | string => {
-  const formattedPrice = Math.floor(_toNumber(price) * 100) / 100;
+  const formattedPrice = _toNumber(price).toFixed(2);
   if (stringFormat) {
-    return `£${formattedPrice.toFixed(2)}`;
+    return `£${formattedPrice}`;
   }
-  return formattedPrice;
+  return _toNumber(formattedPrice);
 };
 
 export const isMobile = (width: number | undefined): boolean => (width ? width < 786 : false);

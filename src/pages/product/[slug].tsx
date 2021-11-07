@@ -5,7 +5,7 @@ import Layout from '@components/layout';
 import Product from '@components/product';
 import { API_URL } from '@config/env';
 import Loader from '@components/loader';
-import NotFound from "@components/not-found";
+import NotFound from '@components/not-found';
 
 type Props = {
   item: Item;
