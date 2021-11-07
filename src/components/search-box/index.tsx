@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { connectSearchBox } from 'react-instantsearch-dom';
 import { Input, Wrapper, SearchIcon, CloseIcon } from './styles';
 
@@ -8,6 +9,14 @@ type Props = {
 };
 
 const SearchBox: React.FC<Props> = ({ currentRefinement, refine }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.pathname.includes('/product/')) {
+      refine('');
+    }
+  }, [router]);
+
   return (
     <Wrapper>
       <SearchIcon />
