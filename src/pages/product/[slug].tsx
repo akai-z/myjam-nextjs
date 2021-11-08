@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import { API_URL } from '@config/env';
+import { APP_URL } from '@config/env';
 import Loader from '@components/loader';
 import NotFound from '@components/not-found';
 
@@ -49,10 +49,10 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await fetch(`${API_URL}/proxied-product/${params?.slug}`);
+  const response = await fetch(`${APP_URL}/proxied-product/${params?.slug}`);
   const item = await response.json();
 
-  const optionsListResponse = await fetch(`${API_URL}/product-option-list`);
+  const optionsListResponse = await fetch(`${APP_URL}/product-option-list`);
   const optionsList = await optionsListResponse.json();
   return {
     props: {
