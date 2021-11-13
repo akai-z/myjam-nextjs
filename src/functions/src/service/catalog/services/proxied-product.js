@@ -8,7 +8,7 @@ async function record(slug) {
   const result = await pgsql.record(product.tableName, filter, [slug])
 
   if (!result) {
-    throw new HttpError(404, `Invalid product slug "${slug}"`)
+    throw new HttpError(404, `Could not find the product "${slug}"`)
   }
 
   return result
