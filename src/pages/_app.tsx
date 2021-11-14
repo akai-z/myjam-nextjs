@@ -1,6 +1,7 @@
 import React from 'react';
 import { AppProps } from 'next/app';
 import algoliaSearch from 'algoliasearch/lite';
+import NextProgress from 'nextjs-progressbar';
 import { InstantSearch, Configure } from 'react-instantsearch-dom';
 import { GlobalStyles } from 'twin.macro';
 import 'react-phone-input-2/lib/material.css';
@@ -51,6 +52,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       <CustomerProfileProvider>
         <ShoppingCartProvider>
           <ViewportProvider>
+            <NextProgress height={5} />
             <Component {...pageProps} />
           </ViewportProvider>
         </ShoppingCartProvider>
