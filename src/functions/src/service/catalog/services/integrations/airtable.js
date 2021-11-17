@@ -13,11 +13,7 @@ async function findRecordByField(table, fieldName, fieldValue) {
 
   const record = await listAllRecords(table, selectParams)
 
-  if (!record.length) {
-    throw new HttpError(400, `Invalid "${fieldName}" value "${fieldValue}"`)
-  }
-
-  return record[0]
+  return record.length ? record[0] : null
 }
 
 async function listAllRecords(table, selectParams = {}) {
