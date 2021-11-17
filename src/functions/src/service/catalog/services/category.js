@@ -1,11 +1,18 @@
 const airtable = require('./integrations/airtable')
 const product = require('./product')
 const proxiedProduct = require('./proxied-product')
+const HttpError = require('../../../common/error/http')
 
 const tableName = 'categories'
 
 async function category(slug) {
-  return await airtable.findRecordByField(tableName, 'slug', slug)
+  const category = await airtable.findRecordByField(tableName, 'slug', slug)
+
+  if (!category) {
+    throw new HttpError(404, `Could not find the category "${slug}"`)
+  }
+
+  return category
 }
 
 async function list() {
