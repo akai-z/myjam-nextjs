@@ -1,4 +1,5 @@
 const airtable = require('./integrations/airtable')
+const HttpError = require('../../../common/error/http')
 
 const tableName = 'items'
 const idField = 'id'
@@ -7,7 +8,13 @@ const validTypes = ['featured', 'trending']
 const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50
 
 async function product(slug) {
-  return await airtable.findRecordByField(tableName, 'slug', slug)
+  const product = await airtable.findRecordByField(tableName, 'slug', slug)
+
+  if (!product) {
+    throw new HttpError(404, `Could not find the product "${slug}"`)
+  }
+
+  return product
 }
 
 async function listByIds(ids, offset = null) {
