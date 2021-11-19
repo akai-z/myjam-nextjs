@@ -14,5 +14,5 @@ export default NextAuth({
       return url.startsWith(baseUrl) ? url : (baseUrl + url)
     }
   },
-  theme: 'dark'
+  theme: 'auto'
 })
