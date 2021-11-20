@@ -9,7 +9,7 @@ class PgSql {
 
   async record(table, filter, filterValues) {
     const query = `SELECT * FROM ${this.schema}.${table}${this.prepareFilter(filter)} LIMIT 1`
-    const result = await this.runQuery(query, filterValues)
+    const result = await this.#runQuery(query, filterValues)
 
     return result['rows'] ? result['rows'][0] : result['rows']
   }
@@ -18,7 +18,7 @@ class PgSql {
     const queryValues = [pageSize, pageNumber, pageSize, ...filterValues]
     const query = `SELECT * FROM ${this.schema}.${table}${this.prepareFilter(filter)} LIMIT $1 OFFSET ($2 - 1) * $3`
 
-    const result = await this.runQuery(query, queryValues)
+    const result = await this.#runQuery(query, queryValues)
 
     return result['rows']
   }
@@ -27,7 +27,7 @@ class PgSql {
     const queryValues = [...filterValues]
     const query = `SELECT count(${this.idField}) FROM ${this.schema}.${table}${this.prepareFilter(filter)}`
 
-    const result = await this.runQuery(query, queryValues)
+    const result = await this.#runQuery(query, queryValues)
 
     return result['rows'][0]
   }
@@ -36,7 +36,7 @@ class PgSql {
     return filter ? ` WHERE ${filter}` : filter
   }
 
-  async runQuery(query, values) {
+  async #runQuery(query, values) {
     try {
       return await this.pool.query(query, values)
     } catch (err) {
