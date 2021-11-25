@@ -12,7 +12,7 @@ const fields = [
   'sku',
   'description',
   'status',
-  'ain_image',
+  'main_image',
   'thumbnail_image',
   'options',
   'categories'
