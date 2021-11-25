@@ -14,9 +14,9 @@ class PgSql {
     return result['rows'] ? result['rows'][0] : result['rows']
   }
 
-  async list(table, pageNumber, pageSize, filter = '', filterValues = []) {
+  async list(table, pageNumber, pageSize, filter = '', filterValues = [], fields = '*') {
     const queryValues = [pageSize, pageNumber, pageSize, ...filterValues]
-    const query = `SELECT * FROM ${this.schema}.${table}${this.#prepareFilter(filter)} LIMIT $1 OFFSET ($2 - 1) * $3`
+    const query = `SELECT ${fields} FROM ${this.schema}.${table}${this.#prepareFilter(filter)} LIMIT $1 OFFSET ($2 - 1) * $3`
 
     const result = await this.#runQuery(query, queryValues)
 
