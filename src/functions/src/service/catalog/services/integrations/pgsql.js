@@ -7,8 +7,8 @@ class PgSql {
     this.idField = idField
   }
 
-  async record(table, filter, filterValues) {
-    const query = `SELECT * FROM ${this.schema}.${table}${this.#prepareFilter(filter)} LIMIT 1`
+  async record(table, filter, filterValues, fields = '*') {
+    const query = `SELECT ${fields} FROM ${this.schema}.${table}${this.#prepareFilter(filter)} LIMIT 1`
     const result = await this.#runQuery(query, filterValues)
 
     return result['rows'] ? result['rows'][0] : result['rows']
