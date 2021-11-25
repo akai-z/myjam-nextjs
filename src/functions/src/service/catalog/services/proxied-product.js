@@ -2,10 +2,26 @@ const product = require('./product')
 const pgsqlFactory = require('./integrations/pgsql-factory')
 const HttpError = require('../../../common/error/http')
 
+const fields = [
+  'id',
+  'record_id',
+  'name',
+  'slug',
+  'price',
+  'special_price',
+  'sku',
+  'description',
+  'status',
+  'main_image',
+  'thumbnail_image',
+  'options',
+  'categories'
+]
+
 async function record(slug) {
   const filter = `${product.identifierField} = $1`
   const pgsql = pgsqlFactory.create()
-  const result = await pgsql.record(product.tableName, filter, [slug])
+  const result = await pgsql.record(product.tableName, filter, [slug], queryFields())
 
   if (!result) {
     throw new HttpError(404, `Could not find the product "${slug}"`)
@@ -46,7 +62,7 @@ async function list(
   pageSize = parseInt(pageSize)
   pageSize = pageSize > maxPageSize ? maxPageSize : pageSize
 
-  return await pgsql.list(product.tableName, pageNumber, pageSize, filter, filterValues)
+  return await pgsql.list(product.tableName, pageNumber, pageSize, filter, filterValues, queryFields())
 }
 
 async function listSize(filter = '', filterValues = []) {
@@ -58,6 +74,10 @@ function validateType(type) {
   if (!product.validTypes.includes(type)) {
     throw new HttpError(400, 'Invalid product type')
   }
+}
+
+function queryFields() {
+  return fields.join(', ')
 }
 
 module.exports = {
