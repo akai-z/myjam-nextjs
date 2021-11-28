@@ -79,10 +79,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .map((product: Item) => ({
       params: {
         slug: product.slug,
-        optionsList: optionsList.map((option) => ({
-          id: option.id,
-          fields: option.fields,
-        })),
+        optionsList,
       },
     }));
 
