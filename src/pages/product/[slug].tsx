@@ -52,7 +52,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let products = [];
   let pageNumber = 1;
   const pageSize = 500;
-  const response = await fetch(`${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`);
+  const response = await fetch(
+    `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+  );
   let records = await response.json();
 
   const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
@@ -61,7 +63,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
   products = products.concat(...records);
 
   while (count > pageNumber * pageSize) {
-    const res = await fetch(`${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`);
+    const res = await fetch(
+      `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+    );
     const tmpRecords = await res.json();
     products = products.concat(...tmpRecords);
     pageNumber++;
@@ -75,7 +79,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     .map((product: Item) => ({
       params: {
         slug: product.slug,
-        optionsList,
+        optionsList: optionsList.map((option) => ({
+          id: option.id,
+          fields: option.fields,
+        })),
       },
     }));
 
@@ -90,7 +97,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       revalidate: 60,
       item,
-      optionsList: params?.optionsList || [],
+      optionsList: params?.optionsList,
     },
   };
 };
