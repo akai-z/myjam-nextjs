@@ -31,7 +31,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
         }, {})
       : {};
 
-  const [optionsValues, setOptionValue] = useState(optionsInitialState);
+  const [optionsValues, setOptionValue] = useState({});
   const [addItemTriggered, setAddItemTrigger] = useState(false);
 
   const handleChange = (code: string) => (val: string) =>
@@ -87,7 +87,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
           ) : (
             <Price>{priceFormatter(item.price)}</Price>
           )}
-          {renderCustomOptions()}
+          {/*{renderCustomOptions()}*/}
           <AddToCart
             item={item}
             selectedOptions={optionsValues}
