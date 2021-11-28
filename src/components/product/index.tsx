@@ -5,14 +5,15 @@ import AddToCart from '@components/add-to-cart';
 import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
 import { useShoppingCart } from '@contexts/shopping-cart';
+import { fetchCustomOptions } from '@lib/queries/items';
 
 type Props = {
   item: Item;
-  optionsList: Array<CustomOption>;
 };
 
-const Product: React.FC<Props> = ({ item, optionsList }) => {
+const Product: React.FC<Props> = ({ item }) => {
   const { items } = useShoppingCart();
+  const { optionsList } = fetchCustomOptions();
   const options = normalizeData(optionsList);
   console.log(optionsList);
 
@@ -32,7 +33,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
         }, {})
       : {};
 
-  const [optionsValues, setOptionValue] = useState({});
+  const [optionsValues, setOptionValue] = useState(optionsInitialState);
   const [addItemTriggered, setAddItemTrigger] = useState(false);
 
   const handleChange = (code: string) => (val: string) =>
@@ -88,7 +89,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
           ) : (
             <Price>{priceFormatter(item.price)}</Price>
           )}
-          {/*{renderCustomOptions()}*/}
+          {renderCustomOptions()}
           <AddToCart
             item={item}
             selectedOptions={optionsValues}

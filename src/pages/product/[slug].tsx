@@ -9,10 +9,9 @@ import NotFound from '@components/not-found';
 
 type Props = {
   item: Item;
-  optionsList: Array<CustomOption>;
 };
 
-const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
+const ProductPage: React.FC<Props> = ({ item }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -43,7 +42,7 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
 
   return (
     <Layout {...seoProps}>
-      <Product optionsList={optionsList} item={item} />
+      <Product item={item} />
     </Layout>
   );
 };
@@ -71,15 +70,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
     pageNumber++;
   }
 
-  const optionsListResponse = await fetch(`${API_URL}/product-option-list`);
-  const optionsList = await optionsListResponse.json();
-
   const paths = products
     .filter((product: Item) => product.status === 'enabled')
     .map((product: Item) => ({
       params: {
         slug: product.slug,
-        optionsList,
       },
     }));
 
@@ -94,7 +89,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       revalidate: 60,
       item,
-      optionsList: params?.optionsList,
     },
   };
 };

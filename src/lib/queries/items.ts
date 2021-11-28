@@ -11,6 +11,16 @@ export const fetchItemsBasedType = (type: string) => {
   };
 };
 
+export const fetchCustomOptions = () => {
+  const { data, error } = useSWR<Array<CustomOption>>('/api/product-option-list', fetcher);
+
+  return {
+    optionsList: data || [],
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
 export const fetchCategoryItems = (
   slug: string,
   pageNumber: number,
