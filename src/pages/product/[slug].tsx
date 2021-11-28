@@ -67,7 +67,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     pageNumber++;
   }
 
-  const optionsListResponse = await fetch(`${API_URL}/api/product-option-list`);
+  const optionsListResponse = await fetch(`${API_URL}/product-option-list`);
   const optionsList = await optionsListResponse.json();
 
   const paths = products
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetch(`${API_URL}/api/proxied-product/${params?.slug}`);
+  const response = await fetch(`${API_URL}/proxied-product/${params?.slug}`);
   const item = await response.json();
 
   return {
