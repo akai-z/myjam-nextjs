@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import { APP_URL, API_URL } from '@config/env';
+import { API_URL } from '@config/env';
 import Loader from '@components/loader';
 import NotFound from '@components/not-found';
 
@@ -67,7 +67,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     pageNumber++;
   }
 
-  const optionsListResponse = await fetch(`${APP_URL}/api/product-option-list`);
+  const optionsListResponse = await fetch(`${API_URL}/api/product-option-list`);
   const optionsList = await optionsListResponse.json();
 
   const paths = products
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetch(`${APP_URL}/api/proxied-product/${params?.slug}`);
+  const response = await fetch(`${API_URL}/api/proxied-product/${params?.slug}`);
   const item = await response.json();
 
   return {
