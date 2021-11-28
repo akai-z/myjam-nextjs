@@ -14,6 +14,7 @@ type Props = {
 const Product: React.FC<Props> = ({ item, optionsList }) => {
   const { items } = useShoppingCart();
   const options = normalizeData(optionsList);
+  console.log(optionsList);
 
   const getCartItem = () => items.find(({ id }) => id === item.id);
 
