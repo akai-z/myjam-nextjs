@@ -50,7 +50,7 @@ const ProductPage: React.FC<Props> = ({ item }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   let products = [];
   let pageNumber = 1;
-  const pageSize = 500;
+  const pageSize = 100;
   const response = await fetch(
     `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
   );
