@@ -61,7 +61,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   products = products.concat(...records);
 
-  while (count > pageNumber * pageSize) {
+  while (Number(count) > pageNumber * pageSize) {
     const res = await fetch(
       `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
     );
