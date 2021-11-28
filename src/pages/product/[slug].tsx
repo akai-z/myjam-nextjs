@@ -1,9 +1,9 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import { APP_URL } from '@config/env';
+import { APP_URL, API_URL } from '@config/env';
 import Loader from '@components/loader';
 import NotFound from '@components/not-found';
 
@@ -48,16 +48,49 @@ const ProductPage: React.FC<Props> = ({ item, optionsList }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const response = await fetch(`${APP_URL}/api/proxied-product/${params?.slug}`);
-  const item = await response.json();
+export const getStaticPaths: GetStaticPaths = async () => {
+  let products = [];
+  let pageNumber = 1;
+  const pageSize = 500;
+  const response = await fetch(`${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`);
+  let records = await response.json();
+
+  const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
+  const { count = 0 } = await countResponse.json();
+
+  products = products.concat(...records);
+
+  while (count > pageNumber * pageSize) {
+    const res = await fetch(`${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`);
+    const tmpRecords = await res.json();
+    products = products.concat(...tmpRecords);
+    pageNumber++;
+  }
 
   const optionsListResponse = await fetch(`${APP_URL}/api/product-option-list`);
   const optionsList = await optionsListResponse.json();
+
+  const paths = products
+    .filter((product: Item) => product.status === 'enabled')
+    .map((product: Item) => ({
+      params: {
+        slug: product.slug,
+        optionsList,
+      },
+    }));
+
+  return { paths, fallback: true };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const response = await fetch(`${APP_URL}/api/proxied-product/${params?.slug}`);
+  const item = await response.json();
+
   return {
     props: {
+      revalidate: 60,
       item,
-      optionsList,
+      optionsList: params?.optionsList || [],
     },
   };
 };
