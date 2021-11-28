@@ -15,7 +15,6 @@ const Product: React.FC<Props> = ({ item }) => {
   const { items } = useShoppingCart();
   const { optionsList } = fetchCustomOptions();
   const options = normalizeData(optionsList);
-  console.log(optionsList);
 
   const getCartItem = () => items.find(({ id }) => id === item.id);
 
@@ -33,7 +32,7 @@ const Product: React.FC<Props> = ({ item }) => {
         }, {})
       : {};
 
-  const [optionsValues, setOptionValue] = useState(optionsInitialState);
+  const [optionsValues, setOptionValue] = useState({});
   const [addItemTriggered, setAddItemTrigger] = useState(false);
 
   const handleChange = (code: string) => (val: string) =>
@@ -89,7 +88,7 @@ const Product: React.FC<Props> = ({ item }) => {
           ) : (
             <Price>{priceFormatter(item.price)}</Price>
           )}
-          {renderCustomOptions()}
+          {/*{renderCustomOptions()}*/}
           <AddToCart
             item={item}
             selectedOptions={optionsValues}
