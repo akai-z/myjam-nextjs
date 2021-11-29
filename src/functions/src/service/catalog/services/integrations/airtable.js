@@ -13,11 +13,20 @@ async function findRecordByField(table, fieldName, fieldValue) {
 
   const record = await listAllRecords(table, selectParams)
 
-  return record.length ? record[0] : null
+  return record.length ? record[0].fields : null
 }
 
 async function listAllRecords(table, selectParams = {}) {
-  return await tableSelect(table, selectParams).all()
+  const list = await tableSelect(table, selectParams).all()
+  const processedList = []
+
+  if (list) {
+    for (const item of list) {
+      processedList.push({ id: item.id, fields: item.fields })
+    }
+  }
+
+  return processedList
 }
 
 async function listRecords(table, params = {}) {
