@@ -17,7 +17,16 @@ async function findRecordByField(table, fieldName, fieldValue) {
 }
 
 async function listAllRecords(table, selectParams = {}) {
-  return await tableSelect(table, selectParams).all()
+  const list = await tableSelect(table, selectParams).all()
+  const processedList = []
+
+  if (list) {
+    for (const item of list) {
+      processedList.push({ id: item.id, fields: item.fields })
+    }
+  }
+
+  return processedList
 }
 
 async function listRecords(table, params = {}) {
