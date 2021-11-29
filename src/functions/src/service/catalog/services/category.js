@@ -17,16 +17,7 @@ async function category(slug) {
 
 async function list() {
   const selectParams = { filter: '{status} = "enabled"' }
-  const rawList = await airtable.listAllRecords(tableName, selectParams)
-  const categories = []
-
-  if (rawList) {
-    for (const category of rawList) {
-      categories.push(category.fields)
-    }
-  }
-
-  return categories
+  return await airtable.listAllRecords(tableName, selectParams)
 }
 
 async function products(categorySlug, listOffset = null) {
