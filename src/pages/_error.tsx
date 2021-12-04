@@ -46,7 +46,11 @@ export const getStaticProps = async ({ res, err, asPath }) => {
     // https://vercel.com/docs/platform/limits#streaming-responses
     await Sentry.flush(2000);
 
-    return errorInitialProps;
+    return {
+      props: {
+        ...errorInitialProps
+      }
+    };
   }
 
   // If this point is reached, getInitialProps was called without any
@@ -55,7 +59,11 @@ export const getStaticProps = async ({ res, err, asPath }) => {
   Sentry.captureException(new Error(`_error.js getInitialProps missing data at path: ${asPath}`));
   await Sentry.flush(2000);
 
-  return errorInitialProps;
+  return {
+    props: {
+      ...errorInitialProps
+    }
+  };
 };
 
 export default MyError;
