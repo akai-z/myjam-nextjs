@@ -14,7 +14,7 @@ const MyError = ({ statusCode, hasGetInitialPropsRun, err }) => {
   return <NextErrorComponent statusCode={statusCode} />;
 };
 
-MyError.getStaticProps = async ({ res, err, asPath }) => {
+export const getStaticProps = async ({ res, err, asPath }) => {
   // @ts-ignore
   const errorInitialProps = await NextErrorComponent.getInitialProps({
     res,
