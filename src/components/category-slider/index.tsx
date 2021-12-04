@@ -2,14 +2,12 @@ import React from 'react';
 import MultiSlider from '@components/multi-slider';
 import { Wrapper, SliderTitle } from './styles';
 import CategoryItem from './category-item';
-import { fetchCategories } from '@lib/queries/categories';
 
 type Props = {
   categories: Array<Category>;
 };
 
 const CategorySlider: React.FC<Props> = ({ categories }) => {
-  // const { categories } = fetchCategories();
 
   const responsive = {
     largeMonitor: {
