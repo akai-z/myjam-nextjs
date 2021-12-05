@@ -48,8 +48,8 @@ export const getStaticProps = async ({ res, err, asPath }) => {
 
     return {
       props: {
-        ...errorInitialProps
-      }
+        ...errorInitialProps,
+      },
     };
   }
 
@@ -61,8 +61,8 @@ export const getStaticProps = async ({ res, err, asPath }) => {
 
   return {
     props: {
-      ...errorInitialProps
-    }
+      ...errorInitialProps,
+    },
   };
 };
 

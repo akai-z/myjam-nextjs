@@ -2,10 +2,10 @@ import tw from 'twin.macro';
 import styled from '@emotion/styled';
 
 export const Wrapper = styled.div`
-  & .react-multi-carousel-item {
+  & .swiper-container {
     width: 100%;
   }
-  & .react-multi-carousel-item img {
+  & .swiper-container img {
     ${tw`rounded-lg`}
   }
   & > div {

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   min-height: calc(100vh - 88px);
   background-color: #f7f7f7;
   overflow-y: scroll;
-  ${tw`fixed w-screen py-4 md:py-10 m-auto left-0 z-50 border-t border-gray-200`}
+  ${tw`fixed w-screen p-4 md:py-10 m-auto left-0 z-50 border-t border-gray-200`}
 `;
 
 export const Block = tw.div`mt-4 md:pt-20 text-center`;

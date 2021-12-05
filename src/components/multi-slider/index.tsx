@@ -1,52 +1,42 @@
 import React from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { Wrapper, Button, LeftArrow, RightArrow } from './styles';
+import { Swiper } from 'swiper/react';
+import 'swiper/swiper.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+import SwiperCore, { Navigation } from 'swiper';
+import { Wrapper } from './styles';
 
 type Props = {
   showDots?: boolean;
   showArrows?: boolean;
-  responsive: {
-    [key: string]: {
-      breakpoint: { min: number; max: number };
-      items: number;
+  spaceBetween?: number;
+  breakpoints: {
+    [key: number]: {
+      spaceBetween: number;
+      slidesPerView: number;
     };
   };
 };
 
+SwiperCore.use([Navigation]);
+
 const MultiSlider: React.FC<Props> = ({
-  responsive,
+  breakpoints,
   children,
-  showDots = false,
+  spaceBetween = 0,
   showArrows = true,
 }) => {
-  const CustomRightArrow: React.FC<any> = ({ onClick }) => (
-    <Button position="right" onClick={() => onClick()}>
-      <RightArrow />
-    </Button>
-  );
-
-  const CustomLeftArrow: React.FC<any> = ({ onClick }) => (
-    <Button position="left" onClick={() => onClick()}>
-      <LeftArrow />
-    </Button>
-  );
-
   return (
     <Wrapper>
-      <Carousel
-        responsive={responsive}
-        showDots={showDots}
-        arrows={showArrows}
-        ssr={false}
-        infinite={true}
-        autoPlay={false}
-        swipeable={true}
-        customRightArrow={<CustomRightArrow />}
-        customLeftArrow={<CustomLeftArrow />}
+      <Swiper
+        breakpoints={breakpoints}
+        spaceBetween={spaceBetween}
+        slidesPerView={6}
+        loop={true}
+        navigation={showArrows}
+        hashNavigation={showArrows}
       >
         {children}
-      </Carousel>
+      </Swiper>
     </Wrapper>
   );
 };
