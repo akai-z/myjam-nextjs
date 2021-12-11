@@ -15,16 +15,16 @@ const Footer: React.FC = () => {
           </Link>
         </LinksWrapper>
         <SocialMediaWrapper>
-          <a href="https://www.facebook.com/MyajmAr" target="_blank">
+          <a rel="noopener" href="https://www.facebook.com/MyajmAr" target="_blank">
             <img src="/images/icon-facebook.svg" alt="facebook page" />
           </a>
-          <a href="https://twitter.com/MyjamGrocery" target="_blank">
+          <a rel="noopener" href="https://twitter.com/MyjamGrocery" target="_blank">
             <img src="/images/icon-twitter.svg" alt="twitter page" />
           </a>
-          <a href="https://www.instagram.com/myjamteam/" target="_blank">
+          <a rel="noopener" href="https://www.instagram.com/myjamteam/" target="_blank">
             <img src="/images/icon-instagram.svg" alt="instagram page" />
           </a>
-          <a href="https://vm.tiktok.com/ZSeJGUU2E/" target="_blank">
+          <a rel="noopener" href="https://vm.tiktok.com/ZSeJGUU2E/" target="_blank">
             <img src="/images/icon-tiktok.svg" alt="tiktok page" />
           </a>
         </SocialMediaWrapper>
