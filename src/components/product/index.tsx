@@ -1,44 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Wrapper, Title, Price, Text, FlexWrapper, OldPrice, GridWrapper } from './styles';
 import ImageSlider from '@components/image-slider';
 import AddToCart from '@components/add-to-cart';
 import { normalizeData, priceFormatter } from '@utils/helper';
 import { TextField, SelectField } from '@components/fields';
 import { useShoppingCart } from '@contexts/shopping-cart';
+import { fetchCustomOptions } from '@lib/queries/items';
 
 type Props = {
   item: Item;
-  optionsList: Array<CustomOption>;
 };
 
-const Product: React.FC<Props> = ({ item, optionsList }) => {
+const Product: React.FC<Props> = ({ item }) => {
   const { items } = useShoppingCart();
-  const options = normalizeData(optionsList);
+  const { optionsList, isLoading } = fetchCustomOptions();
+
+  const [optionsValues, setOptionValue] = useState({});
+  const [addItemTriggered, setAddItemTrigger] = useState(false);
 
   const getCartItem = () => items.find(({ id }) => id === item.id);
 
   const getSelectedValue = (optionCode: string) =>
     getCartItem()?.options?.find((option) => option.code === optionCode);
 
-  const optionsInitialState =
-    item.options.length > 0
-      ? item.options.reduce((acc: any, optionId: string) => {
-          const option = options[optionId];
-          acc[option.fields.code] = getCartItem()
-            ? getSelectedValue(option.fields.code)?.value
-            : '';
-          return acc;
-        }, {})
-      : {};
+  useEffect(() => {
+    if (!isLoading && optionsList.length > 0) {
+      const options = normalizeData(optionsList);
+      const optionsInitialState =
+        item.options.length > 0
+          ? item.options.reduce((acc: any, optionId: string) => {
+              const option = options[optionId];
+              acc[option.fields.code] = getCartItem()
+                ? getSelectedValue(option.fields.code)?.value
+                : '';
+              return acc;
+            }, {})
+          : {};
 
-  const [optionsValues, setOptionValue] = useState(optionsInitialState);
-  const [addItemTriggered, setAddItemTrigger] = useState(false);
+      setOptionValue(optionsInitialState);
+    }
+  }, [optionsList]);
 
   const handleChange = (code: string) => (val: string) =>
     setOptionValue((preState: Object) => ({ ...preState, [code]: val }));
 
   const renderCustomOptions = () =>
     item.options?.map((optionId) => {
+      const options = normalizeData(optionsList);
       const option = options[optionId];
       const { code, label, values, type } = option.fields;
       if (type === 'text') {
@@ -87,7 +95,7 @@ const Product: React.FC<Props> = ({ item, optionsList }) => {
           ) : (
             <Price>{priceFormatter(item.price)}</Price>
           )}
-          {renderCustomOptions()}
+          {!isLoading && renderCustomOptions()}
           <AddToCart
             item={item}
             selectedOptions={optionsValues}

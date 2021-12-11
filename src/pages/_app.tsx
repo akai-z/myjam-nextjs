@@ -18,6 +18,9 @@ const customStyle = css`
   body {
     background-color: #f7f7f7;
   }
+  .notion-viewport {
+    display: none;
+  }
   .ReactModal__Overlay--after-open {
     z-index: 999;
     .ReactModal__Content--after-open {

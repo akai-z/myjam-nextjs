@@ -15,6 +15,7 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@heroicons/react": "^1.0.1",
+    "@sentry/nextjs": "^6.15.0",
     "@stripe/stripe-js": "^1.16.0",
     "@types/next": "^9.0.0",
     "@types/react": "^17.0.5",
@@ -43,7 +44,6 @@
     "react-dom": "17.0.1",
     "react-instantsearch-dom": "^6.11.0",
     "react-modal": "^3.14.3",
-    "react-multi-carousel": "^2.6.2",
     "react-notifications-component": "^3.1.0",
     "react-notion-x": "^4.8.7",
     "react-phone-input-2": "^2.14.0",
@@ -51,6 +51,7 @@
     "remark": "^13.0.0",
     "remark-html": "^12.0.0",
     "stripe": "^8.148.0",
+    "swiper": "^6.8.4",
     "swr": "^0.5.6"
   },
   "devDependencies": {

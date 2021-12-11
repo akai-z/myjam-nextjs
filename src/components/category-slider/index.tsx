@@ -1,48 +1,43 @@
 import React from 'react';
 import MultiSlider from '@components/multi-slider';
+import { SwiperSlide } from 'swiper/react';
 import { Wrapper, SliderTitle } from './styles';
 import CategoryItem from './category-item';
-import { fetchCategories } from '@lib/queries/categories';
 
 type Props = {
   categories: Array<Category>;
 };
 
 const CategorySlider: React.FC<Props> = ({ categories }) => {
-  // const { categories } = fetchCategories();
-
-  const responsive = {
-    largeMonitor: {
-      breakpoint: { max: 4000, min: 1450 },
-      items: 6,
+  const breakpoints = {
+    1450: {
+      spaceBetween: 0,
+      slidesPerView: 6,
     },
-    desktop: {
-      breakpoint: { max: 1450, min: 1200 },
-      items: 5,
+    1200: {
+      spaceBetween: 0,
+      slidesPerView: 5,
     },
-    tablet: {
-      breakpoint: { max: 1200, min: 760 },
-      items: 3,
+    760: {
+      spaceBetween: 0,
+      slidesPerView: 3,
     },
-    mobile: {
-      breakpoint: { max: 760, min: 0 },
-      items: 2,
+    100: {
+      spaceBetween: 0,
+      slidesPerView: 2,
     },
   };
 
   return (
     <Wrapper>
       <SliderTitle>Shop By Category</SliderTitle>
-      <MultiSlider responsive={responsive}>
+      <MultiSlider breakpoints={breakpoints}>
         {categories
           .filter(({ fields }) => fields.featured)
           .map(({ fields }) => (
-            <CategoryItem
-              key={fields.id}
-              slug={fields.slug}
-              image={fields.image}
-              name={fields.name}
-            />
+            <SwiperSlide key={fields.id}>
+              <CategoryItem slug={fields.slug} image={fields.image} name={fields.name} />
+            </SwiperSlide>
           ))}
       </MultiSlider>
     </Wrapper>
