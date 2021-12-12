@@ -8,10 +8,12 @@ export const Wrapper = styled.div`
   background-image: url(${banner});
   min-height: 300px;
   @media screen and (min-width: 768px) {
-    min-height: 400px;
+    min-height: 375px;
+    height: 375px;
   }
   @media screen and (min-width: 1024px) {
-    min-height: 500px;
+    min-height: 375px;
+    height: 375px;
   }
 `;
 
