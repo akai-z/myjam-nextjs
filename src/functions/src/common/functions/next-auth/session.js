@@ -1,31 +1,31 @@
-const { getSession } = require('next-auth/client')
+const { getSession } = require('next-auth/client');
 
-const authPath = 'auth/signin/auth0'
+const authPath = 'auth/signin/auth0';
 
 class NextAuthSession {
-  #session = null
+  #session = null;
 
   constructor(req) {
-    this.req = req
+    this.req = req;
   }
 
   async session() {
     if (this.#session === null) {
-      const req = this.req
-      this.#session = await getSession({ req })
+      const req = this.req;
+      this.#session = await getSession({ req });
     }
 
-    return this.#session
+    return this.#session;
   }
 
   async isLoggedIn() {
-    const session = await this.session()
-    return session !== null
+    const session = await this.session();
+    return session !== null;
   }
 
   callbackUrl() {
-    return authPath + '?callbackUrl=' + this.req.url.replace(/=$/, '')
+    return authPath + '?callbackUrl=' + this.req.url.replace(/=$/, '');
   }
 }
 
-module.exports = NextAuthSession
+module.exports = NextAuthSession;

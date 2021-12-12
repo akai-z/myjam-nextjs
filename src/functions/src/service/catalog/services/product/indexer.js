@@ -1,38 +1,38 @@
-const algoliaFactory = require('../integrations/algolia-factory')
-const product = require('../product')
+const algoliaFactory = require('../integrations/algolia-factory');
+const product = require('../product');
 
 async function indexData(filter = null) {
-  const products = await product.listAll(filter)
+  const products = await product.listAll(filter);
   if (!products.length) {
-    return
+    return;
   }
 
-  const productsData = []
+  const productsData = [];
   for (const product of products) {
-    product.fields['objectID'] = product['id']
-    productsData.push(product.fields)
+    product.fields['objectID'] = product['id'];
+    productsData.push(product.fields);
   }
 
-  const algolia = algoliaInit()
-  await algolia.indexData(productsData)
+  const algolia = algoliaInit();
+  await algolia.indexData(productsData);
 }
 
 async function reindexData() {
-  await indexData('LAST_MODIFIED_TIME() >= TODAY()')
+  await indexData('LAST_MODIFIED_TIME() >= TODAY()');
 }
 
 async function clearData() {
-  const algolia = algoliaInit()
-  await algolia.clearData()
+  const algolia = algoliaInit();
+  await algolia.clearData();
 }
 
 function algoliaInit() {
-  return algoliaFactory.create(process.env.CATALOG_ALGOLIA_PRODUCTS_INDEX)
+  return algoliaFactory.create(process.env.CATALOG_ALGOLIA_PRODUCTS_INDEX);
 }
 
 module.exports = {
   indexData,
   reindexData,
   clearData,
-  algoliaInit
-}
+  algoliaInit,
+};

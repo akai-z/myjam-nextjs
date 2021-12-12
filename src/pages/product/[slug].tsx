@@ -54,7 +54,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const response = await fetch(
     `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
   );
-  let records = await response.json();
+  const records = await response.json();
 
   const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
   const { count = 0 } = await countResponse.json();

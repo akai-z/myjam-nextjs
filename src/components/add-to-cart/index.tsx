@@ -7,7 +7,7 @@ type Props = {
   item: Item | CartItem;
   selectedOptions?: SelectedOptions;
   size?: 'small' | 'large';
-  onAddItem: () => void;
+  onAddItem?: () => void;
 };
 
 const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, size = 'large' }) => {
@@ -28,7 +28,9 @@ const AddToCart: React.FC<Props> = ({ item, selectedOptions = {}, onAddItem, siz
   );
 
   const handleClick = () => {
-    onAddItem();
+    if (typeof onAddItem === 'function') {
+      onAddItem();
+    }
     if (validateOptions()) {
       dispatch(addItemAction(item as Item, 1, optionsFormatter()));
     }

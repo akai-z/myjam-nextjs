@@ -1,17 +1,20 @@
-const { httpMethods, responseFactory } = require('../../../functions/src/common/functions/bootstrap')
-const product = require('../../../functions/src/service/catalog/services/product')
+const {
+  httpMethods,
+  responseFactory,
+} = require('../../../functions/src/common/functions/bootstrap');
+const product = require('../../../functions/src/service/catalog/services/product');
 
-const allowedHttpMethods = ['GET']
+const allowedHttpMethods = ['GET'];
 
 export default async function handler(req, res) {
-  const response = responseFactory.createVercelResponse(res)
+  const response = responseFactory.createVercelResponse(res);
 
   try {
-    httpMethods.validate(req.method, allowedHttpMethods)
-    const productData = await product.product(req.query.slug)
+    httpMethods.validate(req.method, allowedHttpMethods);
+    const productData = await product.product(req.query.slug);
 
-    response.json(productData)
+    response.json(productData);
   } catch (err) {
-    response.error(err)
+    response.error(err);
   }
 }

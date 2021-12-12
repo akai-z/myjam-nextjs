@@ -1,19 +1,19 @@
-const stripe = require('stripe')(process.env.STRIPE_API_SECRET_KEY, stripeOptions)
-const HttpError = require('../../../../common/error/http')
+const stripe = require('stripe')(process.env.STRIPE_API_SECRET_KEY, stripeOptions);
+const HttpError = require('../../../../common/error/http');
 
-const webhookSignatureHeader = 'stripe-signature'
+const webhookSignatureHeader = 'stripe-signature';
 
 async function createCheckoutSession(lineItems, metadata = {}, shippingRates = []) {
-  const payload = checkoutSessionCreationPayload(lineItems, metadata, shippingRates)
-  return await stripe.checkout.sessions.create(payload)
+  const payload = checkoutSessionCreationPayload(lineItems, metadata, shippingRates);
+  return await stripe.checkout.sessions.create(payload);
 }
 
 async function checkoutSession(sessionId, expandedData = []) {
-  return await stripe.checkout.sessions.retrieve(sessionId, { expand: expandedData })
+  return await stripe.checkout.sessions.retrieve(sessionId, { expand: expandedData });
 }
 
 async function promotionCode(promotionId) {
-  return await stripe.promotionCodes.retrieve(promotionId)
+  return await stripe.promotionCodes.retrieve(promotionId);
 }
 
 function completedCheckoutSession(payload, payloadHeaders) {
@@ -21,37 +21,40 @@ function completedCheckoutSession(payload, payloadHeaders) {
     payload,
     payloadHeaders,
     process.env.STRIPE_CHECKOUT_SESSION_COMPLETED_WEBHOOK_SECRET,
-    'checkout.session.completed'
-  )
+    'checkout.session.completed',
+  );
 
-  return webhookEventData(event)
+  return webhookEventData(event);
 }
 
 function webhookEvent(payload, payloadHeaders, secret, eventTypes) {
   try {
-    const event = constructWebhookEvent(payload, payloadHeaders, secret)
+    const event = constructWebhookEvent(payload, payloadHeaders, secret);
 
-    if ((Array.isArray(eventTypes) && !eventTypes.includes(event.type)) || event.type !== eventTypes) {
-      throw new HttpError(403)
+    if (
+      (Array.isArray(eventTypes) && !eventTypes.includes(event.type)) ||
+      event.type !== eventTypes
+    ) {
+      throw new HttpError(403);
     }
 
-    return event
+    return event;
   } catch (err) {
     if (err instanceof HttpError) {
-      throw err
+      throw err;
     }
 
-    console.error(err)
-    throw new HttpError(400, 'Webhook signature verification failed.')
+    console.error(err);
+    throw new HttpError(400, 'Webhook signature verification failed.');
   }
 }
 
 function constructWebhookEvent(payload, payloadHeaders, secret) {
-  return stripe.webhooks.constructEvent(payload, payloadHeaders[webhookSignatureHeader], secret)
+  return stripe.webhooks.constructEvent(payload, payloadHeaders[webhookSignatureHeader], secret);
 }
 
 function webhookEventData(event) {
-  return event.data.object
+  return event.data.object;
 }
 
 function checkoutSessionCreationPayload(lineItems, metadata = {}, shippingRates = []) {
@@ -63,38 +66,38 @@ function checkoutSessionCreationPayload(lineItems, metadata = {}, shippingRates 
       capture_method: process.env.STRIPE_PAYMENT_INTENT_CAPTURE_METHOD || 'automatic',
     },
     shipping_address_collection: {
-      allowed_countries: process.env.STRIPE_SHIPPING_ADDRESS_ALLOWED_COUNTRIES.split(',')
+      allowed_countries: process.env.STRIPE_SHIPPING_ADDRESS_ALLOWED_COUNTRIES.split(','),
     },
     allow_promotion_codes: process.env.STRIPE_PROMOTION_CODES_ENABLED || false,
     metadata: metadata || {},
     success_url: `${process.env.STRIPE_DOMAIN}/${process.env.STRIPE_SUCCESS_URL_PATH}`,
-    cancel_url: `${process.env.STRIPE_DOMAIN}/${process.env.STRIPE_CANCEL_URL_PATH}`
-  }
+    cancel_url: `${process.env.STRIPE_DOMAIN}/${process.env.STRIPE_CANCEL_URL_PATH}`,
+  };
 
   if (payload.mode === 'payment') {
-    payload.shipping_rates = shippingRates
+    payload.shipping_rates = shippingRates;
   }
 
-  return payload
+  return payload;
 }
 
 function stripeOptions() {
-  const options = {}
+  const options = {};
 
   if (process.env.STRIPE_MAX_NETWORK_RETRIES) {
-    options.maxNetworkRetries = process.env.STRIPE_MAX_NETWORK_RETRIES
+    options.maxNetworkRetries = process.env.STRIPE_MAX_NETWORK_RETRIES;
   }
 
   if (process.env.STRIPE_TIMEOUT) {
-    options.timeout = process.env.STRIPE_TIMEOUT
+    options.timeout = process.env.STRIPE_TIMEOUT;
   }
 
-  return options
+  return options;
 }
 
 module.exports = {
   createCheckoutSession,
   checkoutSession,
   promotionCode,
-  completedCheckoutSession
-}
+  completedCheckoutSession,
+};

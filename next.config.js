@@ -1,16 +1,36 @@
 // next.config.js
 const withImages = require('next-images');
+const path = require('path');
 const { withSentryConfig } = require('@sentry/nextjs');
 
 const moduleExports = withImages({
   distDir: 'build',
   target: 'serverless',
   images: {
-    domains: ['res.cloudinary.com']
+    domains: ['res.cloudinary.com'],
+    disableStaticImages: true,
   },
   webpack(config, { isServer }) {
     if (!isServer) {
-      config.node = { fs: 'empty', module: 'empty' }
+      config.resolve = {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          "@components": path.join(__dirname, 'src/components'),
+          "@contexts": path.join(__dirname, 'src/contexts'),
+          "@hooks": path.join(__dirname, 'src/hooks'),
+          "@pages": path.join(__dirname, 'src/pages'),
+          "@templates": path.join(__dirname, 'src/templates'),
+          "@lib": path.join(__dirname, 'src/lib'),
+          "@config": path.join(__dirname, 'src/config'),
+          "@mocks-data": path.join(__dirname, 'src/mocks-data'),
+          "@images": path.join(__dirname, 'src/images'),
+          "@utils": path.join(__dirname, 'src/utils'),
+        },
+        fallback: {
+          fs: false
+        },
+      };
     }
     return config;
   },

@@ -1,11 +1,11 @@
 class TipLineItem {
   static get type() {
-    return 'tip_amount'
+    return 'tip_amount';
   }
 
   static get name() {
-    return 'Tip'
+    return 'Tip';
   }
 }
 
-module.exports = TipLineItem
+module.exports = TipLineItem;

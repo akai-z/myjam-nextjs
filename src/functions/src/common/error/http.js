@@ -1,14 +1,14 @@
 class HttpError extends Error {
   constructor(code, ...params) {
-    super(...params)
+    super(...params);
 
-    this.name = this.constructor.name
-    this.code = code
+    this.name = this.constructor.name;
+    this.code = code;
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, HttpError)
+      Error.captureStackTrace(this, HttpError);
     }
   }
 }
 
-module.exports = HttpError
+module.exports = HttpError;

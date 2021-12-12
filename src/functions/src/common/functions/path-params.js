@@ -1,41 +1,44 @@
-const HttpError = require('../error/http')
-const pathParamsMapper = require('./path-params/mapper')
+const HttpError = require('../error/http');
+const pathParamsMapper = require('./path-params/mapper');
 
-const pathPrefix = process.env.FUNCTIONS_PATH_PARAMS_PREFIX || '/.netlify/functions/'
-let resolvedParams = null
+const pathPrefix = process.env.FUNCTIONS_PATH_PARAMS_PREFIX || '/.netlify/functions/';
+let resolvedParams = null;
 
 function params(path, requiredParams = []) {
   if (resolvedParams !== null) {
-    return resolvedParams
+    return resolvedParams;
   }
 
-  const params = path.replace(pathPrefix, '').replace(/\?(.*)/, '').split('/')
-  params.shift()
+  const params = path
+    .replace(pathPrefix, '')
+    .replace(/\?(.*)/, '')
+    .split('/');
+  params.shift();
 
-  resolvedParams = pathParamsMapper.mappedParams(params, requiredParams)
+  resolvedParams = pathParamsMapper.mappedParams(params, requiredParams);
 
-  return resolvedParams
+  return resolvedParams;
 }
 
 function param(path, paramName = null) {
-  const formattedParams = params(path)
+  const formattedParams = params(path);
 
   if (Array.isArray(formattedParams)) {
     if (!formattedParams.length) {
-      throw new HttpError(400)
+      throw new HttpError(400);
     }
 
-    return formattedParams[0]
+    return formattedParams[0];
   }
 
   if (!(paramName in formattedParams)) {
-    throw new HttpError(400)
+    throw new HttpError(400);
   }
 
-  return formattedParams[paramName]
+  return formattedParams[paramName];
 }
 
 module.exports = {
   params,
-  param
-}
+  param,
+};

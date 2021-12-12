@@ -4,7 +4,7 @@ import { Wrapper, TextArea, ErrorMessage, Label } from './styles';
 type Props = {
   label: string;
   value: string | undefined;
-  onChange: Function;
+  onChange: (val?: string) => void;
   hasError?: boolean;
   errorMessage?: string;
 };

@@ -47,7 +47,7 @@ const CartItem: React.FC<Props> = ({ item, handleRemoveItem, handleItemSubState 
         <TotalPrice>
           {priceFormatter(_toNumber(item.special_price || item.price) * item.quantity)}
         </TotalPrice>
-        <AddToCart size="small" item={item} onAddItem={() => {}} />
+        <AddToCart size="small" item={item} />
       </ActionsBlock>
     </DetailsWrapper>
   </Wrapper>

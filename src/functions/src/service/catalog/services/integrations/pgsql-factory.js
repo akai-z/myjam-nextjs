@@ -1,7 +1,7 @@
-const { Pool } = require('pg')
-const PgSql = require('./pgsql')
+const { Pool } = require('pg');
+const PgSql = require('./pgsql');
 
-const schema = process.env.CATALOG_PGSQL_SCHEMA || 'airtable'
+const schema = process.env.CATALOG_PGSQL_SCHEMA || 'airtable';
 
 const connectionInfo = {
   host: process.env.PGSQL_HOST,
@@ -10,18 +10,18 @@ const connectionInfo = {
   database: process.env.CATALOG_PGSQL_PRODUCTS_DB,
   port: process.env.PGSQL_PORT || 5432,
   ssl: {
-    rejectUnauthorized: false
-  }
-}
+    rejectUnauthorized: false,
+  },
+};
 
 function create(idField = null) {
-  return new PgSql(createPool(), schema, idField)
+  return new PgSql(createPool(), schema, idField);
 }
 
 function createPool() {
-  return new Pool(connectionInfo)
+  return new Pool(connectionInfo);
 }
 
 module.exports = {
-  create
-}
+  create,
+};

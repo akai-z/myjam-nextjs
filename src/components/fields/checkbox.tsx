@@ -4,7 +4,7 @@ import { Input, Label, CheckBoxWrapper, CheckBlock, CheckIcon } from './styles';
 type Props = {
   label: string;
   value: boolean;
-  onChange: Function;
+  onChange: (val: boolean) => void;
 };
 
 export const CheckBoxField: React.FC<Props> = ({ label, value, onChange }) => {

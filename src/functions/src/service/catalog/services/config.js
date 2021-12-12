@@ -1,14 +1,14 @@
-const airtable = require('./integrations/airtable')
+const airtable = require('./integrations/airtable');
 
-const tableName = 'configuration'
+const tableName = 'configuration';
 
 async function list() {
-  const selectParams = { filter: '{status} = "enabled"' }
-  const configItems = await airtable.listAllRecords(tableName, selectParams)
+  const selectParams = { filter: '{status} = "enabled"' };
+  const configItems = await airtable.listAllRecords(tableName, selectParams);
 
-  return configItems
+  return configItems;
 }
 
 module.exports = {
-  list
-}
+  list,
+};

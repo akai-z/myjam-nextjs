@@ -1,65 +1,65 @@
-const airtable = require('./integrations/airtable')
-const HttpError = require('../../../common/error/http')
+const airtable = require('./integrations/airtable');
+const HttpError = require('../../../common/error/http');
 
-const tableName = 'items'
-const idField = 'id'
-const identifierField = 'slug'
-const validTypes = ['featured', 'trending']
-const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50
+const tableName = 'items';
+const idField = 'id';
+const identifierField = 'slug';
+const validTypes = ['featured', 'trending'];
+const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50;
 
 async function product(slug) {
-  const product = await airtable.findRecordByField(tableName, 'slug', slug)
+  const product = await airtable.findRecordByField(tableName, 'slug', slug);
 
   if (!product) {
-    throw new HttpError(404, `Could not find the product "${slug}"`)
+    throw new HttpError(404, `Could not find the product "${slug}"`);
   }
 
-  return product
+  return product;
 }
 
 async function listByIds(ids, offset = null) {
-  return await listByIdentifiers('RECORD_ID()', ids, offset)
+  return await listByIdentifiers('RECORD_ID()', ids, offset);
 }
 
 async function listByType(type, offset = null) {
-  return await list(`{${type}} = 1`, offset)
+  return await list(`{${type}} = 1`, offset);
 }
 
 async function listByIdentifiers(identifierName, identifierValues, offset = null) {
-  const identifiersFilter = []
+  const identifiersFilter = [];
   for (const identifierValue of identifierValues) {
-    identifiersFilter.push(`${identifierName} = "${identifierValue}"`)
+    identifiersFilter.push(`${identifierName} = "${identifierValue}"`);
   }
 
-  const filter = 'OR(' + identifiersFilter.join(', ') + ')'
+  const filter = 'OR(' + identifiersFilter.join(', ') + ')';
 
-  return await list(filter, offset)
+  return await list(filter, offset);
 }
 
 async function listAll(filter = null, filterLogicalOperator = 'AND') {
-  const selectParams = filterParams(filter, filterLogicalOperator)
-  return await airtable.listAllRecords(tableName, selectParams)
+  const selectParams = filterParams(filter, filterLogicalOperator);
+  return await airtable.listAllRecords(tableName, selectParams);
 }
 
 async function list(filter = null, offset = null, filterLogicalOperator = 'AND') {
-  const selectParams = filterParams(filter, filterLogicalOperator)
-  selectParams.pageSize = defaultListPageSize
+  const selectParams = filterParams(filter, filterLogicalOperator);
+  selectParams.pageSize = defaultListPageSize;
 
   if (offset) {
-    selectParams.offset = offset
+    selectParams.offset = offset;
   }
 
-  return await airtable.listRecords(tableName, selectParams)
+  return await airtable.listRecords(tableName, selectParams);
 }
 
 function filterParams(filter = null, filterLogicalOperator = 'AND') {
-  const params = { filter: '{status} = "enabled"' }
+  const params = { filter: '{status} = "enabled"' };
 
   if (filter) {
-    params.filter = `${filterLogicalOperator}(${params.filter}, ${filter})`
+    params.filter = `${filterLogicalOperator}(${params.filter}, ${filter})`;
   }
 
-  return params
+  return params;
 }
 
 module.exports = {
@@ -72,5 +72,5 @@ module.exports = {
   listByIds,
   listByType,
   listAll,
-  list
-}
+  list,
+};

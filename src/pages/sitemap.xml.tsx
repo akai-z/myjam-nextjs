@@ -2,7 +2,7 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { API_URL, APP_URL } from '@config/env';
 
-const Sitemap = () => {};
+const Sitemap = () => <React.Fragment />;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const resProducts = await fetch(`${API_URL}/proxied-product-list`);

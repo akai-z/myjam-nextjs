@@ -42,7 +42,7 @@ const Product: React.FC<Props> = ({ item }) => {
   }, [optionsList]);
 
   const handleChange = (code: string) => (val: string) =>
-    setOptionValue((preState: Object) => ({ ...preState, [code]: val }));
+    setOptionValue((preState: Record<string, any>) => ({ ...preState, [code]: val }));
 
   const renderCustomOptions = () =>
     item.options?.map((optionId) => {
@@ -74,7 +74,7 @@ const Product: React.FC<Props> = ({ item }) => {
           />
         );
       }
-      return <React.Fragment />;
+      return <React.Fragment key={Math.random()} />;
     });
 
   const LayoutWrapper = item.options.length > 0 ? GridWrapper : FlexWrapper;

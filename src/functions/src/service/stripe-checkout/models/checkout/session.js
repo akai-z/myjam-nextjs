@@ -1,41 +1,41 @@
-const stripe = require('../../services/integrations/stripe')
+const stripe = require('../../services/integrations/stripe');
 
 class CheckoutSession {
   get charges() {
-    return this.payment_intent.charges.data[0]
+    return this.payment_intent.charges.data[0];
   }
 
   get phone() {
-    return this.metadata.phone
+    return this.metadata.phone;
   }
 
   get tipAmount() {
-    return this.metadata.tip_amount
+    return this.metadata.tip_amount;
   }
 
   get promotionCodeId() {
     return this.total_details.breakdown.discounts.length
       ? this.total_details.breakdown.discounts[0].discount.promotion_code
-      : null
+      : null;
   }
 
   async promotionCode() {
-    const promotionCodeId = this.promotionCodeId
-    const promotionCode = promotionCodeId ? await stripe.promotionCode(promotionCodeId) : null
+    const promotionCodeId = this.promotionCodeId;
+    const promotionCode = promotionCodeId ? await stripe.promotionCode(promotionCodeId) : null;
 
-    return promotionCode ? promotionCode.code : null
+    return promotionCode ? promotionCode.code : null;
   }
 
   assignSession(session) {
-    this.clearInitProperties()
-    Object.assign(this, session)
+    this.clearInitProperties();
+    Object.assign(this, session);
   }
 
   clearInitProperties() {
     for (const property in this) {
-      delete this[property]
+      delete this[property];
     }
   }
 }
 
-module.exports = CheckoutSession
+module.exports = CheckoutSession;

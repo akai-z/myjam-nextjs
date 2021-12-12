@@ -6,7 +6,7 @@ const HomeBanner: React.FC = () => {
   return (
     <Wrapper>
       <Title>Stay home & get</Title>
-      <Title>your daily need's</Title>
+      <Title>your daily need&apos;s</Title>
       <Link href="/" passHref>
         <RouterLink>
           <span>Order Now</span>

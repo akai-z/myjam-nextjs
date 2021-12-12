@@ -31,7 +31,8 @@ export const TextArea = tw.textarea`
   focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 transition
 `;
 
-export const Select = styled.select<{ hasError: boolean }>`
+// @ts-ignore
+export const Select = styled.select<{ hasError?: boolean }>`
   ${tw`mt-1 block px-4 py-2 w-full rounded-md border border-gray-200 focus:outline-none
   focus:border-gray-300 focus:ring focus:ring-gray-200 focus:ring-opacity-50 transition`}
   ${({ hasError }) => hasError && tw`border-red-500`}

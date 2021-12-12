@@ -1,9 +1,9 @@
-const NextAuthSession = require('./session')
+const NextAuthSession = require('./session');
 
 function create(req) {
-  return new NextAuthSession(req)
+  return new NextAuthSession(req);
 }
 
 module.exports = {
-  create
-}
+  create,
+};

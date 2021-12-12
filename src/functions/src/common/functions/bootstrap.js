@@ -1,4 +1,4 @@
-require('./config')
+require('./config');
 
 module.exports = {
   httpMethods: require('./http-methods'),
@@ -7,5 +7,5 @@ module.exports = {
   pathParamsMapper: require('./path-params/mapper'),
   query: require('./query'),
   requestFactory: require('./request-factory'),
-  responseFactory: require('./response-factory')
-}
+  responseFactory: require('./response-factory'),
+};

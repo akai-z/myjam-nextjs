@@ -5,7 +5,7 @@ type Props = {
   label: string;
   value: string | undefined;
   options: Array<string>;
-  onChange: Function;
+  onChange: (val: string) => void;
   hasError?: boolean;
   errorMessage?: string;
 };

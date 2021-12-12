@@ -1,66 +1,68 @@
-const airtable = require('airtable')
+const airtable = require('airtable');
 
-const bulkActionRecordsLimit = 10
-const bulkActionChunkDelay = 1000 // In milliseconds.
+const bulkActionRecordsLimit = 10;
+const bulkActionChunkDelay = 1000; // In milliseconds.
 
 async function createRecord(table, data) {
   if (!isBulkActionRecordsAboveLimit(data)) {
-    return await base(table).create(data)
+    return await base(table).create(data);
   }
 
-  const chunks = bulkActionRecordsChunks(data)
-  const records = []
-  let chunkRecords
+  const chunks = bulkActionRecordsChunks(data);
+  const records = [];
+  let chunkRecords;
 
-  table = base(table)
+  table = base(table);
 
   for (let i = 0; i < chunks.length; i++) {
-    chunkRecords = await table.create(chunks[i])
-    records.push(...chunkRecords)
+    chunkRecords = await table.create(chunks[i]);
+    records.push(...chunkRecords);
 
     if (chunks[i + 1]) {
-      await setBulkActionChunkDelay()
+      await setBulkActionChunkDelay();
     }
   }
 
-  return records
+  return records;
 }
 
 async function findRecordByField(table, fieldName, fieldValue) {
   const selectParams = {
     filterByFormula: `${fieldName} = "${fieldValue}"`,
-    maxRecords: 1
-  }
+    maxRecords: 1,
+  };
 
-  const record = await base(table).select(selectParams).all()
+  const record = await base(table).select(selectParams).all();
 
-  return record[0] || null
+  return record[0] || null;
 }
 
 function bulkActionRecordsChunks(array) {
-  const chunks = []
-  const chunkSize = bulkActionRecordsLimit < 1 ? 1 : bulkActionRecordsLimit
+  const chunks = [];
+  const chunkSize = bulkActionRecordsLimit < 1 ? 1 : bulkActionRecordsLimit;
 
   for (let i = 0; i < array.length; i += chunkSize) {
-    chunks.push(array.slice(i, i + chunkSize))
+    chunks.push(array.slice(i, i + chunkSize));
   }
 
-  return chunks
+  return chunks;
 }
 
 function isBulkActionRecordsAboveLimit(data) {
-  return Array.isArray(data) && data.length > bulkActionRecordsLimit
+  return Array.isArray(data) && data.length > bulkActionRecordsLimit;
 }
 
 function setBulkActionChunkDelay() {
-  return new Promise(resolve => { setTimeout(resolve, bulkActionChunkDelay) })
+  return new Promise((resolve) => {
+    setTimeout(resolve, bulkActionChunkDelay);
+  });
 }
 
 function base(table) {
-  return airtable.base(process.env.CHECKOUT_AIRTABLE_BASE_ID)(table)
+  return airtable.base(process.env.CHECKOUT_AIRTABLE_BASE_ID)(table);
 }
 
 module.exports = {
   createRecord,
-  findRecordByField
-}
+  findRecordByField,
+};

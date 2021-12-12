@@ -1,17 +1,17 @@
-const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap')
-const config = require('./src/service/catalog/services/config')
+const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap');
+const config = require('./src/service/catalog/services/config');
 
-const allowedHttpMethods = ['GET']
+const allowedHttpMethods = ['GET'];
 
 exports.handler = async (event, context) => {
-  const response = responseFactory.createNetlifyResponse()
+  const response = responseFactory.createNetlifyResponse();
 
   try {
-    httpMethods.validate(event.httpMethod, allowedHttpMethods)
-    const configList = await config.list()
+    httpMethods.validate(event.httpMethod, allowedHttpMethods);
+    const configList = await config.list();
 
-    return response.json(configList)
+    return response.json(configList);
   } catch (err) {
-    return response.error(err)
+    return response.error(err);
   }
-}
+};

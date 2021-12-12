@@ -12,7 +12,7 @@ const NotFound: React.FC = () => (
     <Wrapper>
       <MainText>404 error</MainText>
       <Title>Uh oh! I think you’re lost.</Title>
-      <SecondaryText>It looks like the page you’re looking for doesn't exist.</SecondaryText>
+      <SecondaryText>It looks like the page you’re looking for doesn&apos;t exist.</SecondaryText>
       <LinksWrapper className="mt-6">
         <Link href="/" passHref>
           <RouterLink>Go back home</RouterLink>
