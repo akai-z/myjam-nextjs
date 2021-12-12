@@ -5,9 +5,8 @@ import { Wrapper, ArrowIcon, Title, RouterLink } from './styles';
 const HomeBanner: React.FC = () => {
   return (
     <Wrapper>
-      <Title>Stay home & get</Title>
-      <Title>your daily need&apos;s</Title>
-      <Link href="/" passHref>
+      <Title>Your favourite Halal lamb, delivered.</Title>
+      <Link href="/category/lamb" passHref>
         <RouterLink>
           <span>Order Now</span>
           <ArrowIcon />
