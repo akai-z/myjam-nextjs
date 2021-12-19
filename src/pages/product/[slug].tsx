@@ -86,8 +86,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const item = await response.json();
 
   return {
+    revalidate: 60,
     props: {
-      revalidate: 60,
       item,
     },
   };
