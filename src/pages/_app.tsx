@@ -9,6 +9,7 @@ import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
 import 'react-notion-x/src/styles.css';
 import { Global, css } from '@emotion/react';
+import '../css/main.css';
 import { ViewportProvider, ShoppingCartProvider, CustomerProfileProvider } from '@contexts/index';
 import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_KEY } from '@config/env';
 
@@ -16,6 +17,7 @@ const searchClient = algoliaSearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
 
 const customStyle = css`
   body {
+    font-family: Montserrat, Arial, sans-serif !important;
     background-color: #f7f7f7;
   }
   .notion-viewport {
@@ -42,7 +44,7 @@ const customStyle = css`
       width: 100%;
       padding: 25px;
       margin: 0 !important;
-      font-family: Roboto, Arial, sans-serif !important;
+      font-family: Montserrat, Arial, sans-serif !important;
     }
   }
 `;
