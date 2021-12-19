@@ -4,7 +4,7 @@ import banner from '@images/main-banner-december.jpeg';
 import { ArrowNarrowRightIcon } from '@heroicons/react/outline';
 
 export const Wrapper = styled.div`
-  ${tw`rounded-lg px-6 py-12 lg:px-16 lg:py-32 bg-cover bg-center bg-no-repeat`}
+  ${tw`rounded-lg px-6 py-12 lg:px-16 lg:py-32 bg-cover bg-center bg-no-repeat flex flex-col justify-center`}
   background-image: url(${banner});
   min-height: 300px;
   @media screen and (min-width: 768px) {
