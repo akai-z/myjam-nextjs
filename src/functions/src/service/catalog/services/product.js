@@ -4,7 +4,7 @@ const HttpError = require('../../../common/error/http');
 const tableName = 'items';
 const idField = 'id';
 const identifierField = 'slug';
-const validTypes = ['featured', 'trending'];
+const validTypes = ['featured', 'trending', 'weekly_deals'];
 const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50;
 
 async function product(slug) {
