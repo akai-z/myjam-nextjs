@@ -15,19 +15,19 @@ type Props = {
 const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
   const breakpoints = {
     1450: {
-      spaceBetween: 10,
+      spaceBetween: 0,
       slidesPerView: 7,
     },
     1200: {
-      spaceBetween: 10,
+      spaceBetween: 0,
       slidesPerView: 6,
     },
     760: {
-      spaceBetween: 10,
+      spaceBetween: 0,
       slidesPerView: 4,
     },
     100: {
-      spaceBetween: 10,
+      spaceBetween: 0,
       slidesPerView: 2,
     },
   };
@@ -43,7 +43,7 @@ const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
       <MultiSlider breakpoints={breakpoints}>
         {items.map((item) => (
           <SwiperSlide key={item.id}>
-            <div style={{ padding: '0 5px' }}>
+            <div style={{ padding: '0 0.5rem' }}>
               <Item
                 id={item.id}
                 specialPrice={_toNumber(item.special_price || 0)}

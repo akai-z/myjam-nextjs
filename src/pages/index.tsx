@@ -24,10 +24,10 @@ const IndexPage: React.FC<Props> = ({
 }) => (
   <Layout title={title} description={description}>
     <HomeBanner />
-    <Blocks />
     <CategorySlider categories={categories} />
     <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
     <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
+    <Blocks />
   </Layout>
 );
 

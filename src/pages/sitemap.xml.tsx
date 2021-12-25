@@ -5,8 +5,27 @@ import { API_URL, APP_URL } from '@config/env';
 const Sitemap = () => <React.Fragment />;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const resProducts = await fetch(`${API_URL}/proxied-product-list`);
-  const products = await resProducts.json();
+  let products = [];
+  let pageNumber = 1;
+  const pageSize = 100;
+  const response = await fetch(
+    `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+  );
+  const records = await response.json();
+
+  const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
+  const { count = 0 } = await countResponse.json();
+
+  products = products.concat(...records);
+
+  while (Number(count) > pageNumber * pageSize) {
+    const res = await fetch(
+      `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
+    );
+    const tmpRecords = await res.json();
+    products = products.concat(...tmpRecords);
+    pageNumber++;
+  }
 
   const resCategories = await fetch(`${API_URL}/category-list`);
   const categories = await resCategories.json();
