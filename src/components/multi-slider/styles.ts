@@ -6,8 +6,6 @@ export const Wrapper = styled.div`
   & .swiper-button-next {
     width: 40px !important;
     height: 40px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
     ${tw`bg-white active:bg-gray-200 transition shadow-md rounded-full flex items-center justify-center focus:outline-none`}
     @media screen and (max-width: 768px) {
       width: 30px !important;

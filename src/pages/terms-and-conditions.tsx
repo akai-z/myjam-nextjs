@@ -22,6 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const notion = new NotionAPI();
   const recordMap = await notion.getPage(NOTION_TERMS);
   return {
+    revalidate: 300,
     props: {
       title: 'Terms & Conditions',
       description: 'We support local',

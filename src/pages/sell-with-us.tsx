@@ -22,6 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const notion = new NotionAPI();
   const recordMap = await notion.getPage(NOTION_SELL_WITH_US);
   return {
+    revalidate: 300,
     props: {
       title: 'Sell with us',
       description: 'We support local',

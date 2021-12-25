@@ -1,10 +1,10 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
-import dynamic from 'next/dynamic';
-
 import Layout from '@components/layout';
 import Blocks from '@components/homepage-blocks';
 import HomeBanner from '@components/homepage-banner';
+import ItemSlider from '@components/item-slider';
+import CategorySlider from '@components/category-slider';
 import { API_URL } from '@config/env';
 
 type Props = {
@@ -21,30 +21,26 @@ const IndexPage: React.FC<Props> = ({
   featuredItems,
   trendingItems,
   categories,
-}) => {
-  const ItemSlider = dynamic(import('@components/item-slider'));
-  const CategorySlider = dynamic(import('@components/category-slider'));
-  return (
-    <Layout title={title} description={description}>
-      <HomeBanner />
-      <Blocks />
-      <CategorySlider categories={categories} />
-      <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
-      <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
-    </Layout>
-  );
-};
+}) => (
+  <Layout title={title} description={description}>
+    <HomeBanner />
+    <Blocks />
+    <CategorySlider categories={categories} />
+    <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
+    <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
+  </Layout>
+);
 
 // @ts-ignore
 export const getStaticProps: GetStaticProps = async () => {
-  const featuredItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=trending`);
+  const featuredItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=featured`);
   const featuredItems = await featuredItemsResponse.json();
-  const trendingItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=featured`);
+  const trendingItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=trending`);
   const trendingItems = await trendingItemsResponse.json();
-  const categoriesResponse = await fetch(`${API_URL}/category-list?type=trending`);
+  const categoriesResponse = await fetch(`${API_URL}/category-list?type=featured`);
   const categories = await categoriesResponse.json();
   return {
-    revalidate: 60,
+    revalidate: 300,
     props: {
       title: 'Myjam - Cultural Grocery',
       description: 'We support local',

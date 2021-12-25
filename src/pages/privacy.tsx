@@ -22,6 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const notion = new NotionAPI();
   const recordMap = await notion.getPage(NOTION_PRIVACY);
   return {
+    revalidate: 300,
     props: {
       title: 'Privacy Policy',
       description: 'We support local',

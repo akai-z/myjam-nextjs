@@ -22,6 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const notion = new NotionAPI();
   const recordMap = await notion.getPage(NOTION_CONNECT_STORE);
   return {
+    revalidate: 300,
     props: {
       title: 'Connect your store',
       description: 'We support local',

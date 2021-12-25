@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ItemWrapper, Title, Image, RouterLink } from './styles';
+import { ItemWrapper, Image, RouterLink } from './styles';
 
 type Props = {
   slug: string;
@@ -14,7 +14,6 @@ const CategoryItem: React.FC<Props> = ({ slug, image, name }) => {
       <Link href={`/category/${slug}`} passHref>
         <RouterLink>
           <Image src={image} loading="lazy" alt={name} />
-          <Title>{name}</Title>
         </RouterLink>
       </Link>
     </ItemWrapper>

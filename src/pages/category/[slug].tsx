@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const records = await itemsResponse.json();
   const { count = 0 } = await itemsCountResponse.json();
   return {
-    revalidate: 60,
+    revalidate: 300,
     props: {
       category,
       pageSize,

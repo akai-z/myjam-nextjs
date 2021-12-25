@@ -12,7 +12,7 @@ type Props = {
   items: Array<Item>;
 };
 
-const ItemSlider: React.FC<Props> = ({ title, items }) => {
+const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
   const breakpoints = {
     1450: {
       spaceBetween: 10,
@@ -36,7 +36,7 @@ const ItemSlider: React.FC<Props> = ({ title, items }) => {
     <Wrapper>
       <SliderTitle>
         {title}{' '}
-        <Link href="/" passHref>
+        <Link href={`/category/${type}`} passHref>
           <RouterLink>See More</RouterLink>
         </Link>
       </SliderTitle>

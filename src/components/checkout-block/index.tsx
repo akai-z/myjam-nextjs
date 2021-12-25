@@ -30,17 +30,20 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
     setLoading(true);
     createCheckoutSession(line_items, { phone })
       .then(({ sessionId }) => {
+        setLoading(false);
         // @ts-ignore
         return stripe.redirectToCheckout({ sessionId });
       })
       .then((result) => {
         if (result.error) {
+          setLoading(false);
           showNotification('Error', 'Something went wrong, please try again later', 'danger');
         }
       })
-      .catch(() =>
-        showNotification('Error', 'Something went wrong, please try again later', 'danger'),
-      );
+      .catch(() => {
+        setLoading(false);
+        showNotification('Error', 'Something went wrong, please try again later', 'danger');
+      });
   };
 
   useEffect(() => {
