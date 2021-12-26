@@ -9,9 +9,9 @@ const CategoriesFooter: React.FC = () => {
     <FooterWrapper>
       <Wrapper>
         <LinksWrapper>
-          <Title>Egyptian cuisine</Title>
+          <Title>World cuisine</Title>
           {categories
-            .filter((category) => category.fields.egyptian_cuisine)
+            .filter((category) => category.fields.world_cuisine)
             .map((category) => (
               <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
@@ -19,9 +19,9 @@ const CategoriesFooter: React.FC = () => {
             ))}
         </LinksWrapper>
         <LinksWrapper>
-          <Title>Indian cuisine</Title>
+          <Title>Team picks</Title>
           {categories
-            .filter((category) => category.fields.indian_cuisine)
+            .filter((category) => category.fields.team_picks)
             .map((category) => (
               <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
@@ -29,9 +29,9 @@ const CategoriesFooter: React.FC = () => {
             ))}
         </LinksWrapper>
         <LinksWrapper>
-          <Title>Halal</Title>
+          <Title>World snacks</Title>
           {categories
-            .filter((category) => category.fields.halal)
+            .filter((category) => category.fields.world_snakcs)
             .map((category) => (
               <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>
@@ -39,9 +39,9 @@ const CategoriesFooter: React.FC = () => {
             ))}
         </LinksWrapper>
         <LinksWrapper>
-          <Title>This week</Title>
+          <Title>Chef touch</Title>
           {categories
-            .filter((category) => category.fields.this_week)
+            .filter((category) => category.fields.chef_touch)
             .map((category) => (
               <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>

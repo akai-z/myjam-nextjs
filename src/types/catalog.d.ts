@@ -15,10 +15,10 @@ type Category = {
     items?: Array<string>;
     sub_categories?: Array<string>;
     description?: string;
-    egyptian_cuisine?: boolean;
-    indian_cuisine?: boolean;
-    halal?: boolean;
-    this_week?: boolean;
+    world_cuisine?: boolean;
+    team_picks?: boolean;
+    world_snakcs?: boolean;
+    chef_touch?: boolean;
   };
 };
 
