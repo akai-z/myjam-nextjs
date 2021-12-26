@@ -31,7 +31,7 @@ const CategoriesFooter: React.FC = () => {
         <LinksWrapper>
           <Title>World snacks</Title>
           {categories
-            .filter((category) => category.fields.world_snakcs)
+            .filter((category) => category.fields.world_snacks)
             .map((category) => (
               <Link key={category.id} href={`/category/${category.fields.slug}`} passHref>
                 <RouterLink>{category.fields.name}</RouterLink>

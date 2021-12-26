@@ -17,7 +17,7 @@ type Category = {
     description?: string;
     world_cuisine?: boolean;
     team_picks?: boolean;
-    world_snakcs?: boolean;
+    world_snacks?: boolean;
     chef_touch?: boolean;
   };
 };
