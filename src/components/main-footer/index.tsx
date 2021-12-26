@@ -8,9 +8,9 @@ const MainFooter: React.FC = () => {
       <Wrapper>
         <LinksWrapper>
           <Title>Help</Title>
-          <Link href="/" passHref>
-            <RouterLink>Track your order</RouterLink>
-          </Link>
+          <RouterLink rel="noreferrer" href="https://customer.myjam.co.uk/" target="_blank">
+            Track your order
+          </RouterLink>
           <Link href="/delivery-information" passHref>
             <RouterLink>Delivery information</RouterLink>
           </Link>
