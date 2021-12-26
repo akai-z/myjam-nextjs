@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import styled from '@emotion/styled';
 import banner from '@images/main-banner-december.jpeg';
-import mobileBanner from '@images/home-banner-mobile.jpeg';
+import mobileBanner from '@images/mobile-banner.jpeg';
 import { ArrowNarrowRightIcon } from '@heroicons/react/outline';
 
 export const Wrapper = styled.div`

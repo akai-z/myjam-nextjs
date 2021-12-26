@@ -6,7 +6,7 @@ export const NavWrapper = styled.nav<{ isOpen: boolean }>`
   ${tw`
     fixed transition bg-white
     transform -translate-x-full w-full top-0 h-screen z-30
-    sm:translate-x-0 sm:z-10 sm:h-0 sm:relative sm:border-b sm:border-gray-100
+    sm:translate-x-0 sm:z-10 sm:h-auto sm:relative sm:border-b sm:border-gray-100
   `}
   ${({ isOpen }) => isOpen && tw`translate-x-0`}
 `;
