@@ -45,6 +45,7 @@
     "react-dom": "^17.0.2",
     "react-instantsearch-dom": "^6.11.0",
     "react-modal": "^3.14.3",
+    "react-multi-carousel": "^2.6.5",
     "react-notifications-component": "^3.1.0",
     "react-notion-x": "^4.8.7",
     "react-phone-input-2": "^2.14.0",
@@ -52,7 +53,6 @@
     "remark": "^13.0.0",
     "remark-html": "^15.0.1",
     "stripe": "^8.148.0",
-    "swiper": "^6.8.4",
     "swr": "^0.5.6"
   },
   "devDependencies": {

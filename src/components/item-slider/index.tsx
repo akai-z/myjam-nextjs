@@ -1,6 +1,5 @@
 import React from 'react';
 import _toNumber from 'lodash/toNumber';
-import { SwiperSlide } from 'swiper/react';
 import MultiSlider from '@components/multi-slider';
 import Item from '@components/item';
 import Link from 'next/link';
@@ -17,22 +16,22 @@ const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
     return <React.Fragment />;
   }
 
-  const breakpoints = {
-    1450: {
-      spaceBetween: 0,
-      slidesPerView: 7,
+  const responsive = {
+    largeMonitor: {
+      breakpoint: { max: 4000, min: 1450 },
+      items: 7,
     },
-    1200: {
-      spaceBetween: 0,
-      slidesPerView: 6,
+    desktop: {
+      breakpoint: { max: 1450, min: 1200 },
+      items: 6,
     },
-    760: {
-      spaceBetween: 0,
-      slidesPerView: 4,
+    tablet: {
+      breakpoint: { max: 1200, min: 760 },
+      items: 4,
     },
-    100: {
-      spaceBetween: 0,
-      slidesPerView: 2,
+    mobile: {
+      breakpoint: { max: 760, min: 0 },
+      items: 2,
     },
   };
 
@@ -44,20 +43,17 @@ const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
           <RouterLink>See More</RouterLink>
         </Link>
       </SliderTitle>
-      <MultiSlider breakpoints={breakpoints}>
+      <MultiSlider responsive={responsive}>
         {items.map((item) => (
-          <SwiperSlide key={item.id}>
-            <div style={{ padding: '0 0.5rem' }}>
-              <Item
-                id={item.id}
-                specialPrice={_toNumber(item.special_price || 0)}
-                name={item.name}
-                slug={item.slug}
-                price={_toNumber(item.price)}
-                image={item.thumbnail_image}
-              />
-            </div>
-          </SwiperSlide>
+          <Item
+            key={item.id}
+            id={item.id}
+            specialPrice={_toNumber(item.special_price || 0)}
+            name={item.name}
+            slug={item.slug}
+            price={_toNumber(item.price)}
+            image={item.thumbnail_image}
+          />
         ))}
       </MultiSlider>
     </Wrapper>

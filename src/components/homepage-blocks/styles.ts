@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ChatAlt2Icon, ShieldCheckIcon, ArchiveIcon, TruckIcon } from '@heroicons/react/outline';
 
 export const Wrapper = styled.div`
-  ${tw`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center pt-4 md:pt-8 border-t-2`}
+  ${tw`grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 justify-items-center pt-4 mt-6 md:pt-8 border-t-2`}
   & path {
     stroke-width: 1 !important;
   }

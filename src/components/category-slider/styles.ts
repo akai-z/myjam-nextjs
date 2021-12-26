@@ -1,6 +1,6 @@
 import tw from 'twin.macro';
 
-export const Wrapper = tw.div`py-8 md:mt-4`;
+export const Wrapper = tw.div`py-8 md:py-12 md:mt-4`;
 
 export const SliderTitle = tw.h2`text-center text-black mb-2 md:mb-6 text-lg md:text-2xl`;
 

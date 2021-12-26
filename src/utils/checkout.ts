@@ -12,7 +12,7 @@ export const lineItemsFormatter = (items: Array<CartItem>) =>
         metadata: {
           sku: item.sku,
           special_price: item.special_price,
-          accept_substitute: !item.acceptSubstitute,
+          no_substitute: item.acceptSubstitute,
           options: JSON.stringify(item.options),
         },
       },
