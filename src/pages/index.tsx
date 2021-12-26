@@ -10,6 +10,7 @@ import { API_URL } from '@config/env';
 type Props = {
   title: string;
   description: string;
+  weeklyDealItems: Array<Item>;
   featuredItems: Array<Item>;
   trendingItems: Array<Item>;
   categories: Array<Category>;
@@ -18,6 +19,7 @@ type Props = {
 const IndexPage: React.FC<Props> = ({
   title,
   description,
+  weeklyDealItems,
   featuredItems,
   trendingItems,
   categories,
@@ -27,6 +29,7 @@ const IndexPage: React.FC<Props> = ({
     <CategorySlider categories={categories} />
     <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
     <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
+    <ItemSlider title="Weekly Deals" type="trending" items={weeklyDealItems} />
     <Blocks />
   </Layout>
 );
@@ -37,6 +40,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const featuredItems = await featuredItemsResponse.json();
   const trendingItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=trending`);
   const trendingItems = await trendingItemsResponse.json();
+  const weeklyDealItemsResponse = await fetch(`${API_URL}/proxied-product-list?type=weekly_deals`);
+  const weeklyDealItems = await weeklyDealItemsResponse.json();
   const categoriesResponse = await fetch(`${API_URL}/category-list?type=featured`);
   const categories = await categoriesResponse.json();
   return {
@@ -44,6 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       title: 'Myjam - Cultural Grocery',
       description: 'We support local',
+      weeklyDealItems,
       featuredItems,
       trendingItems,
       categories,

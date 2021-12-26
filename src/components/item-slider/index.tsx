@@ -13,6 +13,10 @@ type Props = {
 };
 
 const ItemSlider: React.FC<Props> = ({ title, items, type }) => {
+  if (items.length === 0) {
+    return <React.Fragment />;
+  }
+
   const breakpoints = {
     1450: {
       spaceBetween: 0,

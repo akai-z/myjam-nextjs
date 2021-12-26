@@ -1,8 +1,6 @@
 import React from 'react';
 import MultiSlider from '@components/multi-slider';
 import { Wrapper } from './styles';
-import { useViewportContext } from '@contexts/viewport';
-import { isMobile } from '@utils/helper';
 
 type Props = {
   images: Array<string>;
