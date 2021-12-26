@@ -35,7 +35,7 @@ const Item: React.FC<Props> = ({ slug, image, name, price, specialPrice }) => (
           <Title>{name}</Title>
           {specialPrice > 0 ? (
             <div>
-              <Price>{priceFormatter(price)}</Price>
+              <Price>{priceFormatter(specialPrice)}</Price>
               <OldPrice>{priceFormatter(price)}</OldPrice>
             </div>
           ) : (
