@@ -29,7 +29,7 @@ const IndexPage: React.FC<Props> = ({
     <CategorySlider categories={categories} />
     <ItemSlider title="Featured Products" type="featured" items={featuredItems} />
     <ItemSlider title="Trending Products" type="trending" items={trendingItems} />
-    <ItemSlider title="Weekly Deals" type="weekly_deals" items={weeklyDealItems} />
+    <ItemSlider title="Weekly Deals" type="weekly-deals" items={weeklyDealItems} />
     <Blocks />
   </Layout>
 );
