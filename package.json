@@ -43,6 +43,7 @@
     "pg": "^8.7.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hotjar": "^4.0.0",
     "react-instantsearch-dom": "^6.11.0",
     "react-modal": "^3.14.3",
     "react-multi-carousel": "^2.6.5",

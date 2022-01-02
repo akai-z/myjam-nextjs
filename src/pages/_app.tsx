@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppProps } from 'next/app';
 import algoliaSearch from 'algoliasearch/lite';
 import NextProgress from 'nextjs-progressbar';
+import { hotjar } from 'react-hotjar';
+import * as gtag from 'lib/gtag';
+import { useRouter } from 'next/router';
 import { InstantSearch, Configure } from 'react-instantsearch-dom';
 import { GlobalStyles } from 'twin.macro';
 import 'react-phone-input-2/lib/material.css';
@@ -11,7 +14,14 @@ import 'react-notion-x/src/styles.css';
 import { Global, css } from '@emotion/react';
 import '../css/main.css';
 import { ViewportProvider, ShoppingCartProvider, CustomerProfileProvider } from '@contexts/index';
-import { ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY, ALGOLIA_INDEX_KEY } from '@config/env';
+import {
+  ALGOLIA_APP_ID,
+  ALGOLIA_SEARCH_KEY,
+  ALGOLIA_INDEX_KEY,
+  HJID,
+  HJSV,
+  APP_ENVIRONMENT,
+} from '@config/env';
 
 const searchClient = algoliaSearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_KEY);
 
@@ -48,7 +58,25 @@ const customStyle = css`
     }
   }
 `;
+
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
+
+  useEffect(() => {
+    if (APP_ENVIRONMENT === 'production') {
+      hotjar.initialize(Number(HJID), Number(HJSV));
+    }
+  }, []);
   return (
     <InstantSearch searchClient={searchClient} indexName={ALGOLIA_INDEX_KEY}>
       <Configure hitsPerPage={60} />

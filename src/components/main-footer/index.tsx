@@ -26,8 +26,11 @@ const MainFooter: React.FC = () => {
         </LinksWrapper>
         <LinksWrapper>
           <Title>About us</Title>
-          <Link href="/about-us" passHref>
-            <RouterLink>Team</RouterLink>
+          <Link href="/company" passHref>
+            <RouterLink>Company</RouterLink>
+          </Link>
+          <Link href="/join-us" passHref>
+            <RouterLink>Join us</RouterLink>
           </Link>
         </LinksWrapper>
       </Wrapper>
