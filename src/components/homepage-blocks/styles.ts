@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Block = tw.div`flex items-end w-full justify-start lg:justify-center space-y-3 sm:space-y-0`;
+export const Block = tw.div`flex items-end md:items-start w-full justify-start lg:justify-center space-y-3 sm:space-y-0`;
 
 export const Title = tw.h3`text-base text-black md:text-xl`;
 

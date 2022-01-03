@@ -14,13 +14,13 @@ const Blocks: React.FC = () => {
   const blocks = [
     {
       icon: BoxIcon,
-      title: 'Free Delivery',
-      note: 'For all orders over $100',
+      title: '+5,000 products',
+      note: 'Arabic, Turkish, Greek and Iranian cultures',
     },
     {
       icon: DeliveryIcon,
-      title: 'Cover all UK',
-      note: 'Delivery to all UK',
+      title: 'UK mainland',
+      note: 'Delivered in 2-3 working days',
     },
     {
       icon: PaymentIcon,

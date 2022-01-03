@@ -83,6 +83,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await fetch(`${API_URL}/proxied-product/${params?.slug}`);
+  if (response.status === 404) {
+    return {
+      redirect: {
+        destination: '/not-found',
+        permanent: false,
+      },
+    };
+  }
   const item = await response.json();
 
   return {

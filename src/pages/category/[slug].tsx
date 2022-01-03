@@ -48,6 +48,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const response = await fetch(`${API_URL}/category/${params?.slug}`);
+  if (response.status === 404) {
+    return {
+      redirect: {
+        destination: '/not-found',
+        permanent: false,
+      },
+    };
+  }
   const category = await response.json();
 
   const pageSize = 60;
