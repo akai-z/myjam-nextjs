@@ -1,6 +1,8 @@
+import { GOOGLE_ANALYTICS_TRACKING_ID } from '@config/env';
+
 export const pageview = (url: string) => {
   // @ts-ignore
-  window.gtag('config', 'TRACKING-ID', {
+  window.gtag('config', GOOGLE_ANALYTICS_TRACKING_ID, {
     page_path: url,
   });
 };
