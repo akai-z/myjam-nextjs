@@ -7,6 +7,28 @@ export const pageview = (url: string) => {
   });
 };
 
+export const purchaseEvent = ({
+  items,
+  currency,
+  amount,
+}: {
+  items: Array<CartItem>;
+  currency: string;
+  amount: number;
+}) => {
+  // @ts-ignore
+  window.gtag('event', 'purchase', {
+    currency,
+    value: amount,
+    items: items.map((item) => ({
+      id: item.sku,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    })),
+  });
+};
+
 export const event = ({
   action,
   category,

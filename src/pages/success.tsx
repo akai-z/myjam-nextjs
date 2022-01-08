@@ -5,6 +5,7 @@ import { NotionRenderer } from 'react-notion-x';
 import Layout from '@components/layout';
 import { NOTION_SUCCESS } from '@config/env';
 import { useShoppingCart } from '@contexts/shopping-cart';
+import * as gtag from 'lib/gtag';
 import { clearCart } from '@contexts/shopping-cart/actions';
 
 type Props = {
@@ -14,9 +15,10 @@ type Props = {
 };
 
 const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
-  const { dispatch } = useShoppingCart();
+  const { dispatch, amount, items } = useShoppingCart();
 
   useEffect(() => {
+    gtag.purchaseEvent({ items, amount, currency: 'GBP' });
     dispatch(clearCart());
   }, []);
 
