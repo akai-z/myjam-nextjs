@@ -58,6 +58,7 @@ async function list(
   maxPageSize = product.defaultListPageSize,
 ) {
   const pgsql = pgsqlFactory.create();
+  const { listFilter, listFilterValues } = listFilters(filter, filterValues);
 
   pageSize = parseInt(pageSize);
   pageSize = pageSize > maxPageSize ? maxPageSize : pageSize;
@@ -66,15 +67,30 @@ async function list(
     product.tableName,
     pageNumber,
     pageSize,
-    filter,
-    filterValues,
+    listFilter,
+    listFilterValues,
     queryFields(),
   );
 }
 
 async function listSize(filter = '', filterValues = []) {
   const pgsql = pgsqlFactory.create(product.idField);
-  return await pgsql.listSize(product.tableName, filter, filterValues);
+  const { listFilter, listFilterValues } = listFilters(filter, filterValues);
+
+  return await pgsql.listSize(product.tableName, listFilter, listFilterValues);
+}
+
+function listFilters(listFilter = '', listFilterValues = []) {
+  const placeholderNumber = 4 + listFilterValues.length;
+  const statusFilter = 'status = $' + placeholderNumber;
+
+  if (listFilter !== '') {
+    listFilter += '(' + listFilter + ') and ' + statusFilter;
+  }
+
+  listFilterValues.push('enabled');
+
+  return { listFilter, listFilterValues };
 }
 
 function validateType(type) {
