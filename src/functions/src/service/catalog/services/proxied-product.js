@@ -58,7 +58,7 @@ async function list(
   maxPageSize = product.defaultListPageSize,
 ) {
   const pgsql = pgsqlFactory.create();
-  const { listFilter, listFilterValues } = listFilters(filter, filterValues);
+  const { listFilter, listFilterValues } = listFilters(filter, filterValues, 4);
 
   pageSize = parseInt(pageSize);
   pageSize = pageSize > maxPageSize ? maxPageSize : pageSize;
@@ -80,13 +80,13 @@ async function listSize(filter = '', filterValues = []) {
   return await pgsql.listSize(product.tableName, listFilter, listFilterValues);
 }
 
-function listFilters(listFilter = '', listFilterValues = []) {
-  const placeholderNumber = 4 + listFilterValues.length;
+function listFilters(listFilter = '', listFilterValues = [], placeholderOffset = 1) {
+  const placeholderNumber = placeholderOffset + listFilterValues.length;
   const statusFilter = 'status = $' + placeholderNumber;
 
-  if (listFilter !== '') {
-    listFilter += '(' + listFilter + ') and ' + statusFilter;
-  }
+  listFilter += listFilter !== ''
+    ? '(' + listFilter + ') and ' + statusFilter
+    : statusFilter;
 
   listFilterValues.push('enabled');
 
