@@ -84,7 +84,7 @@ function listFilters(listFilter = '', listFilterValues = [], placeholderOffset =
   const placeholderNumber = placeholderOffset + listFilterValues.length;
   const statusFilter = 'status = $' + placeholderNumber;
 
-  listFilter += listFilter !== ''
+  listFilter = listFilter !== ''
     ? '(' + listFilter + ') and ' + statusFilter
     : statusFilter;
 
