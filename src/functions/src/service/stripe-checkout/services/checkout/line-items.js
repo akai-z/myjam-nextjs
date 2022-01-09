@@ -1,3 +1,4 @@
+const stripe = require('../integrations/stripe');
 const tip = require('./tip');
 const crypto = require('../crypto');
 
@@ -28,6 +29,10 @@ async function processedLineItems(lineItems, tipAmount = null) {
   }
 
   return processedItems;
+}
+
+async function lineItemsData(checkoutSessionId) {
+  return await stripe.lineItemsList(checkoutSessionId);
 }
 
 async function calculateSubtotal(lineItems) {
@@ -91,5 +96,6 @@ function feeLineItem(feeProduct, amount) {
 
 module.exports = {
   processedLineItems,
+  lineItemsData,
   calculateSubtotal,
 };
