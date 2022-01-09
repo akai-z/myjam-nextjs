@@ -2,6 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_API_SECRET_KEY, stripeOption
 const HttpError = require('../../../../common/error/http');
 
 const webhookSignatureHeader = 'stripe-signature';
+const lineItemsListLimit = 100;
 
 async function createCheckoutSession(lineItems, metadata = {}, shippingRates = []) {
   const payload = checkoutSessionCreationPayload(lineItems, metadata, shippingRates);
@@ -10,6 +11,26 @@ async function createCheckoutSession(lineItems, metadata = {}, shippingRates = [
 
 async function checkoutSession(sessionId, expandedData = []) {
   return await stripe.checkout.sessions.retrieve(sessionId, { expand: expandedData });
+}
+
+async function lineItemsList(sessionId) {
+  const items = [];
+  const options = { limit: lineItemsListLimit, expand: ['data.price.product'] };
+  let itemsBatch = [];
+  let hasMore = true;
+
+  while (hasMore) {
+    itemsBatch = await stripe.checkout.sessions.listLineItems(sessionId, options);
+    items.push(...itemsBatch.data);
+
+    hasMore = itemsBatch['has_more'];
+
+    if (hasMore) {
+      options['starting_after'] = itemsBatch.data[itemsBatch.data.length - 1].id;
+    }
+  }
+
+  return items;
 }
 
 async function promotionCode(promotionId) {
@@ -98,6 +119,7 @@ function stripeOptions() {
 module.exports = {
   createCheckoutSession,
   checkoutSession,
+  lineItemsList,
   promotionCode,
   completedCheckoutSession,
 };
