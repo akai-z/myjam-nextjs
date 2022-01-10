@@ -80,12 +80,13 @@ async function listSize(filter = '', filterValues = []) {
   return await pgsql.listSize(product.tableName, listFilter, listFilterValues);
 }
 
-function listFilters(listFilter = '', listFilterValues = [], placeholderOffset = 1) {
-  const placeholderNumber = placeholderOffset + listFilterValues.length;
+function listFilters(filter = '', filterValues = [], placeholderOffset = 1) {
+  const placeholderNumber = placeholderOffset + filterValues.length;
   const statusFilter = 'status = $' + placeholderNumber;
+  const listFilterValues = [...filterValues];
 
-  listFilter = listFilter !== ''
-    ? '(' + listFilter + ') and ' + statusFilter
+  const listFilter = filter !== ''
+    ? '(' + filter + ') and ' + statusFilter
     : statusFilter;
 
   listFilterValues.push('enabled');
