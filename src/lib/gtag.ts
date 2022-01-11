@@ -11,13 +11,19 @@ export const purchaseEvent = ({
   items,
   currency,
   amount,
+  shipping,
+  transaction_id,
 }: {
   items: Array<CartItem>;
   currency: string;
+  shipping: number;
+  transaction_id: string;
   amount: number;
 }) => {
   // @ts-ignore
   window.gtag('event', 'purchase', {
+    transaction_id,
+    shipping,
     currency,
     value: amount,
     items: items.map((item) => ({
