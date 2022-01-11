@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 import { NotionAPI } from 'notion-client';
 import { NotionRenderer } from 'react-notion-x';
 import Layout from '@components/layout';
@@ -16,9 +17,18 @@ type Props = {
 
 const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
   const { dispatch, amount, items } = useShoppingCart();
+  const { query } = useRouter();
 
   useEffect(() => {
-    gtag.purchaseEvent({ items, amount, currency: 'GBP' });
+    if (query.session_id) {
+      gtag.purchaseEvent({
+        items,
+        amount,
+        currency: 'GBP',
+        shipping: 5,
+        transaction_id: query.session_id as string,
+      });
+    }
     dispatch(clearCart());
   }, []);
 
