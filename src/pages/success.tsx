@@ -17,20 +17,20 @@ type Props = {
 
 const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
   const { dispatch, amount, items } = useShoppingCart();
-  const { query } = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    if (query.session_id) {
+    if (router.query.session_id) {
       gtag.purchaseEvent({
         items,
         amount,
         currency: 'GBP',
         shipping: 5,
-        transaction_id: query.session_id as string,
+        transaction_id: router.query.session_id as string,
       });
     }
     dispatch(clearCart());
-  }, []);
+  }, [router]);
 
   return (
     <Layout title={title} description={description}>
