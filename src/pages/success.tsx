@@ -28,8 +28,8 @@ const SuccessPage: React.FC<Props> = ({ title, description, recordMap }) => {
         shipping: 5,
         transaction_id: router.query.session_id as string,
       });
+      dispatch(clearCart());
     }
-    dispatch(clearCart());
   }, [router]);
 
   return (
