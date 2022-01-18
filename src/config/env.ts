@@ -18,3 +18,4 @@ export const APP_ENVIRONMENT = process.env.NEXT_PUBLIC_APP_ENVIRONMENT || 'devel
 export const HJID = process.env.NEXT_PUBLIC_HOTJAR_HJID || '';
 export const HJSV = process.env.NEXT_PUBLIC_HOTJAR_HJSV || '';
 export const GOOGLE_ANALYTICS_TRACKING_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || '';
+export const GOOGLE_TAG_MANAGER_ID = process.env.NEXT_PUBLIC_GTM || '';
