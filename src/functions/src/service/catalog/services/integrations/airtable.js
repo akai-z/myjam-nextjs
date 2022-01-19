@@ -5,7 +5,7 @@ const HttpError = require('../../../../common/error/http');
 const apiBaseUrl = 'https://api.airtable.com/v0/';
 const defaultView = 'Grid view';
 
-async function findRecordByField(table, fieldName, fieldValue, additionalFilters = '') {
+async function findRecordByField(table, fieldName, fieldValue, additionalFilters = null) {
   const selectParams = {
     filter: `{${fieldName}} = "${fieldValue}"`,
     maxRecords: 1,
