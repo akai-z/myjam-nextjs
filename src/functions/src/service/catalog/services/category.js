@@ -6,7 +6,7 @@ const HttpError = require('../../../common/error/http');
 const tableName = 'categories';
 
 async function category(slug) {
-  const category = await airtable.findRecordByField(tableName, 'slug', slug);
+  const category = await airtable.findRecordByField(tableName, 'slug', slug, '{status} = "enabled"');
 
   if (!category) {
     throw new HttpError(404, `Could not find the category "${slug}"`);
