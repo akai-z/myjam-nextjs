@@ -19,7 +19,7 @@ const fields = [
 ];
 
 async function record(slug) {
-  const filter = `${product.identifierField} = $1`;
+  const filter = `${product.identifierField} = $1 and status = 'enabled'`;
   const pgsql = pgsqlFactory.create();
   const result = await pgsql.record(product.tableName, filter, [slug], queryFields());
 
