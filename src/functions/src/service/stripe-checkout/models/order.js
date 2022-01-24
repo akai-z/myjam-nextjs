@@ -81,7 +81,7 @@ class Order extends DataObject {
   }
 
   set postCode(postCode) {
-    this.post_code = postCode;
+    this.post_code = postCode.toUpperCase();
   }
 
   get city() {
