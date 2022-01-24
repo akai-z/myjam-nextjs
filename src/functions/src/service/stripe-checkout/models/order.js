@@ -25,7 +25,7 @@ class Order extends DataObject {
   }
 
   set customerName(customerName) {
-    this.customer_name = customerName;
+    this.customer_name = customerName.toUpperCase();
   }
 
   get email() {
