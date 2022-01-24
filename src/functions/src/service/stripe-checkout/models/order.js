@@ -33,7 +33,7 @@ class Order extends DataObject {
   }
 
   set email(email) {
-    this._email = email;
+    this._email = email.toLowerCase();
   }
 
   get couponCode() {
