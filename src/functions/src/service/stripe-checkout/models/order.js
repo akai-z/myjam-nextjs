@@ -89,7 +89,7 @@ class Order extends DataObject {
   }
 
   set city(city) {
-    this._city = city;
+    this._city = city.toUpperCase();
   }
 
   get phoneNumber() {
