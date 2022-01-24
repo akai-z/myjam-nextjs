@@ -7,6 +7,11 @@ export const pageview = (url: string) => {
   });
 };
 
+export const beginCheckout = () => {
+  // @ts-ignore
+  window.gtag('config', 'begin_checkout', {});
+};
+
 export const purchaseEvent = ({
   items,
   currency,

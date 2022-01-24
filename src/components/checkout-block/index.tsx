@@ -7,6 +7,7 @@ import { createCheckoutSession, lineItemsFormatter } from '@utils/checkout';
 import { useShoppingCart, useCustomerProfile } from '@contexts/index';
 import useStripe from '@hooks/use-stripe';
 import Loader from '@components/loader';
+import * as gtag from '@lib/gtag';
 
 type Props = {
   isMobile?: boolean;
@@ -31,6 +32,7 @@ const CheckoutBlock: React.FC<Props> = ({ isMobile = false }) => {
     createCheckoutSession(line_items, { phone })
       .then(({ sessionId }) => {
         setLoading(false);
+        gtag.beginCheckout();
         // @ts-ignore
         return stripe.redirectToCheckout({ sessionId });
       })
