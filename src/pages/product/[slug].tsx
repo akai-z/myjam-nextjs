@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Layout from '@components/layout';
 import Product from '@components/product';
-import { API_URL } from '@config/env';
 import Loader from '@components/loader';
 import NotFound from '@components/not-found';
 import ProxiedProduct from '@catalog-service/proxied-product';
@@ -76,8 +75,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const response = await fetch(`${API_URL}/proxied-product/${params?.slug}`);
-  if (response.status === 404) {
+  try {
+    const item = await ProxiedProduct.record(params?.slug);
+
+    return {
+      revalidate: 300,
+      props: {
+        item,
+      },
+    };
+  } catch (err) {
     return {
       redirect: {
         destination: '/not-found',
@@ -85,14 +92,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       },
     };
   }
-  const item = await response.json();
-
-  return {
-    revalidate: 300,
-    props: {
-      item,
-    },
-  };
 };
 
 export default ProductPage;
