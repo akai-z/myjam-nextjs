@@ -16,16 +16,16 @@ const moduleExports = withImages({
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          "@components": path.join(__dirname, 'src/components'),
-          "@contexts": path.join(__dirname, 'src/contexts'),
-          "@hooks": path.join(__dirname, 'src/hooks'),
-          "@pages": path.join(__dirname, 'src/pages'),
-          "@templates": path.join(__dirname, 'src/templates'),
-          "@lib": path.join(__dirname, 'src/lib'),
-          "@config": path.join(__dirname, 'src/config'),
-          "@mocks-data": path.join(__dirname, 'src/mocks-data'),
-          "@images": path.join(__dirname, 'src/images'),
-          "@utils": path.join(__dirname, 'src/utils'),
+          "@components": resolvePath('components'),
+          "@contexts": resolvePath('contexts'),
+          "@hooks": resolvePath('hooks'),
+          "@pages": resolvePath('pages'),
+          "@templates": resolvePath('templates'),
+          "@lib": resolvePath('lib'),
+          "@config": resolvePath('config'),
+          "@mocks-data": resolvePath('mocks-data'),
+          "@images": resolvePath('images'),
+          "@utils": resolvePath('utils'),
         },
         fallback: {
           fs: false
@@ -47,6 +47,10 @@ const sentryWebpackPluginOptions = {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
+
+function resolvePath(dir) {
+  return path.join(__dirname, `src/${dir}`);
+}
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
