@@ -6,6 +6,7 @@ import Product from '@components/product';
 import { API_URL } from '@config/env';
 import Loader from '@components/loader';
 import NotFound from '@components/not-found';
+import ProxiedProduct from '@catalog-service/proxied-product';
 
 type Props = {
   item: Item;
@@ -51,21 +52,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let products = [];
   let pageNumber = 1;
   const pageSize = 100;
-  const response = await fetch(
-    `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
-  );
-  const records = await response.json();
+  const records = await ProxiedProduct.list(pageNumber, pageSize);
 
-  const countResponse = await fetch(`${API_URL}/proxied-product-list?size`);
-  const { count = 0 } = await countResponse.json();
+  const { count = 0 } = await ProxiedProduct.listSize();
 
   products = products.concat(...records);
 
   while (Number(count) > pageNumber * pageSize) {
-    const res = await fetch(
-      `${API_URL}/proxied-product-list?page-size=${pageSize}&page-number=${pageNumber}`,
-    );
-    const tmpRecords = await res.json();
+    const tmpRecords = await ProxiedProduct.list(pageNumber, pageSize);
     products = products.concat(...tmpRecords);
     pageNumber++;
   }
