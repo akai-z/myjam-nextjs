@@ -25,7 +25,7 @@ class Order extends DataObject {
   }
 
   set customerName(customerName) {
-    this.customer_name = customerName;
+    this.customer_name = customerName.toUpperCase();
   }
 
   get email() {
@@ -33,7 +33,7 @@ class Order extends DataObject {
   }
 
   set email(email) {
-    this._email = email;
+    this._email = email.toLowerCase();
   }
 
   get couponCode() {
@@ -81,7 +81,7 @@ class Order extends DataObject {
   }
 
   set postCode(postCode) {
-    this.post_code = postCode;
+    this.post_code = postCode.toUpperCase();
   }
 
   get city() {
@@ -89,7 +89,7 @@ class Order extends DataObject {
   }
 
   set city(city) {
-    this._city = city;
+    this._city = city.toUpperCase();
   }
 
   get phoneNumber() {
