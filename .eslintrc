@@ -16,7 +16,8 @@
         ["@components", "./src/components"],
         ["@pages", "./src/pages"],
         ["@templates", "./src/templates"],
-        ["@utils", "./src/utils"]
+        ["@utils", "./src/utils"],
+        ["@catalog-service", "./src/functions/src/service/catalog/services"]
       ]
     }
   },

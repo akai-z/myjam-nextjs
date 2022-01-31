@@ -26,6 +26,7 @@ const moduleExports = withImages({
           "@mocks-data": resolvePath('mocks-data'),
           "@images": resolvePath('images'),
           "@utils": resolvePath('utils'),
+          "@catalog-service": resolvePath('functions/src/service/catalog/services'),
         },
         fallback: {
           fs: false

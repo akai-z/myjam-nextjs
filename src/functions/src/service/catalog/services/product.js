@@ -8,7 +8,7 @@ const validTypes = ['featured', 'trending', 'weekly_deals'];
 const defaultListPageSize = process.env.PRODUCT_LIST_PAGE_SIZE || 50;
 
 async function product(slug) {
-  const product = await airtable.findRecordByField(tableName, 'slug', slug);
+  const product = await airtable.findRecordByField(tableName, 'slug', slug, '{status} = "enabled"');
 
   if (!product) {
     throw new HttpError(404, `Could not find the product "${slug}"`);
