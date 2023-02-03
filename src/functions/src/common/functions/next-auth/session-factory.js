@@ -1,3 +1,5 @@
+'use strict';
+
 const NextAuthSession = require('./session');
 
 function create(req) {

@@ -1,3 +1,5 @@
+'use strict';
+
 const { getSession } = require('next-auth/client');
 
 const authPath = 'auth/signin/auth0';

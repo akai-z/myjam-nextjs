@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('airtable');
 const got = require('got');
 const HttpError = require('../../../../common/error/http');

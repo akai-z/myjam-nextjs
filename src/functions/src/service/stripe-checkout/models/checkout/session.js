@@ -1,3 +1,5 @@
+'use strict';
+
 const stripe = require('../../services/integrations/stripe');
 
 class CheckoutSession {

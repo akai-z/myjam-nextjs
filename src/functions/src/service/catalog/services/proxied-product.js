@@ -1,3 +1,5 @@
+'use strict';
+
 const product = require('./product');
 const pgsqlFactory = require('./integrations/pgsql-factory');
 const HttpError = require('../../../common/error/http');

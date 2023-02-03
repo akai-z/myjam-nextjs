@@ -1,3 +1,5 @@
+'use strict';
+
 const CheckoutSession = require('../session');
 const stripe = require('../../../services/integrations/stripe');
 const lineItems = require('../../../services/checkout/line-items');
