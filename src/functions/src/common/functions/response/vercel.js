@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require('../../error/http');
 
 class Response {

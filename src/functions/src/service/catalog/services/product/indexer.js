@@ -1,3 +1,5 @@
+'use strict';
+
 const algoliaFactory = require('../integrations/algolia-factory');
 const product = require('../product');
 

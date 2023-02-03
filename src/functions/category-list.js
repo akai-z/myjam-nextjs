@@ -1,3 +1,5 @@
+'use strict';
+
 const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap');
 const category = require('./src/service/catalog/services/category');
 

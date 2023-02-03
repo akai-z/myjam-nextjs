@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('airtable');
 
 const bulkActionRecordsLimit = 10;

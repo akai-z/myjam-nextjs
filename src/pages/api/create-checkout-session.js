@@ -1,3 +1,5 @@
+'use strict';
+
 const { httpMethods, responseFactory } = require('../../functions/src/common/functions/bootstrap');
 const checkoutSession = require('../../functions/src/service/stripe-checkout/services/checkout/session');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 const { httpMethods, responseFactory } = require('../../functions/src/common/functions/bootstrap');
 const product = require('../../functions/src/service/catalog/services/product');
 const proxiedProduct = require('../../functions/src/service/catalog/services/proxied-product');

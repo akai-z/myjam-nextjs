@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('./integrations/airtable');
 
 const tableName = 'configuration';

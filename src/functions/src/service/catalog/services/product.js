@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('./integrations/airtable');
 const HttpError = require('../../../common/error/http');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 const stripe = require('../integrations/stripe');
 const tip = require('./tip');
 const crypto = require('../crypto');
