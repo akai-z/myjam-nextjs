@@ -1,3 +1,5 @@
+'use strict';
+
 const product = require('../proxied-product');
 const indexer = require('./indexer');
 

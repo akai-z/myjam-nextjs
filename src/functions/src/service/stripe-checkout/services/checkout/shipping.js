@@ -1,3 +1,5 @@
+'use strict';
+
 const lineItems = require('./line-items');
 const config = require('../config');
 

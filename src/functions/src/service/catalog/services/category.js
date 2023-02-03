@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('./integrations/airtable');
 const product = require('./product');
 const proxiedProduct = require('./proxied-product');

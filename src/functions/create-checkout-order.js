@@ -1,3 +1,5 @@
+'use strict';
+
 const { httpMethods, responseFactory } = require('./src/common/functions/bootstrap');
 const stripe = require('./src/service/stripe-checkout/services/integrations/stripe');
 const order = require('./src/service/stripe-checkout/services/order');

@@ -1,3 +1,5 @@
+'use strict';
+
 const algoliasearch = require('algoliasearch');
 const Algolia = require('./algolia');
 

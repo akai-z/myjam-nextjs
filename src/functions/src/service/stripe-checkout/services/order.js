@@ -1,3 +1,5 @@
+'use strict';
+
 const airtable = require('./integrations/airtable');
 const checkoutSession = require('./checkout/session');
 const lineItems = require('./checkout/line-items');

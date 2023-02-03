@@ -1,3 +1,5 @@
+'use strict';
+
 function createVercelRequest(req) {
   const Request = require('./request/vercel');
   return new Request(req);

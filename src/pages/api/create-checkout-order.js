@@ -1,3 +1,5 @@
+'use strict';
+
 const stripe = require('../../functions/src/service/stripe-checkout/services/integrations/stripe');
 const order = require('../../functions/src/service/stripe-checkout/services/order');
 const {

@@ -1,3 +1,5 @@
+'use strict';
+
 const DataObject = require('../data-object');
 
 const airtableView = 'Order Items';

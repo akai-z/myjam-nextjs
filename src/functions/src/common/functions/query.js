@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require('../error/http');
 
 function validate(params, requiredParams) {

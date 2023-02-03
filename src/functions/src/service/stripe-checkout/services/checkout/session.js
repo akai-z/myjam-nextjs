@@ -1,3 +1,5 @@
+'use strict';
+
 const NewSession = require('../../models/checkout/session/new');
 const ExistingSession = require('../../models/checkout/session/existing');
 

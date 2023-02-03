@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require('../error/http');
 const pathParamsMapper = require('./path-params/mapper');
 

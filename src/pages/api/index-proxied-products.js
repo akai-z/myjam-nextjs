@@ -1,3 +1,5 @@
+'use strict';
+
 const productIndexer = require('../../functions/src/service/catalog/services/product/proxy-indexer');
 const {
   httpMethods,

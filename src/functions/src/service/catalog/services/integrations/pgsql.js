@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpError = require('../../../../common/error/http');
 
 class PgSql {
